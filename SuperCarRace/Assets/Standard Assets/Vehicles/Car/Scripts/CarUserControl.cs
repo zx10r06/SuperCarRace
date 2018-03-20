@@ -26,6 +26,7 @@ namespace UnityStandardAssets.Vehicles.Car
             float handbrake = CrossPlatformInputManager.GetAxis("Jump");
             m_Car.Move(h, v, v, handbrake);
 #else
+            h = Input.acceleration.x * 5;
             m_Car.Move(h, v, v, 0f);
 #endif
         }
