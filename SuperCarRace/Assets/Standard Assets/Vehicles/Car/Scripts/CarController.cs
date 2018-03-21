@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using UnityStandardAssets.Utility;
 
 namespace UnityStandardAssets.Vehicles.Car
 {
@@ -55,9 +56,14 @@ namespace UnityStandardAssets.Vehicles.Car
         public float Revs { get; private set; }
         public float AccelInput { get; private set; }
 
+        GameObject parentGo;
+        Vector3 startPos;
+        Quaternion startRot;
+
         // Use this for initialization
         private void Start()
         {
+
             /*
             m_WheelMeshLocalRotations = new Quaternion[4];
             for (int i = 0; i < 4; i++)
@@ -71,6 +77,11 @@ namespace UnityStandardAssets.Vehicles.Car
 
             m_Rigidbody = GetComponent<Rigidbody>();
             m_CurrentTorque = m_FullTorqueOverAllWheels - (m_TractionControl*m_FullTorqueOverAllWheels);
+
+            parentGo = gameObject;
+            startPos = parentGo.transform.position;
+            startRot = parentGo.transform.rotation;
+
         }
 
 
@@ -370,5 +381,24 @@ namespace UnityStandardAssets.Vehicles.Car
             Move(0, 0, -1f, 1f);
         }
 
+
+        public void ResetVehicle()
+        {
+
+            parentGo.transform.position = startPos;
+            parentGo.transform.rotation = startRot;
+
+            m_SteerAngle = 90.0f;
+            m_WheelColliders[0].steerAngle = m_SteerAngle;
+            m_WheelColliders[1].steerAngle = m_SteerAngle;
+
+            m_Rigidbody.velocity = Vector3.zero;
+
+            //Set correct waypoint target...  SetTarget
+            WaypointProgressTracker wpt = (WaypointProgressTracker)gameObject.GetComponent(typeof(WaypointProgressTracker));
+            wpt.Reset();
+
+
+        }
     }
 }

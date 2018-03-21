@@ -2,31 +2,43 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+using UnityStandardAssets.Vehicles.Car;
+
 public class Main : MonoBehaviour {
 
-	GameObject cameraCar;
-	Vector3 cameraCarPos;
-	Quaternion cameraCarRot;
+    ArrayList objectsToReset = new ArrayList();
 
 	// Use this for initialization
 	void Start () {
+        addObjectToReset("CameraCar");
+        addObjectToReset("AICar1");
+        addObjectToReset("AICar2");
+        addObjectToReset("AICar3");
+        addObjectToReset("AICar4");
+        //addObjectToReset("PlayerCar");
 
-		cameraCar = GameObject.Find ("CameraCar");
-		cameraCarPos = cameraCar.transform.position;
-		cameraCarRot = cameraCar.transform.rotation;
-		
+    }
+
+    // Update is called once per frame
+    void Update () {
 	}
-	
-	// Update is called once per frame
-	void Update () {
-	}
+    
+
+    void addObjectToReset(string name)
+    {
+        objectsToReset.Add(
+            (CarController)GameObject.Find(name)
+                .GetComponent(typeof(CarController))
+        );
+    }
 
     public void Test() {
-		cameraCar.transform.position = cameraCarPos;
-		cameraCar.transform.rotation = cameraCarRot;
-    
-	
-	}
+
+        foreach (CarController cc in objectsToReset)
+        {
+            cc.ResetVehicle();
+        }
+    }
 
 
 }
