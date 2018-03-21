@@ -37,10 +37,26 @@ public class Main : MonoBehaviour {
         PlayerCarCam.SetActive(false);
         //PlayerCar.SetActive(false);
 
+        
+
     }
+
+    bool haveUpdated = false;
 
     // Update is called once per frame
     void Update () {
+
+        if (haveUpdated == false)
+        {
+            haveUpdated = true;
+            updateMenus();
+        }
+
+
+
+    }
+
+    void updateMenus() {
 
         if (isMainMenu)
         {
@@ -50,18 +66,20 @@ public class Main : MonoBehaviour {
         }
         else
         {
-            PlayerCarCam.SetActive(true);
-            MainMenu.SetActive(false);
-            InGameMenu.SetActive(true);
+
             CameraCar.SetActive(false);
+            MainMenu.SetActive(false);
+            PlayerCarCam.SetActive(true);
 
             if (isPaused)
             {
                 PauseMenu.SetActive(true);
+                InGameMenu.SetActive(false);
             }
             else
             {
                 PauseMenu.SetActive(false);
+                InGameMenu.SetActive(true);
             }
         }
 
@@ -78,17 +96,20 @@ public class Main : MonoBehaviour {
     public void PauseRace() {
         Time.timeScale = 0.0f;
         isPaused = true;
+        updateMenus();
     }
 
     public void StartRace() {
         isMainMenu = false;
         ResetRace();
+        updateMenus();
     }
 
     public void ResumeRace()
     {
         Time.timeScale = 1.0f;
         isPaused = false;
+        updateMenus();
     }
 
     public void ResetRace() {
@@ -97,6 +118,7 @@ public class Main : MonoBehaviour {
             cc.ResetVehicle();
         }
         ResumeRace();
+        updateMenus();
     }
 
 
