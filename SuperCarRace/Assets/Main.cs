@@ -8,23 +8,24 @@ public class Main : MonoBehaviour {
 
     bool isMainMenu = true;
     GameObject MainMenu;
-
     bool isPaused = false;
     GameObject PauseMenu;
-
     GameObject InGameMenu;
-
     ArrayList objectsToReset = new ArrayList();
-
     GameObject CameraCar;
+    GameObject PlayerCar;
+    GameObject PlayerCarCam;
 
-	// Use this for initialization
-	void Start () {
+    // Use this for initialization
+    void Start () {
 
         MainMenu = GameObject.Find("MainMenu");
         PauseMenu = GameObject.Find("PauseMenu");
         InGameMenu = GameObject.Find("InGameMenu");
         CameraCar = GameObject.Find("CameraCar");
+        PlayerCar = GameObject.Find("PlayerCar");
+        PlayerCarCam = GameObject.Find("PlayerCamera");
+        //FindGameObjectsWithTag("PlayerCamera")[0];
 
         AddObjectToReset("CameraCar");
         AddObjectToReset("AICar1");
@@ -32,6 +33,10 @@ public class Main : MonoBehaviour {
         AddObjectToReset("AICar3");
         AddObjectToReset("AICar4");
         AddObjectToReset("PlayerCar");
+
+        PlayerCarCam.SetActive(false);
+        //PlayerCar.SetActive(false);
+
     }
 
     // Update is called once per frame
@@ -45,6 +50,7 @@ public class Main : MonoBehaviour {
         }
         else
         {
+            PlayerCarCam.SetActive(true);
             MainMenu.SetActive(false);
             InGameMenu.SetActive(true);
             CameraCar.SetActive(false);

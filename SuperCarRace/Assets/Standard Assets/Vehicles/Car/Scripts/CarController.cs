@@ -391,7 +391,7 @@ namespace UnityStandardAssets.Vehicles.Car
             m_WheelColliders[0].steerAngle = m_SteerAngle;
             m_WheelColliders[1].steerAngle = m_SteerAngle;
 
-            m_Rigidbody.velocity = Vector3.zero;
+            //m_Rigidbody.velocity = Vector3.zero;
 
             //Set correct waypoint target...  SetTarget
             WaypointProgressTracker wpt = (WaypointProgressTracker)gameObject.GetComponent(typeof(WaypointProgressTracker));
