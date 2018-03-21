@@ -381,7 +381,6 @@ namespace UnityStandardAssets.Vehicles.Car
             Move(0, 0, -1f, 1f);
         }
 
-
         public void ResetVehicle()
         {
 
@@ -396,9 +395,12 @@ namespace UnityStandardAssets.Vehicles.Car
 
             //Set correct waypoint target...  SetTarget
             WaypointProgressTracker wpt = (WaypointProgressTracker)gameObject.GetComponent(typeof(WaypointProgressTracker));
-            wpt.Reset();
-
+            if (wpt != null)
+            {
+                wpt.Reset();
+            }
 
         }
+        
     }
 }
