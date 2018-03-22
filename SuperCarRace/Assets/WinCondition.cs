@@ -22,7 +22,7 @@ public class WinCondition : MonoBehaviour {
 
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log("TRIGGER ENTERED");
+        Debug.Log("TRIGGER ENTERED: " + other.attachedRigidbody.tag);
     }
 
 }
