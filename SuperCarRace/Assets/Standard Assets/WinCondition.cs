@@ -3,15 +3,18 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityStandardAssets.Vehicles.Car;
 
-public class WinCondition : MonoBehaviour {
+public class WinCondition : MonoBehaviour
+{
 
-	// Use this for initialization
-	void Start () {
-	}
-	
-	// Update is called once per frame
-	void Update () {
-	}
+    // Use this for initialization
+    void Start()
+    {
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+    }
 
     private void OnCollisionEnter(Collision collision)
     {
@@ -24,16 +27,25 @@ public class WinCondition : MonoBehaviour {
     private void OnTriggerEnter(Collider other)
     {
 
+        string carName = other.attachedRigidbody.gameObject.tag;
+
         if (other.attachedRigidbody == null)
         {
             return;
         }
 
-        if (other.attachedRigidbody.gameObject.tag == "AICar" || other.attachedRigidbody.gameObject.tag == "PlayerCar")
+        if (carName == "AICar" || carName == "PlayerCar")
         {
-            Debug.Log("TRIGGER ENTERED: " + other.attachedRigidbody.tag);
+            Debug.Log("TRIGGER ENTERED: " + carName);
             CarAIControl carAI = (CarAIControl)other.attachedRigidbody.gameObject.GetComponent(typeof(CarAIControl));
             carAI.StopDriving();
+
+            if (carName == "PlayerCar")
+            {
+                Main m = (Main)GameObject.Find("Main").GetComponent("Main");
+                m.FinishedRace();
+            }
+
         }
 
     }

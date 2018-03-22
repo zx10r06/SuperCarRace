@@ -135,6 +135,12 @@ public class Main : MonoBehaviour {
             PauseMenu.SetActive(false);
             InGameMenu.SetActive(false);
             WinMenu.SetActive(false);
+
+            if (raceFinished)
+            {
+                WinMenu.SetActive(true);
+            }
+
         }
         else
         {
@@ -199,6 +205,7 @@ public class Main : MonoBehaviour {
         }
         ResumeRace();
         updateMenus();
+        raceFinished = false;
     }
 
     public int GetPosition(string carName) {
@@ -230,6 +237,7 @@ public class Main : MonoBehaviour {
 
     public void FinishedRace() {
         raceFinished = true;
+        updateMenus();
     }
 
 

@@ -31,15 +31,16 @@ public class WinCondition : MonoBehaviour {
             return;
         }
 
-        if (carName == "AICar" || other.attachedRigidbody.gameObject.tag == "PlayerCar")
+        if (carName == "AICar" || carName == "PlayerCar")
         {
-            Debug.Log("TRIGGER ENTERED: " + other.attachedRigidbody.tag);
+            Debug.Log("TRIGGER ENTERED: " + carName);
             CarAIControl carAI = (CarAIControl)other.attachedRigidbody.gameObject.GetComponent(typeof(CarAIControl));
             carAI.StopDriving();
 
-            if (carName == "CameraCar" || carName == "PlayerCar")
+            if (carName == "PlayerCar")
             {
-
+                Main m = (Main)GameObject.Find("Main").GetComponent("Main");
+                m.FinishedRace();
             }
 
         }
