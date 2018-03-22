@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityStandardAssets.Vehicles.Car;
 
 public class WinCondition : MonoBehaviour {
 
@@ -22,7 +23,19 @@ public class WinCondition : MonoBehaviour {
 
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log("TRIGGER ENTERED: " + other.attachedRigidbody.tag);
+
+        if (other.attachedRigidbody == null)
+        {
+            return;
+        }
+
+        if (other.attachedRigidbody.gameObject.tag == "AICar" || other.attachedRigidbody.gameObject.tag == "PlayerCar")
+        {
+            Debug.Log("TRIGGER ENTERED: " + other.attachedRigidbody.tag);
+            CarAIControl carAI = (CarAIControl)other.attachedRigidbody.gameObject.GetComponent(typeof(CarAIControl));
+            carAI.StopDriving();
+        }
+
     }
 
 }
