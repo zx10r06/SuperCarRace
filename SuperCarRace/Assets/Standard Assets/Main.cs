@@ -25,10 +25,14 @@ public class Main : MonoBehaviour {
     GameObject AICar2;
     GameObject AICar3;
     GameObject AICar4;
+
+    /*
     WaypointProgressTracker AICar1_wpt;
     WaypointProgressTracker AICar2_wpt;
     WaypointProgressTracker AICar3_wpt;
     WaypointProgressTracker AICar4_wpt;
+    */
+
 
     CarController AICar1_controller;
     CarController AICar2_controller;
@@ -96,17 +100,26 @@ public class Main : MonoBehaviour {
         //Check if finished race
         //if (isMainMenu == false)
         //{
-            string[] s = new string[1];
-            s[0] = "CameraCar";
-            foreach (string carName in s)
-            {
-                CarAIControl cAI = (CarAIControl)GameObject.Find(carName).GetComponent(typeof(CarAIControl));
-                if (cAI.amDriving() == false)
-                {
-                    ResetRace();
-                }
 
+
+
+        string[] s = new string[1];
+        s[0] = "CameraCar";
+        foreach (string carName in s)
+        {
+
+        GameObject go = GameObject.Find(carName);
+        if (go != null)
+        {
+            CarAIControl cAI = (CarAIControl)GameObject.Find(carName).GetComponent(typeof(CarAIControl));
+            if (cAI.amDriving() == false)
+            {
+                ResetRace();
             }
+        }
+
+
+        }
 
         //}
 
@@ -213,6 +226,10 @@ public class Main : MonoBehaviour {
             }
         }
         return (myPosition);
+    }
+
+    public void FinishedRace() {
+        raceFinished = true;
     }
 
 
