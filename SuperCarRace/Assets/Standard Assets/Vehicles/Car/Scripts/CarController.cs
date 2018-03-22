@@ -404,6 +404,11 @@ namespace UnityStandardAssets.Vehicles.Car
                 wpt.Reset();
             }
 
+
+            CarAIControl cAI = (CarAIControl)GameObject.Find(name).GetComponent(typeof(CarAIControl));
+            cAI.StartDriving();
+
+
         }
 
         public void udpateText() {

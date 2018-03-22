@@ -24,24 +24,16 @@ public class WinCondition : MonoBehaviour {
     private void OnTriggerEnter(Collider other)
     {
 
-        string carName = other.attachedRigidbody.gameObject.tag;
-
         if (other.attachedRigidbody == null)
         {
             return;
         }
 
-        if (carName == "AICar" || other.attachedRigidbody.gameObject.tag == "PlayerCar")
+        if (other.attachedRigidbody.gameObject.tag == "AICar" || other.attachedRigidbody.gameObject.tag == "PlayerCar")
         {
             Debug.Log("TRIGGER ENTERED: " + other.attachedRigidbody.tag);
             CarAIControl carAI = (CarAIControl)other.attachedRigidbody.gameObject.GetComponent(typeof(CarAIControl));
             carAI.StopDriving();
-
-            if (carName == "CameraCar" || carName == "PlayerCar")
-            {
-
-            }
-
         }
 
     }

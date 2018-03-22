@@ -12,11 +12,14 @@ public class Main : MonoBehaviour {
     bool isPaused = false;
     GameObject PauseMenu;
     GameObject InGameMenu;
+    GameObject WinMenu;
     ArrayList objectsToReset = new ArrayList();
     GameObject CameraCar;
     GameObject PlayerCar;
     GameObject PlayerCarCam;
     bool haveUpdated = false;
+
+    public bool raceFinished = false;
 
     GameObject AICar1;
     GameObject AICar2;
@@ -38,6 +41,7 @@ public class Main : MonoBehaviour {
         MainMenu = GameObject.Find("MainMenu");
         PauseMenu = GameObject.Find("PauseMenu");
         InGameMenu = GameObject.Find("InGameMenu");
+        WinMenu = GameObject.Find("WinMenu");
         CameraCar = GameObject.Find("CameraCar");
         PlayerCar = GameObject.Find("PlayerCar");
         PlayerCarCam = GameObject.Find("PlayerCamera");
@@ -89,6 +93,23 @@ public class Main : MonoBehaviour {
         AICar3_controller.udpateText();
         AICar4_controller.udpateText();
 
+        //Check if finished race
+        //if (isMainMenu == false)
+        //{
+            string[] s = new string[1];
+            s[0] = "CameraCar";
+            foreach (string carName in s)
+            {
+                CarAIControl cAI = (CarAIControl)GameObject.Find(carName).GetComponent(typeof(CarAIControl));
+                if (cAI.amDriving() == false)
+                {
+                    ResetRace();
+                }
+
+            }
+
+        //}
+
 
 
     }
@@ -100,12 +121,14 @@ public class Main : MonoBehaviour {
             MainMenu.SetActive(true);
             PauseMenu.SetActive(false);
             InGameMenu.SetActive(false);
+            WinMenu.SetActive(false);
         }
         else
         {
 
             CameraCar.SetActive(false);
             MainMenu.SetActive(false);
+            WinMenu.SetActive(false);
             PlayerCarCam.SetActive(true);
 
             if (isPaused)
@@ -113,10 +136,14 @@ public class Main : MonoBehaviour {
                 PauseMenu.SetActive(true);
                 InGameMenu.SetActive(false);
             }
+            else if (raceFinished) {
+                WinMenu.SetActive(true);
+            }
             else
             {
                 PauseMenu.SetActive(false);
                 InGameMenu.SetActive(true);
+                WinMenu.SetActive(false);
             }
         }
 
@@ -137,6 +164,7 @@ public class Main : MonoBehaviour {
     }
 
     public void StartRace() {
+        raceFinished = false;
         isMainMenu = false;
         ResetRace();
         updateMenus();
@@ -150,6 +178,8 @@ public class Main : MonoBehaviour {
     }
 
     public void ResetRace() {
+
+        raceFinished = false;
         foreach (CarController cc in objectsToReset)
         {
             cc.ResetVehicle();
@@ -159,18 +189,6 @@ public class Main : MonoBehaviour {
     }
 
     public int GetPosition(string carName) {
-
-        /*
-        // If finished race... (not driving) don't update
-        CarAIControl cAI = (CarAIControl)GameObject.Find("carName").GetComponent(typeof(CarAIControl));
-        if (cAI.amDriving() == false)
-        {
-            return;
-        }
-        BUT WHY?
-        */
-
-
         // Check each Cars position for the highest... 
         // highest is first, lowest is last
         WaypointProgressTracker wpt = (WaypointProgressTracker)GameObject.Find(carName).GetComponent(typeof(WaypointProgressTracker));
@@ -196,5 +214,6 @@ public class Main : MonoBehaviour {
         }
         return (myPosition);
     }
+
 
 }
