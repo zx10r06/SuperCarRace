@@ -60,9 +60,14 @@ namespace UnityStandardAssets.Vehicles.Car
         Vector3 startPos;
         Quaternion startRot;
 
+        Main m;
+
         // Use this for initialization
         private void Start()
         {
+
+            m = (Main)GameObject.Find("Main").GetComponent(typeof(Main));
+
 
             m_WheelMeshLocalRotations = new Quaternion[4];
             for (int i = 0; i < 4; i++)
@@ -400,6 +405,13 @@ namespace UnityStandardAssets.Vehicles.Car
             }
 
         }
+
+        public void udpateText() {
+            TextMesh tm1 = (TextMesh)GetComponent(typeof(TextMesh));
+            tm1.text = m.GetPosition(name).ToString() + "\r\n";
+        }
+
+
         
     }
 }

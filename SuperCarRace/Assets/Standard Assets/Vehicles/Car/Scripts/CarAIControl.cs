@@ -221,5 +221,9 @@ namespace UnityStandardAssets.Vehicles.Car
         public void StopDriving() {
             m_Driving = false;
         }
+
+        public bool amDriving() {
+            return m_Driving;
+        }
     }
 }

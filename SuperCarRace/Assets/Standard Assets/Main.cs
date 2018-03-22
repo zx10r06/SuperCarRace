@@ -58,10 +58,12 @@ public class Main : MonoBehaviour {
         AICar3 = (GameObject)GameObject.Find("AICar3");
         AICar4 = (GameObject)GameObject.Find("AICar4");
 
+        /*
         AICar1_wpt = (WaypointProgressTracker)AICar1.GetComponent(typeof(WaypointProgressTracker));
         AICar2_wpt = (WaypointProgressTracker)AICar2.GetComponent(typeof(WaypointProgressTracker));
         AICar3_wpt = (WaypointProgressTracker)AICar3.GetComponent(typeof(WaypointProgressTracker));
         AICar4_wpt = (WaypointProgressTracker)AICar4.GetComponent(typeof(WaypointProgressTracker));
+        */
 
         AICar1_controller = (CarController)GameObject.Find("AICar1").GetComponent(typeof(CarController));
         AICar2_controller = (CarController)GameObject.Find("AICar2").GetComponent(typeof(CarController));
@@ -81,14 +83,13 @@ public class Main : MonoBehaviour {
             updateMenus();
         }
 
-        TextMesh tm1 = (TextMesh)AICar1_controller.GetComponentInChildren(typeof(TextMesh));
-        tm1.text = AICar1_wpt.progressDistance.ToString() + "\r\n";
-        TextMesh tm2 = (TextMesh)AICar2_controller.GetComponentInChildren(typeof(TextMesh));
-        tm2.text = AICar2_wpt.progressDistance.ToString() + "\r\n";
-        TextMesh tm3 = (TextMesh)AICar3_controller.GetComponentInChildren(typeof(TextMesh));
-        tm3.text = AICar3_wpt.progressDistance.ToString() + "\r\n";
-        TextMesh tm4 = (TextMesh)AICar4_controller.GetComponentInChildren(typeof(TextMesh));
-        tm4.text = AICar4_wpt.progressDistance.ToString() + "\r\n";
+
+        AICar1_controller.udpateText();
+        AICar2_controller.udpateText();
+        AICar3_controller.udpateText();
+        AICar4_controller.udpateText();
+
+
 
     }
 
@@ -155,6 +156,45 @@ public class Main : MonoBehaviour {
         }
         ResumeRace();
         updateMenus();
+    }
+
+    public int GetPosition(string carName) {
+
+        /*
+        // If finished race... (not driving) don't update
+        CarAIControl cAI = (CarAIControl)GameObject.Find("carName").GetComponent(typeof(CarAIControl));
+        if (cAI.amDriving() == false)
+        {
+            return;
+        }
+        BUT WHY?
+        */
+
+
+        // Check each Cars position for the highest... 
+        // highest is first, lowest is last
+        WaypointProgressTracker wpt = (WaypointProgressTracker)GameObject.Find(carName).GetComponent(typeof(WaypointProgressTracker));
+        int myPosition = 1;
+        float myDistanceTravelled = 0.0f;
+        foreach (CarController cc in objectsToReset)
+        {
+            if (cc.name == carName)
+            {
+                myDistanceTravelled = wpt.progressDistance;
+            }
+        }
+        foreach (CarController cc in objectsToReset)
+        {
+            if (cc.name != "PlayerCar" && cc.name != "CameraCar" && cc.name != carName)
+            {
+                WaypointProgressTracker wpt2 = (WaypointProgressTracker)GameObject.Find(cc.name).GetComponent(typeof(WaypointProgressTracker));
+                if (wpt2.progressDistance > myDistanceTravelled)
+                {
+                    myPosition = myPosition + 1;
+                }
+            }
+        }
+        return (myPosition);
     }
 
 }
