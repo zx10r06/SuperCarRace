@@ -15,6 +15,7 @@ public class Main : MonoBehaviour {
     GameObject CameraCar;
     GameObject PlayerCar;
     GameObject PlayerCarCam;
+    bool haveUpdated = false;
 
     // Use this for initialization
     void Start () {
@@ -40,8 +41,6 @@ public class Main : MonoBehaviour {
         
 
     }
-
-    bool haveUpdated = false;
 
     // Update is called once per frame
     void Update () {
@@ -120,6 +119,5 @@ public class Main : MonoBehaviour {
         ResumeRace();
         updateMenus();
     }
-
 
 }
