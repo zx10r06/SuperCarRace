@@ -405,6 +405,7 @@ namespace UnityStandardAssets.Vehicles.Car
             }
 
 
+			Debug.LogWarning ("asdfasdf - " + name);
             CarAIControl cAI = (CarAIControl)GameObject.Find(name).GetComponent(typeof(CarAIControl));
             cAI.StartDriving();
 

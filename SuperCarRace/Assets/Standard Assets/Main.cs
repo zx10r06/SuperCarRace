@@ -5,6 +5,20 @@ using UnityEngine;
 using UnityStandardAssets.Vehicles.Car;
 using UnityStandardAssets.Utility;
 
+public class aCar : object {
+
+	public GameObject go;
+	public CarController controller;
+	public CarAIControl ai;
+
+	public aCar(string carName){
+		go = GameObject.Find (carName);
+		controller = (CarController)go.GetComponent(typeof(CarController));
+		ai = (CarAIControl)go.GetComponent(typeof(CarAIControl));
+	}
+
+}
+
 public class Main : MonoBehaviour {
 
     bool isMainMenu = true;
@@ -21,23 +35,11 @@ public class Main : MonoBehaviour {
 
     public bool raceFinished = false;
 
-    GameObject AICar1;
-    GameObject AICar2;
-    GameObject AICar3;
-    GameObject AICar4;
+    aCar AICar1;
+	aCar AICar2;
+	aCar AICar3;
+	aCar AICar4;
 
-    /*
-    WaypointProgressTracker AICar1_wpt;
-    WaypointProgressTracker AICar2_wpt;
-    WaypointProgressTracker AICar3_wpt;
-    WaypointProgressTracker AICar4_wpt;
-    */
-
-
-    CarController AICar1_controller;
-    CarController AICar2_controller;
-    CarController AICar3_controller;
-    CarController AICar4_controller;
 
     // Use this for initialization
     void Start () {
@@ -61,22 +63,10 @@ public class Main : MonoBehaviour {
         PlayerCarCam.SetActive(false);
         //PlayerCar.SetActive(false);
 
-        AICar1 = (GameObject)GameObject.Find("AICar1");
-        AICar2 = (GameObject)GameObject.Find("AICar2");
-        AICar3 = (GameObject)GameObject.Find("AICar3");
-        AICar4 = (GameObject)GameObject.Find("AICar4");
-
-        /*
-        AICar1_wpt = (WaypointProgressTracker)AICar1.GetComponent(typeof(WaypointProgressTracker));
-        AICar2_wpt = (WaypointProgressTracker)AICar2.GetComponent(typeof(WaypointProgressTracker));
-        AICar3_wpt = (WaypointProgressTracker)AICar3.GetComponent(typeof(WaypointProgressTracker));
-        AICar4_wpt = (WaypointProgressTracker)AICar4.GetComponent(typeof(WaypointProgressTracker));
-        */
-
-        AICar1_controller = (CarController)GameObject.Find("AICar1").GetComponent(typeof(CarController));
-        AICar2_controller = (CarController)GameObject.Find("AICar2").GetComponent(typeof(CarController));
-        AICar3_controller = (CarController)GameObject.Find("AICar3").GetComponent(typeof(CarController));
-        AICar4_controller = (CarController)GameObject.Find("AICar4").GetComponent(typeof(CarController));
+		AICar1 = new aCar ("AICar1");
+		AICar2 = new aCar ("AICar2");
+		AICar3 = new aCar ("AICar3");
+		AICar4 = new aCar ("AICar4");
 
     }
 
@@ -91,16 +81,14 @@ public class Main : MonoBehaviour {
             updateMenus();
         }
 
-
-        AICar1_controller.udpateText();
-        AICar2_controller.udpateText();
-        AICar3_controller.udpateText();
-        AICar4_controller.udpateText();
+		AICar1.controller.udpateText ();
+		AICar2.controller.udpateText ();
+		AICar3.controller.udpateText ();
+		AICar4.controller.udpateText ();
 
         //Check if finished race
         //if (isMainMenu == false)
         //{
-
 
 
         string[] s = new string[1];
@@ -185,6 +173,12 @@ public class Main : MonoBehaviour {
     public void StartRace() {
         raceFinished = false;
         isMainMenu = false;
+
+		AICar1.ai.StartDriving ();
+		AICar2.ai.StartDriving ();
+		AICar3.ai.StartDriving ();
+		AICar4.ai.StartDriving ();
+
         ResetRace();
         updateMenus();
     }
