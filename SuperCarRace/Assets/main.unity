@@ -1414,7 +1414,7 @@ GameObject:
   - component: {fileID: 183358719}
   m_Layer: 0
   m_Name: Road.003
-  m_TagString: Untagged
+  m_TagString: road
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
@@ -2559,7 +2559,7 @@ GameObject:
   - component: {fileID: 459869033}
   m_Layer: 0
   m_Name: Road.014
-  m_TagString: Untagged
+  m_TagString: road
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
@@ -2640,7 +2640,7 @@ GameObject:
   - component: {fileID: 462841378}
   m_Layer: 0
   m_Name: Road.006
-  m_TagString: Untagged
+  m_TagString: road
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
@@ -3221,7 +3221,7 @@ GameObject:
   - component: {fileID: 539685389}
   m_Layer: 0
   m_Name: Road.009
-  m_TagString: Untagged
+  m_TagString: road
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
@@ -3515,7 +3515,7 @@ GameObject:
   - component: {fileID: 570927691}
   m_Layer: 0
   m_Name: Road.004
-  m_TagString: Untagged
+  m_TagString: road
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
@@ -3666,6 +3666,11 @@ Prefab:
       propertyPath: m_TagString
       value: AICar
       objectReference: {fileID: 0}
+    - target: {fileID: 114947630195771800, guid: 0fb4610dba67fc24cb2a6674fb155fc1,
+        type: 2}
+      propertyPath: otherGround.Array.data[0].continuousMarking
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 0fb4610dba67fc24cb2a6674fb155fc1, type: 2}
   m_IsPrefabParent: 0
@@ -3681,7 +3686,7 @@ GameObject:
   - component: {fileID: 576853224}
   m_Layer: 0
   m_Name: Road
-  m_TagString: Untagged
+  m_TagString: road
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
@@ -3807,7 +3812,7 @@ GameObject:
   - component: {fileID: 618805302}
   m_Layer: 0
   m_Name: Road.010
-  m_TagString: Untagged
+  m_TagString: road
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
@@ -4614,7 +4619,7 @@ GameObject:
   - component: {fileID: 771807310}
   m_Layer: 0
   m_Name: Road.007
-  m_TagString: Untagged
+  m_TagString: road
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
@@ -5736,7 +5741,7 @@ GameObject:
   - component: {fileID: 960769499}
   m_Layer: 0
   m_Name: Road_col
-  m_TagString: Untagged
+  m_TagString: track3collider
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
@@ -6149,7 +6154,7 @@ GameObject:
   - component: {fileID: 1079105651}
   m_Layer: 0
   m_Name: Road.008
-  m_TagString: Untagged
+  m_TagString: road
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
@@ -7276,7 +7281,7 @@ GameObject:
   - component: {fileID: 1209637555}
   m_Layer: 0
   m_Name: Road.013
-  m_TagString: Untagged
+  m_TagString: road
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
@@ -10343,7 +10348,7 @@ GameObject:
   - component: {fileID: 1826317813}
   m_Layer: 0
   m_Name: Road.005
-  m_TagString: Untagged
+  m_TagString: road
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
@@ -10573,7 +10578,7 @@ GameObject:
   - component: {fileID: 1873933660}
   m_Layer: 0
   m_Name: Road.012
-  m_TagString: Untagged
+  m_TagString: road
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
@@ -11135,7 +11140,7 @@ GameObject:
   - component: {fileID: 2005084050}
   m_Layer: 0
   m_Name: Road.011
-  m_TagString: Untagged
+  m_TagString: road
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295

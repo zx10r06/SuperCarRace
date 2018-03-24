@@ -35,10 +35,7 @@ public class Main : MonoBehaviour {
 
     public bool raceFinished = false;
 
-    aCar AICar1;
-	aCar AICar2;
-	aCar AICar3;
-	aCar AICar4;
+    ArrayList aCars = new ArrayList();
 
 
     // Use this for initialization
@@ -54,26 +51,39 @@ public class Main : MonoBehaviour {
         //FindGameObjectsWithTag("PlayerCamera")[0];
 
         AddObjectToReset("CameraCar");
-        AddObjectToReset("AICar1");
-        AddObjectToReset("AICar2");
-        AddObjectToReset("AICar3");
-        AddObjectToReset("AICar4");
         AddObjectToReset("PlayerCar");
 
         PlayerCarCam.SetActive(false);
         //PlayerCar.SetActive(false);
 
-		AICar1 = new aCar ("AICar1");
-		AICar2 = new aCar ("AICar2");
-		AICar3 = new aCar ("AICar3");
-		AICar4 = new aCar ("AICar4");
+        if (GameObject.Find("AICar1") != null) {
+            aCars.Add(new aCar("AICar1"));
+            AddObjectToReset("AICar1");
+        }
+
+        if (GameObject.Find("AICar2") != null)
+        {
+            aCars.Add(new aCar("AICar2"));
+            AddObjectToReset("AICar2");
+        }
+
+        if (GameObject.Find("AICar3") != null)
+        {
+            aCars.Add(new aCar("AICar3"));
+            AddObjectToReset("AICar3");
+        }
+
+        if (GameObject.Find("AICar4") != null)
+        {
+            aCars.Add(new aCar("AICar4"));
+            AddObjectToReset("AICar4");
+        }
+
 
     }
 
     // Update is called once per frame
     void Update () {
-
-
 
         if (haveUpdated == false)
         {
@@ -81,10 +91,10 @@ public class Main : MonoBehaviour {
             updateMenus();
         }
 
-		AICar1.controller.udpateText ();
-		AICar2.controller.udpateText ();
-		AICar3.controller.udpateText ();
-		AICar4.controller.udpateText ();
+        foreach(aCar ac in aCars)
+        {
+		    ac.controller.udpateText ();
+        }
 
         //Check if finished race
         //if (isMainMenu == false)
@@ -174,10 +184,13 @@ public class Main : MonoBehaviour {
         raceFinished = false;
         isMainMenu = false;
 
-		AICar1.ai.StartDriving ();
-		AICar2.ai.StartDriving ();
-		AICar3.ai.StartDriving ();
-		AICar4.ai.StartDriving ();
+        foreach(aCar ac in aCars)
+        {
+		    ac.ai.StartDriving ();
+            ac.ai.StartDriving ();
+            ac.ai.StartDriving ();
+            ac.ai.StartDriving ();
+        }
 
         ResetRace();
         updateMenus();

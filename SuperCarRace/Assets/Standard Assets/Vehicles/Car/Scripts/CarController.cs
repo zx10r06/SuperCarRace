@@ -406,8 +406,11 @@ namespace UnityStandardAssets.Vehicles.Car
 
 
 			Debug.LogWarning ("asdfasdf - " + name);
-            CarAIControl cAI = (CarAIControl)GameObject.Find(name).GetComponent(typeof(CarAIControl));
-            cAI.StartDriving();
+            if (name != "CameraCar" && name != "PlayerCar")
+            {
+                CarAIControl cAI = (CarAIControl)GameObject.Find(name).GetComponent(typeof(CarAIControl));
+                cAI.StartDriving();
+            }
 
 
         }

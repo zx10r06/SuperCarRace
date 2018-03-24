@@ -1,0 +1,25 @@
+MSSkidMarks system
+
+=================================
+
+This script is designed to design skid marks, and works on vehicles that use the wheel collider component.
+
+In order for the system to work, it is necessary to associate the "MSSkidMarks" script with the main object of your vehicle.
+The code requires that your vehicle have a Rigidbody, so it will automatically add the 'Rigidbody' component when it is associated with the vehicle.
+
+For the system to work, you must associate the shader 'MSSkidMarksShader' with the variable 'MSSkidMarksShader'
+You also need to associate the vehicle's four wheels with your variables in the 'MSSKidMarks' script.
+
+The script also has an array that allows you to add more wheels to the system, for vehicles that have more than four wheels. If you need to use this feature, 
+simply add the existing wheels to the list.
+The code has several control variables, allowing to adjust the opacity of the skid marks, their width, height, color, among other things. The variables are all explained through ToolTip.
+To see what each variable does, just place the mouse over the name and the explanation will appear.
+
+
+The system also detects various terrains, through tags or 'physics material'. Each terrain can be configured, allowing the color of the track to be changed, its opacity and also allows 
+to choose whether the trail will be continuous or not. When the vehicle passes some terrain that does not have a tag or a 'physics material' to identify it, the trail will be generated 
+through the default settings of the code.
+
+The code generates a texture and a material automatically, but you can also use a custom material through the 'CustomMaterial' variable in the code.
+
+The asset also contains an optional system of vehicle skid sounds that fits the system.

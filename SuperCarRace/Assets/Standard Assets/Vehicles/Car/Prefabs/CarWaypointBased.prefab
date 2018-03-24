@@ -473,6 +473,7 @@ GameObject:
   - component: {fileID: 102393092985981578}
   - component: {fileID: 23521346150731304}
   - component: {fileID: 114180933026940408}
+  - component: {fileID: 114947630195771800}
   m_Layer: 0
   m_Name: CarWaypointBased
   m_TagString: AICar
@@ -782,7 +783,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100048}
   m_LocalRotation: {x: 0, y: 1, z: 0, w: -0.00000004371139}
-  m_LocalPosition: {x: 0, y: 0.30642498, z: 0}
+  m_LocalPosition: {x: 5.730566, y: -1.4770718, z: 43.113937}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 400032}
@@ -833,8 +834,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100060}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -8.4, y: 0, z: 0}
+  m_LocalRotation: {x: 0.017640874, y: 0.33154202, z: -0.012021154, w: 0.9431989}
+  m_LocalPosition: {x: 3.2418041, y: -0.48779488, z: 69.59162}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 400034}
@@ -1288,7 +1289,7 @@ MeshRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100024}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1
@@ -1931,8 +1932,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c62479c3465024b48b42983b1b2eeaaf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SkidTrailPrefab: {fileID: 400000, guid: 4b6aa99de5d21424eab6ae279f31475b, type: 2}
-  skidParticles: {fileID: 0}
+  SkidTrailPrefab: {fileID: 0}
+  skidParticles: {fileID: 19800000}
 --- !u!114 &11400014
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1944,8 +1945,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c62479c3465024b48b42983b1b2eeaaf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SkidTrailPrefab: {fileID: 400000, guid: 4b6aa99de5d21424eab6ae279f31475b, type: 2}
-  skidParticles: {fileID: 0}
+  SkidTrailPrefab: {fileID: 0}
+  skidParticles: {fileID: 19800000}
 --- !u!114 &11400016
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1957,8 +1958,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c62479c3465024b48b42983b1b2eeaaf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SkidTrailPrefab: {fileID: 400000, guid: 4b6aa99de5d21424eab6ae279f31475b, type: 2}
-  skidParticles: {fileID: 0}
+  SkidTrailPrefab: {fileID: 0}
+  skidParticles: {fileID: 19800000}
 --- !u!114 &11400018
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1970,8 +1971,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c62479c3465024b48b42983b1b2eeaaf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SkidTrailPrefab: {fileID: 400000, guid: 4b6aa99de5d21424eab6ae279f31475b, type: 2}
-  skidParticles: {fileID: 0}
+  SkidTrailPrefab: {fileID: 0}
+  skidParticles: {fileID: 19800000}
 --- !u!114 &11400020
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2001,11 +2002,11 @@ MonoBehaviour:
   - {fileID: 11400012}
   m_CentreOfMassOffset: {x: 0, y: 0, z: 0}
   m_MaximumSteerAngle: 25
-  m_SteerHelper: 1
-  m_TractionControl: 1
+  m_SteerHelper: 0.777
+  m_TractionControl: 0.78
   m_FullTorqueOverAllWheels: 2000
   m_ReverseTorque: 150
-  m_MaxHandbrakeTorque: 100000000
+  m_MaxHandbrakeTorque: 3.4028235e+38
   m_Downforce: 100
   m_SpeedType: 0
   m_Topspeed: 110
@@ -2258,7 +2259,7 @@ ParticleSystem:
   moveWithTransform: 1
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 2
-  randomSeed: -2099250070
+  randomSeed: -1673160200
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -5806,8 +5807,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1553418709527256}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.868291, y: 0.3556, z: -1.2879575}
+  m_LocalRotation: {x: 0.995459, y: -0.000000059536973, z: 0.000000058186178, w: 0.09519119}
+  m_LocalPosition: {x: 0.8100029, y: 0.34864974, z: -1.1900027}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4319910101978912}
@@ -5819,8 +5820,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1620321964818586}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.8682911, y: 0.3556, z: -1.2879575}
+  m_LocalRotation: {x: 0.996716, y: -0.00000004465455, z: -0.00000001369451, w: -0.080976956}
+  m_LocalPosition: {x: -0.82999057, y: 0.35083577, z: -1.1900153}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4319910101978912}
@@ -5858,8 +5859,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1880407860251560}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.8210636, y: 0.32257998, z: 1.3836193}
+  m_LocalRotation: {x: 0.98585695, y: 0.00060535985, z: -0.003562371, w: 0.16755055}
+  m_LocalPosition: {x: -0.8300068, y: 0.21967286, z: 1.5199966}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4319910101978912}
@@ -5910,8 +5911,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1122703293540512}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.8210636, y: 0.32257998, z: 1.3836193}
+  m_LocalRotation: {x: 0.9889817, y: 0.00053477305, z: -0.0035736656, w: 0.14799349}
+  m_LocalPosition: {x: 0.7310014, y: 0.21762152, z: 1.5199959}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4319910101978912}
@@ -6273,7 +6274,7 @@ TextMesh:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100064}
-  m_Text: 
+  m_Text: "2\r\n"
   m_OffsetZ: 0
   m_CharacterSize: 1
   m_LineSpacing: 1
@@ -6384,3 +6385,50 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_WaitTime: 3
   m_VelocityThreshold: 1
+--- !u!114 &114947630195771800
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100064}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8d59fbb72dd8f8b47894eb2aa19c5e67, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MSSkidMarksShader: {fileID: 4800000, guid: 94a0f7f2012185f4dbd8b33696992afd, type: 3}
+  settingsDefaultMaterial:
+    normalMapIntensity: 0
+    smoothness: 0
+    metallic: 0
+  customMaterial: {fileID: 0}
+  maxTrailLength: 3
+  trailWidth: 0.31
+  sensibility: 10
+  defaultOpacity: 0.91
+  distanceOfTheGround: 0.1
+  defaultColor: {r: 0, g: 0, b: 0, a: 0}
+  rightFrontWheel:
+    wheelCollider: {fileID: 14600004}
+    displacement: 0
+    rendSKDmarks: {fileID: 0}
+    generatingSkidMarks: 1
+  leftFrontWheel:
+    wheelCollider: {fileID: 14600006}
+    displacement: 0
+    rendSKDmarks: {fileID: 0}
+    generatingSkidMarks: 1
+  rightRearWheel:
+    wheelCollider: {fileID: 14600002}
+    displacement: 0
+    rendSKDmarks: {fileID: 0}
+    generatingSkidMarks: 0
+  leftRearWheel:
+    wheelCollider: {fileID: 14600000}
+    displacement: 0
+    rendSKDmarks: {fileID: 0}
+    generatingSkidMarks: 1
+  otherWheels: []
+  groundDetection: 0
+  otherGround: []
+  KMh: 5.44008

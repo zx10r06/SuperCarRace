@@ -1,0 +1,58 @@
+Version 1.1
+
+-It is now possible to identify the terrains through 'physics material'.
+-A variable was added allowing continuous traces to be generated.
+-Some improvements were made in performance.
+
+
+
+
+
+
+Version 1.2
+
+- More demonstration scenes added
+- Now you can use a custom material to create skid marks.
+- Improvements in codes
+
+
+
+
+
+
+Version 1.3
+
+- Now a system of skid sounds accompanies the asset, allowing you to set up skid sounds in the standard way, but also lets you set up sounds for various terrains.
+- More demonstration scenes added
+- Improvements in codes
+
+
+
+
+
+
+Version 1.3.1
+
+- New 3d model for the scenario.
+
+
+
+
+
+
+Version 1.5.0
+
+- It is now possible to set a maximum size for the 'skidMarks'
+- The code has been reworked, and now reaches up to 800FPS, as it has been extremely optimized.
+
+
+
+
+
+
+Version 1.6.0
+
+- The camera following the vehicle has been replaced by an orbital camera.
+- The objects that the code generates were centered on a single master object called 'MsSkidMarksSystem_Meshes'.
+- The maximum limit of skid marks has been reduced from 30000 to 12000 to avoid possible errors.
+
