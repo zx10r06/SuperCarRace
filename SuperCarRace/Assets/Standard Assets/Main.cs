@@ -24,7 +24,6 @@ public class Main : MonoBehaviour {
     bool isMainMenu = true;
     GameObject MainMenu;
     bool isPaused = false;
-    GameObject PauseMenu;
     GameObject InGameMenu;
     GameObject WinMenu;
     ArrayList objectsToReset = new ArrayList();
@@ -42,7 +41,6 @@ public class Main : MonoBehaviour {
     void Start () {
 
         MainMenu = GameObject.Find("MainMenu");
-        PauseMenu = GameObject.Find("PauseMenu");
         InGameMenu = GameObject.Find("InGameMenu");
         WinMenu = GameObject.Find("WinMenu");
         CameraCar = GameObject.Find("CameraCar");
@@ -130,7 +128,6 @@ public class Main : MonoBehaviour {
         if (isMainMenu)
         {
             MainMenu.SetActive(true);
-            PauseMenu.SetActive(false);
             InGameMenu.SetActive(false);
             WinMenu.SetActive(false);
 
@@ -150,7 +147,7 @@ public class Main : MonoBehaviour {
 
             if (isPaused)
             {
-                PauseMenu.SetActive(true);
+                MainMenu.SetActive(true);
                 InGameMenu.SetActive(false);
             }
             else if (raceFinished) {
@@ -158,7 +155,7 @@ public class Main : MonoBehaviour {
             }
             else
             {
-                PauseMenu.SetActive(false);
+                MainMenu.SetActive(false);
                 InGameMenu.SetActive(true);
                 WinMenu.SetActive(false);
             }
@@ -175,7 +172,7 @@ public class Main : MonoBehaviour {
     }
 
     public void PauseRace() {
-        Time.timeScale = 0.0f;
+        //Time.timeScale = 0.0f;
         isPaused = true;
         updateMenus();
     }
