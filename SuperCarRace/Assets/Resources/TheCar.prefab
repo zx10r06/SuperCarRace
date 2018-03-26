@@ -636,9 +636,10 @@ GameObject:
   - component: {fileID: 23037041450737750}
   - component: {fileID: 114601252379211424}
   - component: {fileID: 114986263898264742}
+  - component: {fileID: 114060033049380076}
   m_Layer: 0
   m_Name: TheCar
-  m_TagString: AICar
+  m_TagString: aCar
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2911,6 +2912,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   SkidTrailPrefab: {fileID: 0}
   skidParticles: {fileID: 198552512006747512}
+--- !u!114 &114060033049380076
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1706026745482284}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 96468c245ae8e0d4f8f1c7a7b8b0542e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enabled: 0
 --- !u!114 &114149133588308164
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3025,6 +3038,7 @@ MonoBehaviour:
   m_RevRangeBoundary: 1
   m_SlipLimit: 0.4
   m_BrakeTorque: 20000
+  camera: {fileID: 1055138605795264}
   m_SteerAngle: 0
   m_GearNum: 0
   m_GearFactor: 0

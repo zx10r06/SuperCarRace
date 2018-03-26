@@ -38,6 +38,8 @@ namespace UnityStandardAssets.Vehicles.Car
         [SerializeField] private float m_SlipLimit;
         [SerializeField] private float m_BrakeTorque;
 
+
+        public GameObject camera;
         private Quaternion[] m_WheelMeshLocalRotations;
         private Vector3 m_Prevpos, m_Pos;
         public float m_SteerAngle;

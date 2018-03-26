@@ -10,6 +10,7 @@ TagManager:
   - track3collider
   - road
   - CameraCar
+  - aCar
   layers:
   - Default
   - TransparentFX

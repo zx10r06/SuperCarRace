@@ -11,12 +11,31 @@ public class aCar : object {
 	public CarController controller;
 	public CarAIControl ai;
     public WaypointProgressTracker wpt;
+    public CarUserControl cui;
 
     public aCar(GameObject carObject){
         go = carObject;
 		controller = (CarController)carObject.GetComponent(typeof(CarController));
 		ai = (CarAIControl)carObject.GetComponent(typeof(CarAIControl));
         wpt = (WaypointProgressTracker)carObject.GetComponent(typeof(WaypointProgressTracker));
+        cui = (CarUserControl)carObject.GetComponent(typeof(CarUserControl));
+        GameObject camera = (GameObject)controller.camera;
+
+        if (carObject.name == "PlayerCar")
+        {
+            cui.enabled = true;
+            controller.camera.SetActive(true);
+            controller.camera.tag = "MainCamera";
+        }
+        else if (carObject.name == "CameraCar")
+        {
+            controller.camera.SetActive(true);
+            controller.camera.tag = "MainCamera";
+        }
+        else
+        {
+            controller.camera.SetActive(false);
+        }
     }
 
     public void Reset() {
@@ -38,9 +57,9 @@ public class Main : MonoBehaviour {
     GameObject InGameMenu;
     GameObject WinMenu;
     //ArrayList objectsToReset = new ArrayList();
-    GameObject CameraCar;
-    GameObject PlayerCar;
-    GameObject PlayerCarCam;
+    //GameObject CameraCar;
+    //GameObject PlayerCar;
+    //GameObject PlayerCarCam;
     bool haveUpdated = false;
 
     public bool raceFinished = false;
@@ -54,18 +73,21 @@ public class Main : MonoBehaviour {
         MainMenu = GameObject.Find("MainMenu");
         InGameMenu = GameObject.Find("InGameMenu");
         WinMenu = GameObject.Find("WinMenu");
-        CameraCar = GameObject.Find("CameraCar");
-        PlayerCar = GameObject.Find("PlayerCar");
-        PlayerCarCam = GameObject.Find("PlayerCamera");
+        //CameraCar = GameObject.Find("CameraCar");
+        //PlayerCar = GameObject.Find("PlayerCar");
+        //PlayerCarCam = GameObject.Find("PlayerCamera");
         //FindGameObjectsWithTag("PlayerCamera")[0];
 
         //AddObjectToReset("CameraCar");
-        aCars.Add(new aCar(GameObject.Find("CameraCar")));
+        //aCars.Add(new aCar(GameObject.Find("CameraCar")));
         //AddObjectToReset("PlayerCar");
-        aCars.Add(new aCar(GameObject.Find("PlayerCar")));
+        //aCars.Add(new aCar(GameObject.Find("PlayerCar")));
 
 
-        PlayerCarCam.SetActive(false);
+        ResetRace();
+
+
+        //PlayerCarCam.SetActive(false);
         //PlayerCar.SetActive(false);
 
     }
@@ -128,10 +150,10 @@ public class Main : MonoBehaviour {
         else
         {
 
-            CameraCar.SetActive(false);
+            //CameraCar.SetActive(false);
             MainMenu.SetActive(false);
             WinMenu.SetActive(false);
-            PlayerCarCam.SetActive(true);
+            //PlayerCarCam.SetActive(true);
 
             if (isPaused)
             {
@@ -161,7 +183,7 @@ public class Main : MonoBehaviour {
     */
 
     // AI MANAGER?
-    public void CreateAICar(string aiCarName, Vector3 position, Vector3 rotation)
+    public void CreateAICar(string aiCarName, Vector3 position, Vector3 rotation, string color = "Red")
     {
 
         GameObject carsGO = GameObject.Find("AICars");
@@ -173,6 +195,9 @@ public class Main : MonoBehaviour {
             startPos,
             new Quaternion()
         );
+
+
+
         WaypointProgressTracker wpt = (WaypointProgressTracker)newCar.GetComponent(typeof(WaypointProgressTracker));
         wpt.circuit = (WaypointCircuit)GameObject.Find("Waypoints").GetComponent(typeof(WaypointCircuit));
         newCar.name = aiCarName;
@@ -180,7 +205,11 @@ public class Main : MonoBehaviour {
         newCar.transform.parent = carsGO.transform;
 
 
-
+        GameObject body = (GameObject)newCar.transform.Find("021014SSPC_LD_NoInterior").gameObject.transform.Find("body").gameObject;
+        Renderer r = (Renderer)body.GetComponent(typeof(Renderer));
+        Material m = (Material)Resources.Load("mat" + color + "Car");
+        //r.materials[0] = m;
+        r.material = m;
 
         aCars.Add(new aCar(newCar));
 
@@ -206,11 +235,15 @@ public class Main : MonoBehaviour {
     }
 
     public void StartRace() {
-        ResetRace();
+
+        //ResetRace();
         raceFinished = false;
         isMainMenu = false;
         isPaused = false;
         updateMenus();
+
+        RemoveAndAddCars(true);
+
     }
 
     public void ResumeRace()
@@ -231,24 +264,46 @@ public class Main : MonoBehaviour {
         }
         */
 
+
+        
+        //ResumeRace();
+        updateMenus();
+
+        RemoveAndAddCars();
+
+    }
+
+    public void RemoveAndAddCars(bool amPlaying = false) {
         // Destroy All others
-        foreach (aCar ac in aCars) {
-           //aCars.Remove(ac);
-           Destroy(ac.go);
+        foreach (aCar ac in aCars)
+        {
+            //aCars.Remove(ac);
+            foreach (Transform child in ac.go.transform)
+            {
+                GameObject.Destroy(child.gameObject);
+            }
+            Destroy(ac.go);
         }
         aCars = new ArrayList();
 
-        CreateAICar("AICar1", new Vector3(0, 0, 5.0f), Vector3.zero);
-        CreateAICar("AICar2", new Vector3(2.5f, 0, 5.0f), Vector3.zero);
-        CreateAICar("AICar3", new Vector3(0, 0, 10.0f), Vector3.zero);
-        CreateAICar("AICar4", new Vector3(2.5f, 0, 10.0f), Vector3.zero);
-        CreateAICar("AICar5", new Vector3(0, 0, 15.0f), Vector3.zero);
-        CreateAICar("AICar6", new Vector3(2.5f, 0, 15.0f), Vector3.zero);
-        CreateAICar("AICar7", new Vector3(0, 0, 20.0f), Vector3.zero);
-        CreateAICar("AICar8", new Vector3(2.5f, 0, 20.0f), Vector3.zero);
+        //CreateAICar("AICar1", new Vector3(0, 0, 5.0f), Vector3.zero);
+        CreateAICar("AICar2", new Vector3(2.5f, 0, 5.0f), Vector3.zero, "Aqua");
+        CreateAICar("AICar3", new Vector3(0, 0, 10.0f), Vector3.zero, "Green");
+        //CreateAICar("AICar4", new Vector3(2.5f, 0, 10.0f), Vector3.zero);
+        //CreateAICar("AICar5", new Vector3(0, 0, 15.0f), Vector3.zero);
+        CreateAICar("AICar6", new Vector3(2.5f, 0, 15.0f), Vector3.zero, "Pink");
+        CreateAICar("AICar7", new Vector3(0, 0, 20.0f), Vector3.zero, "Blue");
+        //CreateAICar("AICar8", new Vector3(2.5f, 0, 20.0f), Vector3.zero);
 
-        //ResumeRace();
-        updateMenus();
+        if (amPlaying)
+        {
+            CreateAICar("PlayerCar", new Vector3(0f, 0, 0.0f), Vector3.zero);
+        }
+        else
+        {
+            CreateAICar("CameraCar", new Vector3(0f, 0, 0.0f), Vector3.zero);
+        }
+
     }
 
     public int GetPosition(string carName) {

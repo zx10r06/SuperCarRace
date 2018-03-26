@@ -31,16 +31,17 @@ public class WinCondition : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
 
-        string carName = other.attachedRigidbody.gameObject.tag;
+        string carTag = other.attachedRigidbody.gameObject.tag;
+        string carName = other.attachedRigidbody.gameObject.name;
 
         if (other.attachedRigidbody == null)
         {
             return;
         }
 
-        if (carName == "AICar" || carName == "PlayerCar" || carName == "CameraCar")
+        if (carTag == "AICar" || carName == "PlayerCar" || carName == "CameraCar")
         {
-            Debug.Log("TRIGGER ENTERED: " + carName);
+            Debug.Log("TRIGGER ENTERED: " + carTag);
 
             CarAIControl carAI = (CarAIControl)other.attachedRigidbody.gameObject.GetComponent(typeof(CarAIControl));
             if (carAI != null)
