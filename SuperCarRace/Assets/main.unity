@@ -2273,6 +2273,10 @@ Prefab:
       propertyPath: m_TagString
       value: AICar
       objectReference: {fileID: 0}
+    - target: {fileID: 100064, guid: 0fb4610dba67fc24cb2a6674fb155fc1, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 0fb4610dba67fc24cb2a6674fb155fc1, type: 2}
   m_IsPrefabParent: 0
@@ -3342,6 +3346,10 @@ Prefab:
     - target: {fileID: 114947630195771800, guid: 0fb4610dba67fc24cb2a6674fb155fc1,
         type: 2}
       propertyPath: otherGround.Array.data[0].continuousMarking
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 100064, guid: 0fb4610dba67fc24cb2a6674fb155fc1, type: 2}
+      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -7236,6 +7244,10 @@ Prefab:
       propertyPath: m_TagString
       value: AICar
       objectReference: {fileID: 0}
+    - target: {fileID: 100064, guid: 0fb4610dba67fc24cb2a6674fb155fc1, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 0fb4610dba67fc24cb2a6674fb155fc1, type: 2}
   m_IsPrefabParent: 0
@@ -7686,6 +7698,10 @@ Prefab:
     - target: {fileID: 114947630195771800, guid: 0fb4610dba67fc24cb2a6674fb155fc1,
         type: 2}
       propertyPath: otherGround.Array.data[0].continuousMarking
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 100064, guid: 0fb4610dba67fc24cb2a6674fb155fc1, type: 2}
+      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []

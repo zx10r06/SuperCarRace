@@ -10,12 +10,23 @@ public class aCar : object {
 	public GameObject go;
 	public CarController controller;
 	public CarAIControl ai;
+    public WaypointProgressTracker wpt;
 
-	public aCar(string carName){
-		go = GameObject.Find (carName);
-		controller = (CarController)go.GetComponent(typeof(CarController));
-		ai = (CarAIControl)go.GetComponent(typeof(CarAIControl));
-	}
+    public aCar(GameObject carObject){
+        go = carObject;
+		controller = (CarController)carObject.GetComponent(typeof(CarController));
+		ai = (CarAIControl)carObject.GetComponent(typeof(CarAIControl));
+        wpt = (WaypointProgressTracker)carObject.GetComponent(typeof(WaypointProgressTracker));
+    }
+
+    public void Reset() {
+        controller.ResetVehicle();
+
+        if (ai != null)
+        {
+            ai.StartDriving();
+        }
+    }
 
 }
 
@@ -26,7 +37,7 @@ public class Main : MonoBehaviour {
     bool isPaused = false;
     GameObject InGameMenu;
     GameObject WinMenu;
-    ArrayList objectsToReset = new ArrayList();
+    //ArrayList objectsToReset = new ArrayList();
     GameObject CameraCar;
     GameObject PlayerCar;
     GameObject PlayerCarCam;
@@ -40,15 +51,7 @@ public class Main : MonoBehaviour {
     // Use this for initialization
     void Start () {
 
-        GameObject newCar = (GameObject)Instantiate(
-            Resources.Load("TheCar"),
-            new Vector3(-88, 3.5f, -237),
-            new Quaternion()
-        );
-        WaypointProgressTracker wpt = (WaypointProgressTracker)newCar.GetComponent(typeof(WaypointProgressTracker));
-        wpt.circuit = (WaypointCircuit)GameObject.Find("Waypoints").GetComponent(typeof(WaypointCircuit));
-        newCar.transform.parent = GameObject.Find("Cars").transform;
-
+        CreateAICar("AICar1", new Vector3(-88, 3.5f, -237), Vector3.zero);
 
         MainMenu = GameObject.Find("MainMenu");
         InGameMenu = GameObject.Find("InGameMenu");
@@ -58,35 +61,14 @@ public class Main : MonoBehaviour {
         PlayerCarCam = GameObject.Find("PlayerCamera");
         //FindGameObjectsWithTag("PlayerCamera")[0];
 
-        AddObjectToReset("CameraCar");
-        AddObjectToReset("PlayerCar");
+        //AddObjectToReset("CameraCar");
+        aCars.Add(new aCar(GameObject.Find("CameraCar")));
+        //AddObjectToReset("PlayerCar");
+        aCars.Add(new aCar(GameObject.Find("PlayerCar")));
+
 
         PlayerCarCam.SetActive(false);
         //PlayerCar.SetActive(false);
-
-        if (GameObject.Find("AICar1") != null) {
-            aCars.Add(new aCar("AICar1"));
-            AddObjectToReset("AICar1");
-        }
-
-        if (GameObject.Find("AICar2") != null)
-        {
-            aCars.Add(new aCar("AICar2"));
-            AddObjectToReset("AICar2");
-        }
-
-        if (GameObject.Find("AICar3") != null)
-        {
-            aCars.Add(new aCar("AICar3"));
-            AddObjectToReset("AICar3");
-        }
-
-        if (GameObject.Find("AICar4") != null)
-        {
-            aCars.Add(new aCar("AICar4"));
-            AddObjectToReset("AICar4");
-        }
-
 
     }
 
@@ -170,6 +152,7 @@ public class Main : MonoBehaviour {
 
     }
 
+    /*
     void AddObjectToReset(string name)
     {
         objectsToReset.Add(
@@ -177,6 +160,29 @@ public class Main : MonoBehaviour {
                 .GetComponent(typeof(CarController))
         );
     }
+    */
+
+    // AI MANAGER?
+    public void CreateAICar(string aiCarName, Vector3 position, Vector3 rotation)
+    {
+        GameObject newCar = (GameObject)Instantiate(
+            Resources.Load("TheCar"),
+            position,
+            new Quaternion()
+        );
+        WaypointProgressTracker wpt = (WaypointProgressTracker)newCar.GetComponent(typeof(WaypointProgressTracker));
+        wpt.circuit = (WaypointCircuit)GameObject.Find("Waypoints").GetComponent(typeof(WaypointCircuit));
+        newCar.name = aiCarName;
+        newCar.transform.Rotate(rotation);
+
+        newCar.transform.parent = GameObject.Find("AICars").transform;
+
+        aCars.Add(new aCar(newCar));
+
+    }
+
+
+    // RACE MANAGER?
 
     public void PauseRace() {
         //Time.timeScale = 0.0f;
@@ -185,21 +191,10 @@ public class Main : MonoBehaviour {
     }
 
     public void StartRace() {
-
-
         ResetRace();
-
         raceFinished = false;
         isMainMenu = false;
         isPaused = false;
-
-        /*
-        foreach(aCar ac in aCars)
-        {
-		    ac.ai.StartDriving ();
-        }
-        */
-
         updateMenus();
     }
 
@@ -211,15 +206,12 @@ public class Main : MonoBehaviour {
     }
 
     public void ResetRace() {
+
         raceFinished = false;
-        foreach (CarController cc in objectsToReset)
-        {
-            cc.ResetVehicle();
-        }
 
         foreach (aCar ac in aCars)
         {
-            ac.ai.StartDriving();
+            ac.Reset();
         }
 
         //ResumeRace();
@@ -229,22 +221,20 @@ public class Main : MonoBehaviour {
     public int GetPosition(string carName) {
         // Check each Cars position for the highest... 
         // highest is first, lowest is last
-        WaypointProgressTracker wpt = (WaypointProgressTracker)GameObject.Find(carName).GetComponent(typeof(WaypointProgressTracker));
         int myPosition = 1;
         float myDistanceTravelled = 0.0f;
-        foreach (CarController cc in objectsToReset)
+        foreach (aCar ac in aCars)
         {
-            if (cc.name == carName)
+            if (ac.go.name == carName)
             {
-                myDistanceTravelled = wpt.progressDistance;
+                myDistanceTravelled = ac.wpt.progressDistance;
             }
         }
-        foreach (CarController cc in objectsToReset)
+        foreach (aCar ac in aCars)
         {
-            if (cc.name != "PlayerCar" && cc.name != "CameraCar" && cc.name != carName)
+            if (ac.go.name != "PlayerCar" && ac.go.name != "CameraCar" && ac.go.name != carName)
             {
-                WaypointProgressTracker wpt2 = (WaypointProgressTracker)GameObject.Find(cc.name).GetComponent(typeof(WaypointProgressTracker));
-                if (wpt2.progressDistance > myDistanceTravelled)
+                if ((float)ac.wpt.progressDistance > (float)myDistanceTravelled)
                 {
                     myPosition = myPosition + 1;
                 }
