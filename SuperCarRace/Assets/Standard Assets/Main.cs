@@ -51,8 +51,6 @@ public class Main : MonoBehaviour {
     // Use this for initialization
     void Start () {
 
-        CreateAICar("AICar1", new Vector3(-88, 3.5f, -237), Vector3.zero);
-
         MainMenu = GameObject.Find("MainMenu");
         InGameMenu = GameObject.Find("InGameMenu");
         WinMenu = GameObject.Find("WinMenu");
@@ -165,19 +163,36 @@ public class Main : MonoBehaviour {
     // AI MANAGER?
     public void CreateAICar(string aiCarName, Vector3 position, Vector3 rotation)
     {
+
+        GameObject carsGO = GameObject.Find("AICars");
+
+        Vector3 startPos = new Vector3(carsGO.transform.position.x, carsGO.transform.position.y, carsGO.transform.position.z);
+
         GameObject newCar = (GameObject)Instantiate(
             Resources.Load("TheCar"),
-            position,
+            startPos,
             new Quaternion()
         );
         WaypointProgressTracker wpt = (WaypointProgressTracker)newCar.GetComponent(typeof(WaypointProgressTracker));
         wpt.circuit = (WaypointCircuit)GameObject.Find("Waypoints").GetComponent(typeof(WaypointCircuit));
         newCar.name = aiCarName;
-        newCar.transform.Rotate(rotation);
 
-        newCar.transform.parent = GameObject.Find("AICars").transform;
+        newCar.transform.parent = carsGO.transform;
+
+
+
 
         aCars.Add(new aCar(newCar));
+
+        newCar.transform.position = newCar.transform.position + position;
+
+        //newCar.transform.SetPositionAndRotation(position, new Quaternion());
+
+        //newCar.transform.position = new Vector3(position.x, position.y, position.z);
+
+
+        //newCar.transform.position.Set(position.x, position.y, position.z);
+        //newCar.transform.Rotate(rotation);
 
     }
 
@@ -209,10 +224,28 @@ public class Main : MonoBehaviour {
 
         raceFinished = false;
 
+        /*
         foreach (aCar ac in aCars)
         {
             ac.Reset();
         }
+        */
+
+        // Destroy All others
+        foreach (aCar ac in aCars) {
+           //aCars.Remove(ac);
+           Destroy(ac.go);
+        }
+        aCars = new ArrayList();
+
+        CreateAICar("AICar1", new Vector3(0, 0, 5.0f), Vector3.zero);
+        CreateAICar("AICar2", new Vector3(2.5f, 0, 5.0f), Vector3.zero);
+        CreateAICar("AICar3", new Vector3(0, 0, 10.0f), Vector3.zero);
+        CreateAICar("AICar4", new Vector3(2.5f, 0, 10.0f), Vector3.zero);
+        CreateAICar("AICar5", new Vector3(0, 0, 15.0f), Vector3.zero);
+        CreateAICar("AICar6", new Vector3(2.5f, 0, 15.0f), Vector3.zero);
+        CreateAICar("AICar7", new Vector3(0, 0, 20.0f), Vector3.zero);
+        CreateAICar("AICar8", new Vector3(2.5f, 0, 20.0f), Vector3.zero);
 
         //ResumeRace();
         updateMenus();

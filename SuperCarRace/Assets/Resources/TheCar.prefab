@@ -30,6 +30,24 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!1 &1055138605795264
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4028724485836866}
+  - component: {fileID: 20110255059341304}
+  - component: {fileID: 124503458403547560}
+  - component: {fileID: 81098164518510590}
+  m_Layer: 0
+  m_Name: Camera
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1 &1071729253281020
 GameObject:
   m_ObjectHideFlags: 0
@@ -762,6 +780,19 @@ Transform:
   m_Father: {fileID: 4667306016527794}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &4028724485836866
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1055138605795264}
+  m_LocalRotation: {x: 0.13460036, y: -0, z: -0, w: 0.9909}
+  m_LocalPosition: {x: 0, y: 1.847, z: -3.671}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4742590932829070}
+  m_RootOrder: 7
+  m_LocalEulerAnglesHint: {x: 15.471001, y: 0, z: 0}
 --- !u!4 &4040946445301246
 Transform:
   m_ObjectHideFlags: 1
@@ -1095,8 +1126,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1706026745482284}
-  m_LocalRotation: {x: -0.42757547, y: 0.43114722, z: -0.2762246, w: 0.74497736}
-  m_LocalPosition: {x: 2.5, y: 4.033, z: 3.13}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -91.55429, y: 2.51, z: -233.678}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4667306016527794}
@@ -1106,6 +1137,7 @@ Transform:
   - {fileID: 4510337716220452}
   - {fileID: 4040946445301246}
   - {fileID: 4509822088135082}
+  - {fileID: 4028724485836866}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1310,6 +1342,42 @@ Transform:
   m_Father: {fileID: 4486421598530206}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: -0.46, y: 0, z: 0}
+--- !u!20 &20110255059341304
+Camera:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1055138605795264}
+  m_Enabled: 1
+  serializedVersion: 2
+  m_ClearFlags: 1
+  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
+  m_NormalizedViewPortRect:
+    serializedVersion: 2
+    x: 0
+    y: 0
+    width: 1
+    height: 1
+  near clip plane: 0.3
+  far clip plane: 1000
+  field of view: 60
+  orthographic: 0
+  orthographic size: 5
+  m_Depth: 0
+  m_CullingMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_RenderingPath: -1
+  m_TargetTexture: {fileID: 0}
+  m_TargetDisplay: 0
+  m_TargetEye: 3
+  m_HDR: 1
+  m_AllowMSAA: 1
+  m_AllowDynamicResolution: 0
+  m_ForceIntoRT: 0
+  m_OcclusionCulling: 1
+  m_StereoConvergence: 10
+  m_StereoSeparation: 0.022
 --- !u!23 &23030795330774930
 MeshRenderer:
   m_ObjectHideFlags: 1
@@ -2326,6 +2394,13 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!81 &81098164518510590
+AudioListener:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1055138605795264}
+  m_Enabled: 1
 --- !u!82 &82088057595437228
 AudioSource:
   m_ObjectHideFlags: 1
@@ -2910,12 +2985,6 @@ MonoBehaviour:
   m_Target: {fileID: 4915447772053188}
   m_StopWhenTargetReached: 0
   m_ReachTargetThreshold: 2
-  m_RandomPerlin: 0
-  m_CarController: {fileID: 0}
-  m_AvoidOtherCarTime: 0
-  m_AvoidOtherCarSlowdown: 0
-  m_AvoidPathOffset: 0
-  m_Rigidbody: {fileID: 0}
 --- !u!114 &114372651029837304
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2961,7 +3030,6 @@ MonoBehaviour:
   m_GearFactor: 0
   m_OldRotation: 0
   m_CurrentTorque: 0
-  m_Rigidbody: {fileID: 0}
 --- !u!114 &114417118536128074
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3117,6 +3185,13 @@ MonoBehaviour:
   groundDetection: 0
   otherGround: []
   KMh: 0
+--- !u!124 &124503458403547560
+Behaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1055138605795264}
+  m_Enabled: 1
 --- !u!146 &146627701945719100
 WheelCollider:
   m_ObjectHideFlags: 1

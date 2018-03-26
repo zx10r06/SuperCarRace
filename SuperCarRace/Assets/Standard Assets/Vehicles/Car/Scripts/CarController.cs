@@ -51,7 +51,18 @@ namespace UnityStandardAssets.Vehicles.Car
         public bool Skidding { get; private set; }
         public float BrakeInput { get; private set; }
         public float CurrentSteerAngle{ get { return m_SteerAngle; }}
-        public float CurrentSpeed{ get { return m_Rigidbody.velocity.magnitude*2.23693629f; }}
+        public float CurrentSpeed{
+            get {
+                if (m_Rigidbody != null)
+                {
+                    return m_Rigidbody.velocity.magnitude*2.23693629f;
+                }
+                else
+                {
+                    return 0;
+                }
+            }
+        }
         public float MaxSpeed{get { return m_Topspeed; }}
         public float Revs { get; private set; }
         public float AccelInput { get; private set; }
@@ -412,6 +423,7 @@ namespace UnityStandardAssets.Vehicles.Car
             m_OldRotation = 0;
             m_CurrentTorque = 0;
 
+            /*
             CarAIControl cAI = (CarAIControl)gameObject.GetComponent(typeof(CarAIControl));
             if (cAI != null)
             {
@@ -419,6 +431,7 @@ namespace UnityStandardAssets.Vehicles.Car
                 cAI.m_AvoidOtherCarSlowdown = 0;
                 cAI.m_AvoidPathOffset = 0;
             }
+            */
 
 
             /*
