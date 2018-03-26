@@ -162,6 +162,7 @@ public class Main : MonoBehaviour {
             }
             else if (raceFinished) {
                 WinMenu.SetActive(true);
+                InGameMenu.SetActive(false);
             }
             else
             {
