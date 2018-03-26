@@ -40,7 +40,6 @@ public class Main : MonoBehaviour {
     // Use this for initialization
     void Start () {
 
-        /*
         GameObject newCar = (GameObject)Instantiate(
             Resources.Load("TheCar"),
             new Vector3(-88, 3.5f, -237),
@@ -49,7 +48,6 @@ public class Main : MonoBehaviour {
         WaypointProgressTracker wpt = (WaypointProgressTracker)newCar.GetComponent(typeof(WaypointProgressTracker));
         wpt.circuit = (WaypointCircuit)GameObject.Find("Waypoints").GetComponent(typeof(WaypointCircuit));
         newCar.transform.parent = GameObject.Find("Cars").transform;
-        */
 
 
         MainMenu = GameObject.Find("MainMenu");
