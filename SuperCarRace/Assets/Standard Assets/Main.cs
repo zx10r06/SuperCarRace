@@ -40,6 +40,18 @@ public class Main : MonoBehaviour {
     // Use this for initialization
     void Start () {
 
+
+        GameObject newCar = (GameObject)Instantiate(
+            Resources.Load("TheCar"),
+            new Vector3(-88, 3.5f, -237),
+            new Quaternion()
+        );
+        WaypointProgressTracker wpt = (WaypointProgressTracker)go.GetComponent(typeof(WaypointProgressTracker));
+        WaypointCircuit wptCircuit = (WaypointCircuit)GameObject.Find("Waypoints").GetComponent(typeof(WaypointCircuit));
+        wpt.circuit = wptCircuit;
+        go.transform.parent = GameObject.Find("Cars").transform;
+
+
         MainMenu = GameObject.Find("MainMenu");
         InGameMenu = GameObject.Find("InGameMenu");
         WinMenu = GameObject.Find("WinMenu");
@@ -98,24 +110,22 @@ public class Main : MonoBehaviour {
         //if (isMainMenu == false)
         //{
 
-
+        /*
         string[] s = new string[1];
         s[0] = "CameraCar";
         foreach (string carName in s)
         {
-
-        GameObject go = GameObject.Find(carName);
-        if (go != null)
-        {
-            CarAIControl cAI = (CarAIControl)GameObject.Find(carName).GetComponent(typeof(CarAIControl));
-            if (cAI.amDriving() == false)
+            GameObject go = GameObject.Find(carName);
+            if (go != null)
             {
-                ResetRace();
+                CarAIControl cAI = (CarAIControl)GameObject.Find(carName).GetComponent(typeof(CarAIControl));
+                if (cAI.amDriving() == false)
+                {
+                    ResetRace();
+                }
             }
         }
-
-
-        }
+        */
 
         //}
 
@@ -157,7 +167,6 @@ public class Main : MonoBehaviour {
             {
                 MainMenu.SetActive(false);
                 InGameMenu.SetActive(true);
-                WinMenu.SetActive(false);
             }
         }
 
@@ -178,18 +187,21 @@ public class Main : MonoBehaviour {
     }
 
     public void StartRace() {
+
+
+        ResetRace();
+
         raceFinished = false;
         isMainMenu = false;
+        isPaused = false;
 
+        /*
         foreach(aCar ac in aCars)
         {
 		    ac.ai.StartDriving ();
-            ac.ai.StartDriving ();
-            ac.ai.StartDriving ();
-            ac.ai.StartDriving ();
         }
+        */
 
-        ResetRace();
         updateMenus();
     }
 
@@ -201,15 +213,19 @@ public class Main : MonoBehaviour {
     }
 
     public void ResetRace() {
-
         raceFinished = false;
         foreach (CarController cc in objectsToReset)
         {
             cc.ResetVehicle();
         }
-        ResumeRace();
+
+        foreach (aCar ac in aCars)
+        {
+            ac.ai.StartDriving();
+        }
+
+        //ResumeRace();
         updateMenus();
-        raceFinished = false;
     }
 
     public int GetPosition(string carName) {

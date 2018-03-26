@@ -40,13 +40,13 @@ namespace UnityStandardAssets.Vehicles.Car
 
         private Quaternion[] m_WheelMeshLocalRotations;
         private Vector3 m_Prevpos, m_Pos;
-        private float m_SteerAngle;
-        private int m_GearNum;
-        private float m_GearFactor;
-        private float m_OldRotation;
-        private float m_CurrentTorque;
-        private Rigidbody m_Rigidbody;
-        private const float k_ReversingThreshold = 0.01f;
+        public float m_SteerAngle;
+        public int m_GearNum;
+        public float m_GearFactor;
+        public float m_OldRotation;
+        public float m_CurrentTorque;
+        public Rigidbody m_Rigidbody;
+        public const float k_ReversingThreshold = 0.01f;
 
         public bool Skidding { get; private set; }
         public float BrakeInput { get; private set; }
@@ -397,6 +397,9 @@ namespace UnityStandardAssets.Vehicles.Car
             m_Rigidbody.velocity = Vector3.zero;
             m_Rigidbody.angularVelocity = Vector3.zero;
 
+            // ensures handbrake not on
+            //Move(0, 0, 0, 0);
+
             //Set correct waypoint target...  SetTarget
             WaypointProgressTracker wpt = (WaypointProgressTracker)gameObject.GetComponent(typeof(WaypointProgressTracker));
             if (wpt != null)
@@ -404,13 +407,29 @@ namespace UnityStandardAssets.Vehicles.Car
                 wpt.Reset();
             }
 
+            m_SteerAngle = 0;
+            m_GearFactor = 0;
+            m_OldRotation = 0;
+            m_CurrentTorque = 0;
 
-			Debug.LogWarning ("asdfasdf - " + name);
-            if (name != "CameraCar" && name != "PlayerCar")
+            CarAIControl cAI = (CarAIControl)gameObject.GetComponent(typeof(CarAIControl));
+            if (cAI != null)
             {
+                cAI.m_AvoidOtherCarTime = 0;
+                cAI.m_AvoidOtherCarSlowdown = 0;
+                cAI.m_AvoidPathOffset = 0;
+            }
+
+
+            /*
+			Debug.LogWarning ("asdfasdf - " + name);
+            if (name != "PlayerCar")
+            {
+                Debug.LogWarning(name);
                 CarAIControl cAI = (CarAIControl)GameObject.Find(name).GetComponent(typeof(CarAIControl));
                 cAI.StartDriving();
             }
+            */
 
 
         }

@@ -6,9 +6,13 @@ using UnityStandardAssets.Vehicles.Car;
 public class WinCondition : MonoBehaviour
 {
 
+    Main m;
+
+
     // Use this for initialization
     void Start()
     {
+        m = (Main)GameObject.Find("Main").GetComponent("Main");
     }
 
     // Update is called once per frame
@@ -34,16 +38,26 @@ public class WinCondition : MonoBehaviour
             return;
         }
 
-        if (carName == "AICar" || carName == "PlayerCar")
+        if (carName == "AICar" || carName == "PlayerCar" || carName == "CameraCar")
         {
             Debug.Log("TRIGGER ENTERED: " + carName);
+
             CarAIControl carAI = (CarAIControl)other.attachedRigidbody.gameObject.GetComponent(typeof(CarAIControl));
-            carAI.StopDriving();
+            if (carAI != null)
+            {
+                carAI.StopDriving();
+            }
 
             if (carName == "PlayerCar")
             {
-                Main m = (Main)GameObject.Find("Main").GetComponent("Main");
                 m.FinishedRace();
+            }
+            else if (carName == "CameraCar") {
+                m.ResetRace();
+            }
+            else
+            {
+
             }
 
         }
