@@ -45,7 +45,7 @@ namespace UnityStandardAssets.Vehicles.Car
         public float m_GearFactor;
         public float m_OldRotation;
         public float m_CurrentTorque;
-        public Rigidbody m_Rigidbody;
+        private Rigidbody m_Rigidbody;
         public const float k_ReversingThreshold = 0.01f;
 
         public bool Skidding { get; private set; }
