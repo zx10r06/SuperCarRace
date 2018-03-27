@@ -56,16 +56,43 @@ public class Main : MonoBehaviour {
     bool isPaused = false;
     GameObject InGameMenu;
     GameObject WinMenu;
-    //ArrayList objectsToReset = new ArrayList();
-    //GameObject CameraCar;
-    //GameObject PlayerCar;
-    //GameObject PlayerCarCam;
     bool haveUpdated = false;
-
     public bool raceFinished = false;
 
     ArrayList aCars = new ArrayList();
+    public void RemoveAndAddCars(bool amPlaying = false)
+    {
+        // Destroy All others
+        foreach (aCar ac in aCars)
+        {
+            //aCars.Remove(ac);
+            foreach (Transform child in ac.go.transform)
+            {
+                GameObject.Destroy(child.gameObject);
+            }
+            Destroy(ac.go);
+        }
+        aCars = new ArrayList();
 
+        //CreateAICar("AICar1", new Vector3(0, 0, 5.0f), Vector3.zero);
+        CreateAICar("AICar2", new Vector3(2.5f, 0, 5.0f), Vector3.zero, "Aqua");
+        CreateAICar("AICar3", new Vector3(0, 0, 10.0f), Vector3.zero, "Green");
+        //CreateAICar("AICar4", new Vector3(2.5f, 0, 10.0f), Vector3.zero);
+        //CreateAICar("AICar5", new Vector3(0, 0, 15.0f), Vector3.zero);
+        CreateAICar("AICar6", new Vector3(2.5f, 0, 15.0f), Vector3.zero, "Pink");
+        CreateAICar("AICar7", new Vector3(0, 0, 20.0f), Vector3.zero, "Blue");
+        //CreateAICar("AICar8", new Vector3(2.5f, 0, 20.0f), Vector3.zero);
+
+        if (amPlaying)
+        {
+            CreateAICar("PlayerCar", new Vector3(0f, 0, 0.0f), Vector3.zero);
+        }
+        else
+        {
+            CreateAICar("CameraCar", new Vector3(0f, 0, 0.0f), Vector3.zero);
+        }
+
+    }
 
     // Use this for initialization
     void Start () {
@@ -73,22 +100,8 @@ public class Main : MonoBehaviour {
         MainMenu = GameObject.Find("MainMenu");
         InGameMenu = GameObject.Find("InGameMenu");
         WinMenu = GameObject.Find("WinMenu");
-        //CameraCar = GameObject.Find("CameraCar");
-        //PlayerCar = GameObject.Find("PlayerCar");
-        //PlayerCarCam = GameObject.Find("PlayerCamera");
-        //FindGameObjectsWithTag("PlayerCamera")[0];
-
-        //AddObjectToReset("CameraCar");
-        //aCars.Add(new aCar(GameObject.Find("CameraCar")));
-        //AddObjectToReset("PlayerCar");
-        //aCars.Add(new aCar(GameObject.Find("PlayerCar")));
-
 
         ResetRace();
-
-
-        //PlayerCarCam.SetActive(false);
-        //PlayerCar.SetActive(false);
 
     }
 
@@ -106,33 +119,9 @@ public class Main : MonoBehaviour {
 		    ac.controller.udpateText ();
         }
 
-        //Check if finished race
-        //if (isMainMenu == false)
-        //{
-
-        /*
-        string[] s = new string[1];
-        s[0] = "CameraCar";
-        foreach (string carName in s)
-        {
-            GameObject go = GameObject.Find(carName);
-            if (go != null)
-            {
-                CarAIControl cAI = (CarAIControl)GameObject.Find(carName).GetComponent(typeof(CarAIControl));
-                if (cAI.amDriving() == false)
-                {
-                    ResetRace();
-                }
-            }
-        }
-        */
-
-        //}
-
-
-
     }
 
+    // Update game mode UI
     void updateMenus() {
 
         if (isMainMenu)
@@ -172,16 +161,6 @@ public class Main : MonoBehaviour {
         }
 
     }
-
-    /*
-    void AddObjectToReset(string name)
-    {
-        objectsToReset.Add(
-            (CarController)GameObject.Find(name)
-                .GetComponent(typeof(CarController))
-        );
-    }
-    */
 
     // AI MANAGER?
     public void CreateAICar(string aiCarName, Vector3 position, Vector3 rotation, string color = "Red")
@@ -226,15 +205,12 @@ public class Main : MonoBehaviour {
 
     }
 
-
     // RACE MANAGER?
-
     public void PauseRace() {
         //Time.timeScale = 0.0f;
         isPaused = true;
         updateMenus();
     }
-
     public void StartRace() {
 
         //ResetRace();
@@ -246,14 +222,12 @@ public class Main : MonoBehaviour {
         RemoveAndAddCars(true);
 
     }
-
     public void ResumeRace()
     {
         Time.timeScale = 1.0f;
         isPaused = false;
         updateMenus();
     }
-
     public void ResetRace() {
 
         raceFinished = false;
@@ -273,41 +247,14 @@ public class Main : MonoBehaviour {
         RemoveAndAddCars();
 
     }
-
-    public void RemoveAndAddCars(bool amPlaying = false) {
-        // Destroy All others
-        foreach (aCar ac in aCars)
-        {
-            //aCars.Remove(ac);
-            foreach (Transform child in ac.go.transform)
-            {
-                GameObject.Destroy(child.gameObject);
-            }
-            Destroy(ac.go);
-        }
-        aCars = new ArrayList();
-
-        //CreateAICar("AICar1", new Vector3(0, 0, 5.0f), Vector3.zero);
-        CreateAICar("AICar2", new Vector3(2.5f, 0, 5.0f), Vector3.zero, "Aqua");
-        CreateAICar("AICar3", new Vector3(0, 0, 10.0f), Vector3.zero, "Green");
-        //CreateAICar("AICar4", new Vector3(2.5f, 0, 10.0f), Vector3.zero);
-        //CreateAICar("AICar5", new Vector3(0, 0, 15.0f), Vector3.zero);
-        CreateAICar("AICar6", new Vector3(2.5f, 0, 15.0f), Vector3.zero, "Pink");
-        CreateAICar("AICar7", new Vector3(0, 0, 20.0f), Vector3.zero, "Blue");
-        //CreateAICar("AICar8", new Vector3(2.5f, 0, 20.0f), Vector3.zero);
-
-        if (amPlaying)
-        {
-            CreateAICar("PlayerCar", new Vector3(0f, 0, 0.0f), Vector3.zero);
-        }
-        else
-        {
-            CreateAICar("CameraCar", new Vector3(0f, 0, 0.0f), Vector3.zero);
-        }
-
+    public void FinishedRace()
+    {
+        raceFinished = true;
+        updateMenus();
     }
 
-    public int GetPosition(string carName) {
+    public int GetPosition(string carName)
+    {
         // Check each Cars position for the highest... 
         // highest is first, lowest is last
         int myPosition = 1;
@@ -337,11 +284,6 @@ public class Main : MonoBehaviour {
             }
         }
         return (myPosition);
-    }
-
-    public void FinishedRace() {
-        raceFinished = true;
-        updateMenus();
     }
 
 
