@@ -451,11 +451,15 @@ namespace UnityStandardAssets.Vehicles.Car
 
         public void udpateText() {
             TextMesh tm1 = (TextMesh)GetComponent(typeof(TextMesh));
-            tm1.text = m.GetPosition(name).ToString() + "\r\n";
+            int position = m.GetPosition(name);
+            if (position != -1)
+            {
+                tm1.text = position.ToString() + "\r\n";
+            }
         }
 
 
 
-        
+
     }
 }

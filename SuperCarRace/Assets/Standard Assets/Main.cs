@@ -162,7 +162,7 @@ public class Main : MonoBehaviour {
             }
             else if (raceFinished) {
                 WinMenu.SetActive(true);
-                InGameMenu.SetActive(false);
+              
             }
             else
             {
@@ -316,9 +316,16 @@ public class Main : MonoBehaviour {
         {
             if (ac.go.name == carName)
             {
+
+                if (ac.wpt.progressDistance == 0f)
+                {
+                    return -1;
+                }
+
                 myDistanceTravelled = ac.wpt.progressDistance;
             }
         }
+        ArrayList takenPositions = new ArrayList();
         foreach (aCar ac in aCars)
         {
             if (ac.go.name != "PlayerCar" && ac.go.name != "CameraCar" && ac.go.name != carName)
