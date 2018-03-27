@@ -130,7 +130,16 @@ public class Main : MonoBehaviour {
 
     }
 
+    // MUSIC MANAGER?
+    public void PlayMusic() {
 
+    }
+    public void NextTrack() {
+
+    }
+    public void MusicVolume(int volume) {
+
+    }
 
     // CAR MANAGER?
     public void RemoveAndAddCars(bool amPlaying = false)
