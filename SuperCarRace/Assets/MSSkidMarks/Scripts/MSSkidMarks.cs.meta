@@ -1,0 +1,13 @@
+fileFormatVersion: 2
+guid: 8d59fbb72dd8f8b47894eb2aa19c5e67
+timeCreated: 1486422281
+licenseType: Store
+MonoImporter:
+  serializedVersion: 2
+  defaultReferences:
+  - MSSkidMarksShader: {fileID: 4800000, guid: 94a0f7f2012185f4dbd8b33696992afd, type: 3}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

@@ -217,5 +217,18 @@ namespace UnityStandardAssets.Vehicles.Car
             m_Target = target;
             m_Driving = true;
         }
+
+        public void StartDriving()
+        {
+            m_Driving = true;
+        }
+
+        public void StopDriving() {
+            //m_Driving = false;
+        }
+
+        public bool amDriving() {
+            return m_Driving;
+        }
     }
 }

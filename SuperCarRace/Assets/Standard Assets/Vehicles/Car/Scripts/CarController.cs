@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using UnityStandardAssets.Utility;
 
 namespace UnityStandardAssets.Vehicles.Car
 {
@@ -37,40 +38,66 @@ namespace UnityStandardAssets.Vehicles.Car
         [SerializeField] private float m_SlipLimit;
         [SerializeField] private float m_BrakeTorque;
 
+
+        public GameObject camera;
         private Quaternion[] m_WheelMeshLocalRotations;
         private Vector3 m_Prevpos, m_Pos;
-        private float m_SteerAngle;
-        private int m_GearNum;
-        private float m_GearFactor;
-        private float m_OldRotation;
-        private float m_CurrentTorque;
+        public float m_SteerAngle;
+        public int m_GearNum;
+        public float m_GearFactor;
+        public float m_OldRotation;
+        public float m_CurrentTorque;
         private Rigidbody m_Rigidbody;
-        private const float k_ReversingThreshold = 0.01f;
+        public const float k_ReversingThreshold = 0.01f;
 
         public bool Skidding { get; private set; }
         public float BrakeInput { get; private set; }
         public float CurrentSteerAngle{ get { return m_SteerAngle; }}
-        public float CurrentSpeed{ get { return m_Rigidbody.velocity.magnitude*2.23693629f; }}
+        public float CurrentSpeed{
+            get {
+                if (m_Rigidbody != null)
+                {
+                    return m_Rigidbody.velocity.magnitude*2.23693629f;
+                }
+                else
+                {
+                    return 0;
+                }
+            }
+        }
         public float MaxSpeed{get { return m_Topspeed; }}
         public float Revs { get; private set; }
         public float AccelInput { get; private set; }
 
+        GameObject parentGo;
+        Vector3 startPos;
+        Quaternion startRot;
+
+        Main m;
+
         // Use this for initialization
         private void Start()
         {
-            /*
+
+            m = (Main)GameObject.Find("Main").GetComponent(typeof(Main));
+
+
             m_WheelMeshLocalRotations = new Quaternion[4];
             for (int i = 0; i < 4; i++)
             {
                 m_WheelMeshLocalRotations[i] = m_WheelMeshes[i].transform.localRotation;
             }
             m_WheelColliders[0].attachedRigidbody.centerOfMass = m_CentreOfMassOffset;
-            */
 
             m_MaxHandbrakeTorque = float.MaxValue;
 
             m_Rigidbody = GetComponent<Rigidbody>();
             m_CurrentTorque = m_FullTorqueOverAllWheels - (m_TractionControl*m_FullTorqueOverAllWheels);
+
+            parentGo = gameObject;
+            startPos = parentGo.transform.position;
+            startRot = parentGo.transform.rotation;
+
         }
 
 
@@ -369,6 +396,70 @@ namespace UnityStandardAssets.Vehicles.Car
         public void JammHandbrakeOn() {
             Move(0, 0, -1f, 1f);
         }
+
+        public void ResetVehicle()
+        {
+
+            parentGo.transform.position = startPos;
+            parentGo.transform.rotation = startRot;
+
+            m_SteerAngle = 90.0f;
+            m_WheelColliders[0].steerAngle = m_SteerAngle;
+            m_WheelColliders[1].steerAngle = m_SteerAngle;
+
+            m_Rigidbody.velocity = Vector3.zero;
+            m_Rigidbody.angularVelocity = Vector3.zero;
+
+            // ensures handbrake not on
+            //Move(0, 0, 0, 0);
+
+            //Set correct waypoint target...  SetTarget
+            WaypointProgressTracker wpt = (WaypointProgressTracker)gameObject.GetComponent(typeof(WaypointProgressTracker));
+            if (wpt != null)
+            {
+                wpt.Reset();
+            }
+
+            m_SteerAngle = 0;
+            m_GearFactor = 0;
+            m_OldRotation = 0;
+            m_CurrentTorque = 0;
+
+            /*
+            CarAIControl cAI = (CarAIControl)gameObject.GetComponent(typeof(CarAIControl));
+            if (cAI != null)
+            {
+                cAI.m_AvoidOtherCarTime = 0;
+                cAI.m_AvoidOtherCarSlowdown = 0;
+                cAI.m_AvoidPathOffset = 0;
+            }
+            */
+
+
+            /*
+			Debug.LogWarning ("asdfasdf - " + name);
+            if (name != "PlayerCar")
+            {
+                Debug.LogWarning(name);
+                CarAIControl cAI = (CarAIControl)GameObject.Find(name).GetComponent(typeof(CarAIControl));
+                cAI.StartDriving();
+            }
+            */
+
+
+        }
+
+        public void udpateText() {
+            TextMesh tm1 = (TextMesh)GetComponent(typeof(TextMesh));
+            int position = m.GetPosition(name);
+            if (position != -1)
+            {
+                tm1.text = position.ToString() + "\r\n";
+            }
+        }
+
+
+
 
     }
 }
