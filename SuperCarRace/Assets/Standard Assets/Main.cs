@@ -209,7 +209,6 @@ public class Main : MonoBehaviour {
         }
         aCars = new ArrayList();
 
-        /*
         //CreateAICar("AICar1", new Vector3(0, 0, 5.0f), Vector3.zero);
         CreateAICar("AICar2", new Vector3(2.5f, 0, 5.0f), Vector3.zero, "Aqua");
         CreateAICar("AICar3", new Vector3(0, 0, 10.0f), Vector3.zero, "Green");
@@ -218,7 +217,6 @@ public class Main : MonoBehaviour {
         CreateAICar("AICar6", new Vector3(2.5f, 0, 15.0f), Vector3.zero, "Pink");
         CreateAICar("AICar7", new Vector3(0, 0, 20.0f), Vector3.zero, "Blue");
         //CreateAICar("AICar8", new Vector3(2.5f, 0, 20.0f), Vector3.zero);
-        */
 
         if (amPlaying)
         {
