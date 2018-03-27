@@ -59,6 +59,7 @@ public class Main : MonoBehaviour {
     bool haveUpdated = false;
     public bool raceFinished = false;
     ArrayList aCars = new ArrayList();
+    float defaultSoundVolume = 1.0f;
 
 
     // Use this for initialization
@@ -171,6 +172,7 @@ public class Main : MonoBehaviour {
     public void SFXVolume() {
         GameObject z = GameObject.Find("SFX Slider").gameObject;
         UnityEngine.UI.Slider sound = (UnityEngine.UI.Slider)z.GetComponent(typeof(UnityEngine.UI.Slider));
+        defaultSoundVolume = sound.value;
         // each car audio
         foreach (aCar ac in aCars)
         {
@@ -267,11 +269,13 @@ public class Main : MonoBehaviour {
         //newCar.transform.position.Set(position.x, position.y, position.z);
         //newCar.transform.Rotate(rotation);
 
+        /*
         GameObject x = GameObject.Find("SFX Slider").gameObject;
         UnityEngine.UI.Slider s = (UnityEngine.UI.Slider)x.GetComponent(typeof(UnityEngine.UI.Slider));
+        */
 
         CarAudio ca = (CarAudio)newCar.GetComponent(typeof(CarAudio));
-        ca.pitchMultiplier = s.value;
+        ca.pitchMultiplier = defaultSoundVolume;//s.value;
 
 
     }
