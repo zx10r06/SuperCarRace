@@ -137,8 +137,10 @@ public class Main : MonoBehaviour {
     public void NextTrack() {
 
     }
-    public void MusicVolume(int volume) {
-
+    public void MasterVolue(int volume) {
+        GameObject x = GameObject.Find("Master Volume Slider").gameObject;
+        UnityEngine.UI.Slider s = (UnityEngine.UI.Slider)x.GetComponent(typeof(UnityEngine.UI.Slider));
+        Debug.LogWarning("@TODO: SET MASTER VOLUE" + s.value);
     }
 
     // CAR MANAGER?
