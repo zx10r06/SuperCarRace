@@ -137,11 +137,60 @@ public class Main : MonoBehaviour {
     public void NextTrack() {
 
     }
-    public void MasterVolue(int volume) {
+    public void MasterVolue() {
+
+
+        // master volume value
         GameObject x = GameObject.Find("Master Volume Slider").gameObject;
         UnityEngine.UI.Slider s = (UnityEngine.UI.Slider)x.GetComponent(typeof(UnityEngine.UI.Slider));
         Debug.LogWarning("@TODO: SET MASTER VOLUE" + s.value);
+
+        // music volume
+        AudioSource mainMusic = (AudioSource)GameObject.Find("Music").GetComponent(typeof(AudioSource));
+        mainMusic.volume = s.value;
+
+        // each car audio
+        foreach (aCar ac in aCars)
+        {
+            CarAudio ca = (CarAudio)ac.go.GetComponent(typeof(CarAudio));
+            ca.pitchMultiplier = s.value;
+            foreach (AudioSource carSound in ac.go.gameObject.GetComponents(typeof(AudioSource))){
+                carSound.volume = s.value;
+            }
+        }
+
+        GameObject y = GameObject.Find("Music slider").gameObject;
+        UnityEngine.UI.Slider music = (UnityEngine.UI.Slider)y.GetComponent(typeof(UnityEngine.UI.Slider));
+        music.value = s.value;
+
+        GameObject z = GameObject.Find("SFX Slider").gameObject;
+        UnityEngine.UI.Slider sound = (UnityEngine.UI.Slider)z.GetComponent(typeof(UnityEngine.UI.Slider));
+        sound.value = s.value;
+
     }
+    public void SFXVolume() {
+        GameObject z = GameObject.Find("SFX Slider").gameObject;
+        UnityEngine.UI.Slider sound = (UnityEngine.UI.Slider)z.GetComponent(typeof(UnityEngine.UI.Slider));
+        // each car audio
+        foreach (aCar ac in aCars)
+        {
+            CarAudio ca = (CarAudio)ac.go.GetComponent(typeof(CarAudio));
+            ca.pitchMultiplier = sound.value;
+            foreach (AudioSource carSound in ac.go.gameObject.GetComponents(typeof(AudioSource)))
+            {
+                carSound.volume = sound.value;
+            }
+        }
+    }
+    public void MusicVolume(){
+        GameObject y = GameObject.Find("Music slider").gameObject;
+        UnityEngine.UI.Slider music = (UnityEngine.UI.Slider)y.GetComponent(typeof(UnityEngine.UI.Slider));
+        // music volume
+        AudioSource mainMusic = (AudioSource)GameObject.Find("Music").GetComponent(typeof(AudioSource));
+        mainMusic.volume = music.value;
+
+    }
+
 
     // CAR MANAGER?
     public void RemoveAndAddCars(bool amPlaying = false)
@@ -158,6 +207,7 @@ public class Main : MonoBehaviour {
         }
         aCars = new ArrayList();
 
+        /*
         //CreateAICar("AICar1", new Vector3(0, 0, 5.0f), Vector3.zero);
         CreateAICar("AICar2", new Vector3(2.5f, 0, 5.0f), Vector3.zero, "Aqua");
         CreateAICar("AICar3", new Vector3(0, 0, 10.0f), Vector3.zero, "Green");
@@ -166,6 +216,7 @@ public class Main : MonoBehaviour {
         CreateAICar("AICar6", new Vector3(2.5f, 0, 15.0f), Vector3.zero, "Pink");
         CreateAICar("AICar7", new Vector3(0, 0, 20.0f), Vector3.zero, "Blue");
         //CreateAICar("AICar8", new Vector3(2.5f, 0, 20.0f), Vector3.zero);
+        */
 
         if (amPlaying)
         {
@@ -191,16 +242,13 @@ public class Main : MonoBehaviour {
             startPos,
             new Quaternion()
         );
-
-
-
+        
         WaypointProgressTracker wpt = (WaypointProgressTracker)newCar.GetComponent(typeof(WaypointProgressTracker));
         wpt.circuit = (WaypointCircuit)GameObject.Find("Waypoints").GetComponent(typeof(WaypointCircuit));
         newCar.name = aiCarName;
 
         newCar.transform.parent = carsGO.transform;
-
-
+        
         GameObject body = (GameObject)newCar.transform.Find("021014SSPC_LD_NoInterior").gameObject.transform.Find("body").gameObject;
         Renderer r = (Renderer)body.GetComponent(typeof(Renderer));
         Material m = (Material)Resources.Load("mat" + color + "Car");
@@ -218,6 +266,13 @@ public class Main : MonoBehaviour {
 
         //newCar.transform.position.Set(position.x, position.y, position.z);
         //newCar.transform.Rotate(rotation);
+
+        GameObject x = GameObject.Find("SFX Slider").gameObject;
+        UnityEngine.UI.Slider s = (UnityEngine.UI.Slider)x.GetComponent(typeof(UnityEngine.UI.Slider));
+
+        CarAudio ca = (CarAudio)newCar.GetComponent(typeof(CarAudio));
+        ca.pitchMultiplier = s.value;
+
 
     }
 
