@@ -58,41 +58,8 @@ public class Main : MonoBehaviour {
     GameObject WinMenu;
     bool haveUpdated = false;
     public bool raceFinished = false;
-
     ArrayList aCars = new ArrayList();
-    public void RemoveAndAddCars(bool amPlaying = false)
-    {
-        // Destroy All others
-        foreach (aCar ac in aCars)
-        {
-            //aCars.Remove(ac);
-            foreach (Transform child in ac.go.transform)
-            {
-                GameObject.Destroy(child.gameObject);
-            }
-            Destroy(ac.go);
-        }
-        aCars = new ArrayList();
 
-        //CreateAICar("AICar1", new Vector3(0, 0, 5.0f), Vector3.zero);
-        CreateAICar("AICar2", new Vector3(2.5f, 0, 5.0f), Vector3.zero, "Aqua");
-        CreateAICar("AICar3", new Vector3(0, 0, 10.0f), Vector3.zero, "Green");
-        //CreateAICar("AICar4", new Vector3(2.5f, 0, 10.0f), Vector3.zero);
-        //CreateAICar("AICar5", new Vector3(0, 0, 15.0f), Vector3.zero);
-        CreateAICar("AICar6", new Vector3(2.5f, 0, 15.0f), Vector3.zero, "Pink");
-        CreateAICar("AICar7", new Vector3(0, 0, 20.0f), Vector3.zero, "Blue");
-        //CreateAICar("AICar8", new Vector3(2.5f, 0, 20.0f), Vector3.zero);
-
-        if (amPlaying)
-        {
-            CreateAICar("PlayerCar", new Vector3(0f, 0, 0.0f), Vector3.zero);
-        }
-        else
-        {
-            CreateAICar("CameraCar", new Vector3(0f, 0, 0.0f), Vector3.zero);
-        }
-
-    }
 
     // Use this for initialization
     void Start () {
@@ -120,6 +87,7 @@ public class Main : MonoBehaviour {
         }
 
     }
+
 
     // Update game mode UI
     void updateMenus() {
@@ -158,6 +126,43 @@ public class Main : MonoBehaviour {
                 MainMenu.SetActive(false);
                 InGameMenu.SetActive(true);
             }
+        }
+
+    }
+
+
+
+    // CAR MANAGER?
+    public void RemoveAndAddCars(bool amPlaying = false)
+    {
+        // Destroy All others
+        foreach (aCar ac in aCars)
+        {
+            //aCars.Remove(ac);
+            foreach (Transform child in ac.go.transform)
+            {
+                GameObject.Destroy(child.gameObject);
+            }
+            Destroy(ac.go);
+        }
+        aCars = new ArrayList();
+
+        //CreateAICar("AICar1", new Vector3(0, 0, 5.0f), Vector3.zero);
+        CreateAICar("AICar2", new Vector3(2.5f, 0, 5.0f), Vector3.zero, "Aqua");
+        CreateAICar("AICar3", new Vector3(0, 0, 10.0f), Vector3.zero, "Green");
+        //CreateAICar("AICar4", new Vector3(2.5f, 0, 10.0f), Vector3.zero);
+        //CreateAICar("AICar5", new Vector3(0, 0, 15.0f), Vector3.zero);
+        CreateAICar("AICar6", new Vector3(2.5f, 0, 15.0f), Vector3.zero, "Pink");
+        CreateAICar("AICar7", new Vector3(0, 0, 20.0f), Vector3.zero, "Blue");
+        //CreateAICar("AICar8", new Vector3(2.5f, 0, 20.0f), Vector3.zero);
+
+        if (amPlaying)
+        {
+            CreateAICar("PlayerCar", new Vector3(0f, 0, 0.0f), Vector3.zero);
+        }
+        else
+        {
+            CreateAICar("CameraCar", new Vector3(0f, 0, 0.0f), Vector3.zero);
         }
 
     }
