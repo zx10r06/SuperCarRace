@@ -79,7 +79,6 @@ namespace UnityStandardAssets.Vehicles.Car
         private void Start()
         {
 
-            m = (Main)GameObject.Find("Main").GetComponent(typeof(Main));
 
 
             m_WheelMeshLocalRotations = new Quaternion[4];
@@ -97,6 +96,8 @@ namespace UnityStandardAssets.Vehicles.Car
             parentGo = gameObject;
             startPos = parentGo.transform.position;
             startRot = parentGo.transform.rotation;
+
+            m = (Main)GameObject.Find("Main").GetComponent(typeof(Main));
 
         }
 
