@@ -11,13 +11,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7756f06ac1b082e4bb1697f768a5a41f, type: 3}
   m_Name: RCC_Settings
   m_EditorClassIdentifier: 
-  toolbarSelectedIndex: 0
+  toolbarSelectedIndex: 1
   overrideFixedTimeStep: 1
   fixedTimeStep: 0.02
-  maxAngularVelocity: 8
+  maxAngularVelocity: 6
   behaviorType: 5
   useFixedWheelColliders: 1
-  controllerType: 0
+  controllerType: 1
   verticalInput: Vertical
   horizontalInput: Horizontal
   handbrakeKB: 32
@@ -33,7 +33,7 @@ MonoBehaviour:
   boostKB: 102
   slowMotionKB: 103
   changeCameraKB: 99
-  enterExitVehicleKB: 13
+  enterExitVehicleKB: 101
   useAutomaticGear: 1
   runEngineAtAwake: 1
   keepEnginesAlive: 1
@@ -45,15 +45,15 @@ MonoBehaviour:
   useTelemetry: 0
   useAccelerometerForSteering: 0
   useSteeringWheelForSteering: 0
-  UIButtonSensitivity: 5
+  UIButtonSensitivity: 3
   UIButtonGravity: 5
-  gyroSensitivity: 2
+  gyroSensitivity: 1
   useLightsAsVertexLights: 1
   useLightProjectorForLightingEffect: 0
-  setTagsAndLayers: 1
+  setTagsAndLayers: 0
   RCCLayer: RCC
   RCCTag: Player
-  tagAllChildrenGameobjects: 1
+  tagAllChildrenGameobjects: 0
   chassisJoint: {fileID: 116354, guid: a7e7b1406cded0e4cb52224eb5dc2d80, type: 2}
   exhaustGas: {fileID: 104134, guid: b6fecef6c92b67147b638a07ef91195b, type: 2}
   skidmarksManager: {fileID: 11447598, guid: a107dc7aa77e84f4d8cf9888def4fe64, type: 2}
@@ -100,7 +100,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: f772a702dcfbfe9478afe01aa9429fbc, type: 3}
   useSharedAudioSources: 1
   maxGearShiftingSoundVolume: 0.25
-  maxCrashSoundVolume: 0.5
+  maxCrashSoundVolume: 1
   maxWindSoundVolume: 0.1
   maxBrakeSoundVolume: 0.1
   foldGeneralSettings: 1
