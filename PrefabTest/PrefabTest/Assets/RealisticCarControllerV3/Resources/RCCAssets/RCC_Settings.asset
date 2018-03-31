@@ -47,11 +47,11 @@ MonoBehaviour:
   useSteeringWheelForSteering: 0
   UIButtonSensitivity: 3
   UIButtonGravity: 5
-  gyroSensitivity: 1
+  gyroSensitivity: 2
   useLightsAsVertexLights: 1
   useLightProjectorForLightingEffect: 0
-  setTagsAndLayers: 0
-  RCCLayer: RCC
+  setTagsAndLayers: 1
+  RCCLayer: RCCVehicleLayer
   RCCTag: Player
   tagAllChildrenGameobjects: 0
   chassisJoint: {fileID: 116354, guid: a7e7b1406cded0e4cb52224eb5dc2d80, type: 2}
@@ -103,10 +103,10 @@ MonoBehaviour:
   maxCrashSoundVolume: 1
   maxWindSoundVolume: 0.1
   maxBrakeSoundVolume: 0.1
-  foldGeneralSettings: 1
-  foldControllerSettings: 1
-  foldUISettings: 1
-  foldWheelPhysics: 1
-  foldSFX: 1
-  foldOptimization: 1
+  foldGeneralSettings: 0
+  foldControllerSettings: 0
+  foldUISettings: 0
+  foldWheelPhysics: 0
+  foldSFX: 0
+  foldOptimization: 0
   foldTagsAndLayers: 1
