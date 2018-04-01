@@ -3439,8 +3439,6 @@ MonoBehaviour:
   - {fileID: 11432022}
   applyEngineTorqueToExtraRearWheelColliders: 1
   SteeringWheel: {fileID: 0}
-  steeringWheelRotateAround: 0
-  steeringWheelAngleMultiplier: 3
   _wheelTypeChoise: 1
   biasedWheelTorque: 100
   COM: {fileID: 488354}
@@ -3448,22 +3446,18 @@ MonoBehaviour:
   engineRunning: 0
   semiAutomaticGear: 0
   engineTorqueCurve:
-  - serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 2
-      time: 0
+  - m_Curve:
+    - time: 0
       value: 1
       inSlope: 0
       outSlope: 0
       tangentMode: 0
-    - serializedVersion: 2
-      time: 27.5
+    - time: 27.5
       value: 1
       inSlope: -0.022857143
       outSlope: -0.022857143
       tangentMode: 0
-    - serializedVersion: 2
-      time: 49.375
+    - time: 49.375
       value: 0
       inSlope: -0.045714285
       outSlope: -0.045714285
@@ -3471,28 +3465,23 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  - serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 2
-      time: 0
+  - m_Curve:
+    - time: 0
       value: 0.1875
       inSlope: 0.026136363
       outSlope: 0.026136363
       tangentMode: 0
-    - serializedVersion: 2
-      time: 27.5
+    - time: 27.5
       value: 0.90625
       inSlope: -0.0015909094
       outSlope: -0.0015909094
       tangentMode: 0
-    - serializedVersion: 2
-      time: 55
+    - time: 55
       value: 0.1
       inSlope: -0.04284091
       outSlope: -0.04284091
       tangentMode: 0
-    - serializedVersion: 2
-      time: 110
+    - time: 110
       value: -3
       inSlope: -0.056363635
       outSlope: -0.056363635
@@ -3500,28 +3489,23 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  - serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 2
-      time: 0
+  - m_Curve:
+    - time: 0
       value: 0.15625
       inSlope: 0.011931818
       outSlope: 0.011931818
       tangentMode: 0
-    - serializedVersion: 2
-      time: 55
+    - time: 55
       value: 0.8125
       inSlope: -0.006988636
       outSlope: -0.006988636
       tangentMode: 0
-    - serializedVersion: 2
-      time: 82.5
+    - time: 82.5
       value: 0.1
       inSlope: -0.031742424
       outSlope: -0.031742424
       tangentMode: 0
-    - serializedVersion: 2
-      time: 165
+    - time: 165
       value: -3
       inSlope: -0.037575755
       outSlope: -0.037575755
@@ -3529,28 +3513,23 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  - serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 2
-      time: 0
+  - m_Curve:
+    - time: 0
       value: 0.125
       inSlope: 0.00719697
       outSlope: 0.00719697
       tangentMode: 0
-    - serializedVersion: 2
-      time: 82.5
+    - time: 82.5
       value: 0.71875
       inSlope: -0.0076515144
       outSlope: -0.0076515144
       tangentMode: 0
-    - serializedVersion: 2
-      time: 110
+    - time: 110
       value: 0.1
       inSlope: -0.025340907
       outSlope: -0.025340907
       tangentMode: 0
-    - serializedVersion: 2
-      time: 220
+    - time: 220
       value: -3
       inSlope: -0.028181817
       outSlope: -0.028181817
@@ -3558,28 +3537,23 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  - serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 2
-      time: 0
+  - m_Curve:
+    - time: 0
       value: 0.09375
       inSlope: 0.0048295455
       outSlope: 0.0048295455
       tangentMode: 0
-    - serializedVersion: 2
-      time: 110
+    - time: 110
       value: 0.625
       inSlope: -0.007130681
       outSlope: -0.007130681
       tangentMode: 0
-    - serializedVersion: 2
-      time: 137.5
+    - time: 137.5
       value: 0.1
       inSlope: -0.020818181
       outSlope: -0.020818181
       tangentMode: 0
-    - serializedVersion: 2
-      time: 275
+    - time: 275
       value: -3
       inSlope: -0.022545453
       outSlope: -0.022545453
@@ -3587,28 +3561,23 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  - serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 2
-      time: 0
+  - m_Curve:
+    - time: 0
       value: 0.0625
       inSlope: 0.003409091
       outSlope: 0.003409091
       tangentMode: 0
-    - serializedVersion: 2
-      time: 137.5
+    - time: 137.5
       value: 0.53125
       inSlope: -0.0061363634
       outSlope: -0.0061363634
       tangentMode: 0
-    - serializedVersion: 2
-      time: 165
+    - time: 165
       value: 0.1
       inSlope: -0.017234847
       outSlope: -0.017234847
       tangentMode: 0
-    - serializedVersion: 2
-      time: 330
+    - time: 330
       value: -3
       inSlope: -0.018787878
       outSlope: -0.018787878
@@ -3616,28 +3585,23 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  - serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 2
-      time: 0
+  - m_Curve:
+    - time: 0
       value: 0.03125
       inSlope: 0.0024621212
       outSlope: 0.0024621212
       tangentMode: 0
-    - serializedVersion: 2
-      time: 165
+    - time: 165
       value: 0.4375
       inSlope: -0.004905303
       outSlope: -0.004905303
       tangentMode: 0
-    - serializedVersion: 2
-      time: 192.5
+    - time: 192.5
       value: 0.1
       inSlope: -0.014188312
       outSlope: -0.014188312
       tangentMode: 0
-    - serializedVersion: 2
-      time: 385
+    - time: 385
       value: -3
       inSlope: -0.016103895
       outSlope: -0.016103895
@@ -3645,28 +3609,23 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  - serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 2
-      time: 0
+  - m_Curve:
+    - time: 0
       value: 0
       inSlope: 0.0017857143
       outSlope: 0.0017857143
       tangentMode: 0
-    - serializedVersion: 2
-      time: 192.5
+    - time: 192.5
       value: 0.34375
       inSlope: -0.003538961
       outSlope: -0.003538961
       tangentMode: 0
-    - serializedVersion: 2
-      time: 220
+    - time: 220
       value: 0.1
       inSlope: -0.011477273
       outSlope: -0.011477273
       tangentMode: 0
-    - serializedVersion: 2
-      time: 440
+    - time: 440
       value: -3
       inSlope: -0.014090909
       outSlope: -0.014090909
@@ -3674,17 +3633,21 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  targetSpeedForGear: []
-  maxSpeedForGear: []
+  gearSpeed:
+  - 27.5
+  - 55
+  - 82.5
+  - 110
+  - 137.5
+  - 165
+  - 192.5
+  - 220
   engineTorque: 10000
-  brakeTorque: 2000
   maxEngineRPM: 8000
   minEngineRPM: 1000
   engineInertia: 1
   useRevLimiter: 1
   useExhaustFlame: 0
-  useClutchMarginAtFirstGear: 1
-  steerAngleSensitivityAdjuster: 0
   steerAngle: 40
   highspeedsteerAngle: 10
   highspeedsteerAngleAtspeed: 100
@@ -3693,17 +3656,14 @@ MonoBehaviour:
   antiRollVertical: 1000
   downForce: 25
   speed: 0
-  orgMaxSpeed: 0
+  brake: 40000
+  defMaxSpeed: 0
   maxspeed: 220
   currentGear: 0
   totalGears: 8
   gearShiftingDelay: 0.5
-  gearShiftingThreshold: 0.85
-  clutchInertia: 0.25
   changingGear: 0
-  NGear: 0
   direction: 1
-  launched: 0
   autoGenerateGearCurves: 1
   autoGenerateTargetSpeedsForChangingGear: 1
   engineStartClip: {fileID: 8300000, guid: 8d3ddfbc69660b342b48f88b496dedee, type: 3}
@@ -3722,7 +3682,6 @@ MonoBehaviour:
   boostInput: 1
   cutGas: 0
   idleInput: 0
-  permanentGas: 0
   chassis: {fileID: 184808}
   chassisVerticalLean: 4
   chassisHorizontalLean: 4
@@ -3734,7 +3693,7 @@ MonoBehaviour:
   deformableMeshFilters: []
   randomizeVertices: 1
   damageRadius: 0.5
-  repaired: 1
+  sleep: 1
   maximumDamage: 0.5
   damageMultiplier: 1
   maximumContactSparkle: 5
@@ -3747,6 +3706,9 @@ MonoBehaviour:
   ESP: 1
   steeringHelper: 1
   tractionHelper: 1
+  ABSAct: 0
+  TCSAct: 0
+  ESPAct: 0
   ABSThreshold: 0.25
   TCSThreshold: 0.25
   TCSStrength: 0.5
@@ -3755,12 +3717,10 @@ MonoBehaviour:
   steerHelperLinearVelStrength: 0.1
   steerHelperAngularVelStrength: 0.1
   tractionHelperStrength: 0.1
-  ABSAct: 0
-  TCSAct: 0
-  ESPAct: 0
   overSteering: 0
   underSteering: 0
-  applyCounterSteering: 1
+  frontCamber: 0
+  rearCamber: 0
   frontSlip: 0
   rearSlip: 0
   turboBoost: 0
@@ -3944,9 +3904,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   flame: {fileID: 19837192}
   flameTime: 0
-  flameColor: {r: 1, g: 0.6000001, b: 0, a: 1}
-  boostFlameColor: {r: 0, g: 1, b: 1, a: 1}
-  previewFlames: 0
+  flameColor:
+    r: 1
+    g: 0.6000001
+    b: 0
+    a: 1
+  boostFlameColor:
+    r: 0
+    g: 1
+    b: 1
+    a: 1
 --- !u!114 &11468642
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3973,9 +3940,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   flame: {fileID: 19861354}
   flameTime: 0
-  flameColor: {r: 1, g: 0.6000001, b: 0, a: 1}
-  boostFlameColor: {r: 0, g: 1, b: 1, a: 1}
-  previewFlames: 0
+  flameColor:
+    r: 1
+    g: 0.6000001
+    b: 0
+    a: 1
+  boostFlameColor:
+    r: 0
+    g: 1
+    b: 1
+    a: 1
 --- !u!114 &11477456
 MonoBehaviour:
   m_ObjectHideFlags: 1

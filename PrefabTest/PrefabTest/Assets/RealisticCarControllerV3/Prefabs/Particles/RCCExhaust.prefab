@@ -112,8 +112,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   flame: {fileID: 19821812}
   flameTime: 0
-  flameColor: {r: 1, g: 0.6000001, b: 0, a: 1}
-  boostFlameColor: {r: 0, g: 1, b: 1, a: 1}
+  flameColor:
+    r: 1
+    g: 0.6000001
+    b: 0
+    a: 1
+  boostFlameColor:
+    r: 0
+    g: 1
+    b: 1
+    a: 1
   previewFlames: 0
 --- !u!198 &19821812
 ParticleSystem:
