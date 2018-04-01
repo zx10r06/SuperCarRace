@@ -32,13 +32,21 @@ public class RaceManager : MonoBehaviour {
         Vector3 newRotation = startPos.transform.rotation.eulerAngles;
         cars.transform.eulerAngles = newRotation;
 
+        // Player Car
         GameObject playerCar = GameObject.Find("E36");
         playerCar.transform.localPosition = new Vector3(0, 0, 0);
         playerCar.transform.localRotation = new Quaternion(0, 0, 0, 0);
 
+        // AI Car
         GameObject aiCar = GameObject.Find("GallardoGT");
         aiCar.transform.localPosition = new Vector3(-3, 0, 0);
         aiCar.transform.localRotation = new Quaternion(0, 0, 0, 0);
+
+        RCC_AICarController aiRCC = (RCC_AICarController)aiCar.GetComponent(typeof(RCC_AICarController));
+        GameObject targetWaypoints = t.transform.Find("WaypointContainers").Find("trafficDown").gameObject;
+        aiRCC.waypointsContainer = (RCC_AIWaypointsContainer)targetWaypoints.GetComponent(typeof(RCC_AIWaypointsContainer));
+        aiRCC.currentWaypoint = 0;
+
 
     }
 }
