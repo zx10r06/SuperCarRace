@@ -69,6 +69,11 @@ public class TrackSelection : MonoBehaviour {
         playerCar.transform.localPosition = new Vector3(0, 0, 0);
         playerCar.transform.localRotation = new Quaternion(0, 0, 0, 0);
 
+
+        GameObject aiCar = GameObject.Find("GallardoGT");
+        aiCar.transform.localPosition = new Vector3(-3, 0, 0);
+        aiCar.transform.localRotation = new Quaternion(0, 0, 0, 0);
+
         //RCC_Demo rd = (RCC_Demo)GameObject.Find("RCCCanvas").GetComponent(typeof(RCC_Demo));
         //rd.Spawn();
 
