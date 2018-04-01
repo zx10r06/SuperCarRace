@@ -26,6 +26,12 @@ public class TrackSelection : MonoBehaviour {
         SetTrackNumber();
         SetSeason();
         SetTimeOfDay();
+
+        // Reset Cars
+
+        RaceManager RaceManager = (RaceManager)GameObject.Find("RaceManager").GetComponent(typeof(RaceManager));
+        RaceManager.ResetCars();
+
     }
     private void HideAllTracks() {
         for (int i = 0; i < 3; i++)
@@ -51,28 +57,13 @@ public class TrackSelection : MonoBehaviour {
         GameObject t = tracks.transform.Find("track" + ddTrack.value.ToString()).gameObject;
         t.SetActive(true);
 
-        GameObject startPos = t.transform.Find("StartPos").gameObject;
-        GameObject cars = GameObject.Find("Cars");
+
         //cars.transform.position = new Vector3(startPos.transform.position.x, startPos.transform.position.y, startPos.transform.position.z);
         //cars.transform.rotation = new Quaternion(startPos.transform.rotation.x, startPos.transform.rotation.y, startPos.transform.rotation.z, 0);
         //cars.transform.Rotate(new Vector3(startPos.transform.rotation.x, startPos.transform.rotation.y, startPos.transform.rotation.z));
 
-        cars.transform.SetPositionAndRotation(
-            new Vector3(startPos.transform.position.x, startPos.transform.position.y, startPos.transform.position.z),
-            new Quaternion(startPos.transform.rotation.x, startPos.transform.rotation.y, startPos.transform.rotation.z, 0)
-            );
-
-        Vector3 newRotation = startPos.transform.rotation.eulerAngles;
-        cars.transform.eulerAngles = newRotation;
-
-        GameObject playerCar = GameObject.Find("E36");
-        playerCar.transform.localPosition = new Vector3(0, 0, 0);
-        playerCar.transform.localRotation = new Quaternion(0, 0, 0, 0);
 
 
-        GameObject aiCar = GameObject.Find("GallardoGT");
-        aiCar.transform.localPosition = new Vector3(-3, 0, 0);
-        aiCar.transform.localRotation = new Quaternion(0, 0, 0, 0);
 
         //RCC_Demo rd = (RCC_Demo)GameObject.Find("RCCCanvas").GetComponent(typeof(RCC_Demo));
         //rd.Spawn();
