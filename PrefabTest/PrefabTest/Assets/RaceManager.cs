@@ -37,24 +37,19 @@ public class RaceManager : MonoBehaviour {
         playerCar.transform.localPosition = new Vector3(0, 0, 0);
         playerCar.transform.localRotation = new Quaternion(0, 0, 0, 0);
 
-        // AI Car
-        GameObject aiCar = GameObject.Find("GallardoGT");
-        aiCar.transform.localPosition = new Vector3(-3, 0, 0);
-        aiCar.transform.localRotation = new Quaternion(0, 0, 0, 0);
-
-        RCC_AICarController aiRCC = (RCC_AICarController)aiCar.GetComponent(typeof(RCC_AICarController));
+        // Target waypoints for this track
         GameObject targetWaypoints = t.transform.Find("WaypointContainers").Find("trafficDown").gameObject;
-        aiRCC.waypointsContainer = (RCC_AIWaypointsContainer)targetWaypoints.GetComponent(typeof(RCC_AIWaypointsContainer));
-        aiRCC.currentWaypoint = 0;
 
-        CreateAICar("Paul", "Model_Sofie@Driving by BUMSTRUM", new Vector3(3, 0, 0), new Quaternion(0, 0, 0, 0));
-        CreateAICar("Wade", "Model_Sedan", new Vector3(0, 0, 6), new Quaternion(0, 0, 0, 0));
-        CreateAICar("Wade", "Model_Misc_Buggy", new Vector3(3, 0, 6), new Quaternion(0, 0, 0, 0));
+        // Create AI Cars
+        CreateAICar("Paul", "GallardoGT", new Vector3(-3, 0, 0), new Quaternion(0, 0, 0, 0), targetWaypoints);
+        CreateAICar("Paul", "Model_Sofie@Driving by BUMSTRUM", new Vector3(3, 0, 0), new Quaternion(0, 0, 0, 0), targetWaypoints);
+        CreateAICar("Wade", "Model_Sedan", new Vector3(0, 0, 6), new Quaternion(0, 0, 0, 0), targetWaypoints);
+        CreateAICar("Wade", "Model_Misc_Buggy", new Vector3(3, 0, 6), new Quaternion(0, 0, 0, 0), targetWaypoints);
 
     }
 
     // AI MANAGER?
-    public void CreateAICar(string aiCarName, string PrefabName, Vector3 position, Quaternion rotation, string color = null)
+    public void CreateAICar(string aiCarName, string PrefabName, Vector3 position, Quaternion rotation, GameObject targetWaypoints = null, string color = null)
     {
 
         GameObject carsGO = GameObject.Find("Cars");
@@ -73,7 +68,13 @@ public class RaceManager : MonoBehaviour {
         wpt.circuit = (WaypointCircuit)GameObject.Find("Waypoints").GetComponent(typeof(WaypointCircuit));
         newCar.name = aiCarName;
         */
-        //RCC_AICarController rccAI = (RCC_AICarController)
+        if (targetWaypoints != null)
+        {
+            newCar.AddComponent<RCC_AICarController>();
+            RCC_AICarController rccAI = (RCC_AICarController)newCar.GetComponent(typeof(RCC_AICarController));
+            rccAI.waypointsContainer = (RCC_AIWaypointsContainer)targetWaypoints.GetComponent(typeof(RCC_AIWaypointsContainer));
+        }
+
 
         newCar.transform.parent = carsGO.transform;
         newCar.transform.localPosition = position;
