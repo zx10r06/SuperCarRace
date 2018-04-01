@@ -8,13 +8,18 @@ public class TrackSelection : MonoBehaviour {
     GameObject tracks;
     Material[] Seasons;
 
-    public int trackNumber { get; set; }
+    public int defaultTrackNumber { get; set; }
 
     // Use this for initialization
     void Start()
     {
 
-        trackNumber = 1;
+
+
+    }
+
+    void Awake() {
+        defaultTrackNumber = 0;
 
         Seasons = new Material[4];
         Seasons[0] = Resources.Load("Materials/Season0", typeof(Material)) as Material;
@@ -23,7 +28,6 @@ public class TrackSelection : MonoBehaviour {
         Seasons[3] = Resources.Load("Materials/Night", typeof(Material)) as Material;
 
         tracks = GameObject.Find("Tracks");
-
     }
 
     // Update is called once per frame
@@ -36,10 +40,11 @@ public class TrackSelection : MonoBehaviour {
         if (GameObject.Find("TrackNumber") != null)
         {
             Dropdown ddTrack = (Dropdown)GameObject.Find("TrackNumber").GetComponent(typeof(Dropdown));
+            defaultTrackNumber = ddTrack.value;
             return ddTrack.value;
         }
         // default track
-        return trackNumber;
+        return defaultTrackNumber;
     }
     public GameObject GetSelectedTrack() {
         GameObject t = tracks.transform.Find("track" + GetSelectedTrackNumber().ToString()).gameObject;

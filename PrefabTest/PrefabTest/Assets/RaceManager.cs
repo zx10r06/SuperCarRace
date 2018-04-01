@@ -25,10 +25,10 @@ public class RaceManager : MonoBehaviour {
         TrackOptions = (Canvas)GameObject.Find("TrackOptions").GetComponent(typeof(Canvas));
         CarOptions = (Canvas)GameObject.Find("CarOptions").GetComponent(typeof(Canvas));
         RCCCanvas = (Canvas)GameObject.Find("RCCCanvas").GetComponent(typeof(Canvas));
-        StartCanvas.enabled = true;
-        TrackOptions.enabled = false;
-        CarOptions.enabled = false;
-        RCCCanvas.enabled = false;
+        StartCanvas.gameObject.SetActive(true);
+        TrackOptions.gameObject.SetActive(false);
+        CarOptions.gameObject.SetActive(false);
+        RCCCanvas.gameObject.SetActive(false);
 
         cinematicCamera = (Camera)GameObject.Find("Animation").GetComponent(typeof(Camera));
 
@@ -36,6 +36,8 @@ public class RaceManager : MonoBehaviour {
         trackSelection.SetupTrack();
 
         ResetCars(true);
+
+        TitleScreen();
 
     }
 	
@@ -45,23 +47,28 @@ public class RaceManager : MonoBehaviour {
 	}
 
     public void TitleScreen() {
-        StartCanvas.enabled = true;
-        TrackOptions.enabled = false;
-        CarOptions.enabled = false;
+        StartCanvas.gameObject.SetActive(true);
+        TrackOptions.gameObject.SetActive(false);
+        CarOptions.gameObject.SetActive(false);
+        RCCCanvas.gameObject.SetActive(false);
     }
 
     public void SelectTrack() {
-        StartCanvas.enabled = false;
-        TrackOptions.enabled = true;
-        CarOptions.enabled = false;
+        StartCanvas.gameObject.SetActive(false);
+        TrackOptions.gameObject.SetActive(true);
+        CarOptions.gameObject.SetActive(false);
+        RCCCanvas.gameObject.SetActive(false);
         trackSelection.SetupTrack();
         ResetCars(true);
     }
 
     public void SelectCar() {
 
-        Dropdown ddCar = (Dropdown)GameObject.Find("SelectedCar").GetComponent(typeof(Dropdown));
-        playerCarPrefabName = ddCar.options[ddCar.value].text;
+        if (GameObject.Find("SelectedCar") != null)
+        {
+            Dropdown ddCar = (Dropdown)GameObject.Find("SelectedCar").GetComponent(typeof(Dropdown));
+            playerCarPrefabName = ddCar.options[ddCar.value].text;
+        }
 
         // remove old cars
         foreach (GameObject cc in currentCars)
@@ -77,14 +84,17 @@ public class RaceManager : MonoBehaviour {
         // enable cinematic?
         cinematicCamera.enabled = demoCar;
 
-        StartCanvas.enabled = false;
-        TrackOptions.enabled = false;
-        CarOptions.enabled = true;
+        StartCanvas.gameObject.SetActive(false);
+        TrackOptions.gameObject.SetActive(false);
+        RCCCanvas.gameObject.SetActive(false);
+        CarOptions.gameObject.SetActive(true);
     }
 
     public void StartRace() {
-        RCCCanvas.enabled = true;
-        CarOptions.enabled = false;
+        RCCCanvas.gameObject.SetActive(true);
+        CarOptions.gameObject.SetActive(false);
+        TrackOptions.gameObject.SetActive(false);
+        //StartCanvas.gameObject.SetActive(titleScreen);
         ResetCars();
     }
 
