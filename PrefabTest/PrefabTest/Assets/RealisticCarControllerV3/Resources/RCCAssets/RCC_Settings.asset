@@ -11,13 +11,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7756f06ac1b082e4bb1697f768a5a41f, type: 3}
   m_Name: RCC_Settings
   m_EditorClassIdentifier: 
-  toolbarSelectedIndex: 0
+  toolbarSelectedIndex: 1
   overrideFixedTimeStep: 1
   fixedTimeStep: 0.02
   maxAngularVelocity: 8
   behaviorType: 5
   useFixedWheelColliders: 1
-  controllerType: 0
+  controllerType: 1
   verticalInput: Vertical
   horizontalInput: Horizontal
   handbrakeKB: 32
@@ -59,6 +59,7 @@ MonoBehaviour:
   skidmarksManager: {fileID: 11447598, guid: a107dc7aa77e84f4d8cf9888def4fe64, type: 2}
   projector: {fileID: 102982, guid: 7f7b6e33e52b82e43a57b7cc85ed5cf9, type: 2}
   projectorIgnoreLayer:
+    serializedVersion: 2
     m_Bits: 0
   headLights: {fileID: 146832, guid: 660ec4b1fd79fa74096f0ab9e6cbd2ca, type: 2}
   brakeLights: {fileID: 136378, guid: 40648ef4ebef26d4c9cc0663c2f08e5e, type: 2}
