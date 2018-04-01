@@ -42,11 +42,6 @@ public class RaceManager : MonoBehaviour {
         cars.transform.eulerAngles = newRotation;
 
         // Player Car
-        /*
-        GameObject playerCar = GameObject.Find("E36");
-        playerCar.transform.localPosition = new Vector3(0, 0, 0);
-        playerCar.transform.localRotation = new Quaternion(0, 0, 0, 0);
-        */
         GameObject playerCar = CreateCar("Dan", "GallardoGT", new Vector3(0, 0, 0), new Quaternion(0, 0, 0, 0));
 
         //Set the Camera system to the player car
