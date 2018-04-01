@@ -8,10 +8,13 @@ public class TrackSelection : MonoBehaviour {
     GameObject tracks;
     Material[] Seasons;
 
+    public int trackNumber { get; set; }
 
     // Use this for initialization
     void Start()
     {
+
+        trackNumber = 1;
 
         Seasons = new Material[4];
         Seasons[0] = Resources.Load("Materials/Season0", typeof(Material)) as Material;
@@ -36,7 +39,7 @@ public class TrackSelection : MonoBehaviour {
             return ddTrack.value;
         }
         // default track
-        return 0;
+        return trackNumber;
     }
     public GameObject GetSelectedTrack() {
         GameObject t = tracks.transform.Find("track" + GetSelectedTrackNumber().ToString()).gameObject;

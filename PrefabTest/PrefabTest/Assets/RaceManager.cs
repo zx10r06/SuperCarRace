@@ -10,17 +10,20 @@ public class RaceManager : MonoBehaviour {
     TrackSelection trackSelection;
 
     Canvas StartCanvas;
-    Canvas RaceOptions;
+    Canvas TrackOptions;
+    Canvas CarOptions;
     Canvas RCCCanvas;
 
     // Use this for initialization
     void Start () {
 
         StartCanvas = (Canvas)GameObject.Find("StartCanvas").GetComponent(typeof(Canvas));
-        RaceOptions = (Canvas)GameObject.Find("RaceOptions").GetComponent(typeof(Canvas));
+        TrackOptions = (Canvas)GameObject.Find("TrackOptions").GetComponent(typeof(Canvas));
+        CarOptions = (Canvas)GameObject.Find("CarOptions").GetComponent(typeof(Canvas));
         RCCCanvas = (Canvas)GameObject.Find("RCCCanvas").GetComponent(typeof(Canvas));
         StartCanvas.enabled = true;
-        RaceOptions.enabled = false;
+        TrackOptions.enabled = false;
+        CarOptions.enabled = false;
         RCCCanvas.enabled = false;
 
         cinematicCamera = (Camera)GameObject.Find("Animation").GetComponent(typeof(Camera));
@@ -37,13 +40,31 @@ public class RaceManager : MonoBehaviour {
 		
 	}
 
+    public void TitleScreen() {
+        StartCanvas.enabled = true;
+        TrackOptions.enabled = false;
+        CarOptions.enabled = false;
+    }
+
     public void SelectTrack() {
         StartCanvas.enabled = false;
-        RaceOptions.enabled = true;
+        TrackOptions.enabled = true;
+        CarOptions.enabled = false;
+
+        trackSelection.SetupTrack();
+        ResetCars(true);
+
+    }
+
+    public void SelectCar() {
+        StartCanvas.enabled = false;
+        TrackOptions.enabled = false;
+        CarOptions.enabled = true;
     }
 
     public void StartRace() {
         RCCCanvas.enabled = true;
+        CarOptions.enabled = false;
         ResetCars();
     }
 
