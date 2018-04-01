@@ -11,13 +11,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7756f06ac1b082e4bb1697f768a5a41f, type: 3}
   m_Name: RCC_Settings
   m_EditorClassIdentifier: 
-  toolbarSelectedIndex: 1
+  toolbarSelectedIndex: 0
   overrideFixedTimeStep: 1
   fixedTimeStep: 0.02
-  maxAngularVelocity: 6
+  maxAngularVelocity: 8
   behaviorType: 5
   useFixedWheelColliders: 1
-  controllerType: 1
+  controllerType: 0
   verticalInput: Vertical
   horizontalInput: Horizontal
   handbrakeKB: 32
@@ -33,7 +33,7 @@ MonoBehaviour:
   boostKB: 102
   slowMotionKB: 103
   changeCameraKB: 99
-  enterExitVehicleKB: 101
+  enterExitVehicleKB: 13
   useAutomaticGear: 1
   runEngineAtAwake: 1
   keepEnginesAlive: 1
@@ -45,21 +45,20 @@ MonoBehaviour:
   useTelemetry: 0
   useAccelerometerForSteering: 0
   useSteeringWheelForSteering: 0
-  UIButtonSensitivity: 3
+  UIButtonSensitivity: 5
   UIButtonGravity: 5
   gyroSensitivity: 2
   useLightsAsVertexLights: 1
   useLightProjectorForLightingEffect: 0
   setTagsAndLayers: 1
-  RCCLayer: RCCVehicleLayer
+  RCCLayer: RCC
   RCCTag: Player
-  tagAllChildrenGameobjects: 0
+  tagAllChildrenGameobjects: 1
   chassisJoint: {fileID: 116354, guid: a7e7b1406cded0e4cb52224eb5dc2d80, type: 2}
   exhaustGas: {fileID: 104134, guid: b6fecef6c92b67147b638a07ef91195b, type: 2}
   skidmarksManager: {fileID: 11447598, guid: a107dc7aa77e84f4d8cf9888def4fe64, type: 2}
   projector: {fileID: 102982, guid: 7f7b6e33e52b82e43a57b7cc85ed5cf9, type: 2}
   projectorIgnoreLayer:
-    serializedVersion: 2
     m_Bits: 0
   headLights: {fileID: 146832, guid: 660ec4b1fd79fa74096f0ab9e6cbd2ca, type: 2}
   brakeLights: {fileID: 136378, guid: 40648ef4ebef26d4c9cc0663c2f08e5e, type: 2}
@@ -100,13 +99,13 @@ MonoBehaviour:
   - {fileID: 8300000, guid: f772a702dcfbfe9478afe01aa9429fbc, type: 3}
   useSharedAudioSources: 1
   maxGearShiftingSoundVolume: 0.25
-  maxCrashSoundVolume: 1
+  maxCrashSoundVolume: 0.5
   maxWindSoundVolume: 0.1
   maxBrakeSoundVolume: 0.1
-  foldGeneralSettings: 0
-  foldControllerSettings: 0
-  foldUISettings: 0
-  foldWheelPhysics: 0
-  foldSFX: 0
-  foldOptimization: 0
+  foldGeneralSettings: 1
+  foldControllerSettings: 1
+  foldUISettings: 1
+  foldWheelPhysics: 1
+  foldSFX: 1
+  foldOptimization: 1
   foldTagsAndLayers: 1

@@ -1488,8 +1488,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   flame: {fileID: 19824260}
   flameTime: 0
-  flameColor: {r: 1, g: 0.6000001, b: 0, a: 1}
-  boostFlameColor: {r: 0, g: 1, b: 1, a: 1}
+  flameColor:
+    r: 1
+    g: 0.6000001
+    b: 0
+    a: 1
+  boostFlameColor:
+    r: 0
+    g: 1
+    b: 1
+    a: 1
   previewFlames: 0
 --- !u!114 &11440154
 MonoBehaviour:
@@ -1633,22 +1641,18 @@ MonoBehaviour:
   engineRunning: 0
   semiAutomaticGear: 0
   engineTorqueCurve:
-  - serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 2
-      time: 0
+  - m_Curve:
+    - time: 0
       value: 2
       inSlope: 0.07102273
       outSlope: 0.07102273
       tangentMode: 0
-    - serializedVersion: 2
-      time: 7.04
+    - time: 7.04
       value: 2.5
       inSlope: -0.00887784
       outSlope: -0.00887784
       tangentMode: 0
-    - serializedVersion: 2
-      time: 35.2
+    - time: 35.2
       value: 0
       inSlope: -0.08877841
       outSlope: -0.08877841
@@ -1656,28 +1660,23 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  - serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 2
-      time: 0
+  - m_Curve:
+    - time: 0
       value: 0.62
       inSlope: 0.011666666
       outSlope: 0.011666666
       tangentMode: 0
-    - serializedVersion: 2
-      time: 24
+    - time: 24
       value: 0.9
       inSlope: -0.0017559524
       outSlope: -0.0017559524
       tangentMode: 0
-    - serializedVersion: 2
-      time: 80
+    - time: 80
       value: 0.05
       inSlope: -0.039360117
       outSlope: -0.039360117
       tangentMode: 0
-    - serializedVersion: 2
-      time: 128
+    - time: 128
       value: -3
       inSlope: -0.063541666
       outSlope: -0.063541666
@@ -1685,28 +1684,23 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  - serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 2
-      time: 0
+  - m_Curve:
+    - time: 0
       value: 0.42999998
       inSlope: 0.007708334
       outSlope: 0.007708334
       tangentMode: 0
-    - serializedVersion: 2
-      time: 48
+    - time: 48
       value: 0.8
       inSlope: -0.0013541656
       outSlope: -0.0013541656
       tangentMode: 0
-    - serializedVersion: 2
-      time: 120.00001
+    - time: 120.00001
       value: 0.05
       inSlope: -0.02638889
       outSlope: -0.02638889
       tangentMode: 0
-    - serializedVersion: 2
-      time: 192
+    - time: 192
       value: -3
       inSlope: -0.042361114
       outSlope: -0.042361114
@@ -1714,28 +1708,23 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  - serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 2
-      time: 0
+  - m_Curve:
+    - time: 0
       value: 0.24
       inSlope: 0.0063888887
       outSlope: 0.0063888887
       tangentMode: 0
-    - serializedVersion: 2
-      time: 72
+    - time: 72
       value: 0.7
       inSlope: -0.00049873744
       outSlope: -0.00049873744
       tangentMode: 0
-    - serializedVersion: 2
-      time: 160
+    - time: 160
       value: 0.05
       inSlope: -0.019578598
       outSlope: -0.019578598
       tangentMode: 0
-    - serializedVersion: 2
-      time: 256
+    - time: 256
       value: -3
       inSlope: -0.031770833
       outSlope: -0.031770833
@@ -1743,28 +1732,23 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  - serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 2
-      time: 0
+  - m_Curve:
+    - time: 0
       value: 0.05
       inSlope: 0.005729167
       outSlope: 0.005729167
       tangentMode: 0
-    - serializedVersion: 2
-      time: 96
+    - time: 96
       value: 0.6
       inSlope: 0.00022035255
       outSlope: 0.00022035255
       tangentMode: 0
-    - serializedVersion: 2
-      time: 200
+    - time: 200
       value: 0.05
       inSlope: -0.015352564
       outSlope: -0.015352564
       tangentMode: 0
-    - serializedVersion: 2
-      time: 320
+    - time: 320
       value: -3
       inSlope: -0.025416667
       outSlope: -0.025416667
