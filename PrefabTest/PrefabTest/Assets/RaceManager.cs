@@ -25,8 +25,8 @@ public class RaceManager : MonoBehaviour {
         GameObject cars = GameObject.Find("Cars");
 
         cars.transform.SetPositionAndRotation(
-        new Vector3(startPos.transform.position.x, startPos.transform.position.y, startPos.transform.position.z),
-        new Quaternion(startPos.transform.rotation.x, startPos.transform.rotation.y, startPos.transform.rotation.z, 0)
+            new Vector3(startPos.transform.position.x, startPos.transform.position.y, startPos.transform.position.z),
+            new Quaternion(startPos.transform.rotation.x, startPos.transform.rotation.y, startPos.transform.rotation.z, 0)
         );
 
         Vector3 newRotation = startPos.transform.rotation.eulerAngles;
@@ -47,6 +47,66 @@ public class RaceManager : MonoBehaviour {
         aiRCC.waypointsContainer = (RCC_AIWaypointsContainer)targetWaypoints.GetComponent(typeof(RCC_AIWaypointsContainer));
         aiRCC.currentWaypoint = 0;
 
+        CreateAICar("Paul", "Model_Sofie@Driving by BUMSTRUM", new Vector3(3, 0, 0), new Quaternion(0, 0, 0, 0));
+        CreateAICar("Wade", "Model_Sedan", new Vector3(0, 0, 6), new Quaternion(0, 0, 0, 0));
+        CreateAICar("Wade", "Model_Misc_Buggy", new Vector3(3, 0, 6), new Quaternion(0, 0, 0, 0));
 
     }
+
+    // AI MANAGER?
+    public void CreateAICar(string aiCarName, string PrefabName, Vector3 position, Quaternion rotation, string color = null)
+    {
+
+        GameObject carsGO = GameObject.Find("Cars");
+
+        Vector3 startPos = new Vector3(carsGO.transform.position.x, carsGO.transform.position.y, carsGO.transform.position.z);
+
+        GameObject newCar = (GameObject)Instantiate(
+            Resources.Load(PrefabName),
+            new Vector3(0,0,0),
+            new Quaternion(0,0,0,0)
+        );
+
+        // add the AI Controller
+        /*
+        WaypointProgressTracker wpt = (WaypointProgressTracker)newCar.GetComponent(typeof(WaypointProgressTracker));
+        wpt.circuit = (WaypointCircuit)GameObject.Find("Waypoints").GetComponent(typeof(WaypointCircuit));
+        newCar.name = aiCarName;
+        */
+        //RCC_AICarController rccAI = (RCC_AICarController)
+
+        newCar.transform.parent = carsGO.transform;
+        newCar.transform.localPosition = position;
+        newCar.transform.localRotation = rotation;
+
+        /*
+        newCar.transform.SetPositionAndRotation(
+            new Vector3(startPos.transform.position.x, startPos.transform.position.y, startPos.transform.position.z),
+            new Quaternion(startPos.transform.rotation.x, startPos.transform.rotation.y, startPos.transform.rotation.z, 0)
+        );
+        */
+
+        // set color
+        if (color != null)
+        {
+            /*
+            GameObject body = (GameObject)newCar.transform.Find("021014SSPC_LD_NoInterior").gameObject.transform.Find("body").gameObject;
+            Renderer r = (Renderer)body.GetComponent(typeof(Renderer));
+            Material m = (Material)Resources.Load("mat" + color + "Car");
+            r.material = m;
+            */
+        }
+
+        // add to ai cars array
+        //aCars.Add(new aCar(newCar));
+
+        /*
+        // Audio Volume
+        CarAudio ca = (CarAudio)newCar.GetComponent(typeof(CarAudio));
+        ca.pitchMultiplier = defaultSoundVolume;//s.value;
+        */
+
+
+    }
+
 }
