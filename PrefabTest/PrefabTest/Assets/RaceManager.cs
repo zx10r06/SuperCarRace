@@ -14,8 +14,12 @@ public class RaceManager : MonoBehaviour {
     Canvas CarOptions;
     Canvas RCCCanvas;
 
+    string playerCarPrefabName { get;  set; }
+
     // Use this for initialization
     void Start () {
+
+        playerCarPrefabName = "GallardoGT";
 
         StartCanvas = (Canvas)GameObject.Find("StartCanvas").GetComponent(typeof(Canvas));
         TrackOptions = (Canvas)GameObject.Find("TrackOptions").GetComponent(typeof(Canvas));
@@ -50,13 +54,23 @@ public class RaceManager : MonoBehaviour {
         StartCanvas.enabled = false;
         TrackOptions.enabled = true;
         CarOptions.enabled = false;
-
         trackSelection.SetupTrack();
         ResetCars(true);
-
     }
 
     public void SelectCar() {
+
+        Dropdown ddCar = (Dropdown)GameObject.Find("SelectedCar").GetComponent(typeof(Dropdown));
+        playerCarPrefabName = ddCar.options[ddCar.value].text;
+
+        // remove old cars
+        foreach (GameObject cc in currentCars)
+        {
+            Destroy(cc);
+        }
+        currentCars = new ArrayList();
+        GameObject demoCar = CreateCar("Dan", playerCarPrefabName, new Vector3(0, 0, 0), new Quaternion(0, 0, 0, 0));
+
         StartCanvas.enabled = false;
         TrackOptions.enabled = false;
         CarOptions.enabled = true;
@@ -97,11 +111,11 @@ public class RaceManager : MonoBehaviour {
         GameObject playerCar;
         if (DemoMode)
         {
-            playerCar = CreateCar("Dan", "GallardoGT", new Vector3(0, 0, 0), new Quaternion(0, 0, 0, 0), targetWaypoints);
+            playerCar = CreateCar("Dan", playerCarPrefabName, new Vector3(0, 0, 0), new Quaternion(0, 0, 0, 0), targetWaypoints);
         }
         else
         {
-            playerCar = CreateCar("Dan", "GallardoGT", new Vector3(0, 0, 0), new Quaternion(0, 0, 0, 0));
+            playerCar = CreateCar("Dan", playerCarPrefabName, new Vector3(0, 0, 0), new Quaternion(0, 0, 0, 0));
         }
 
         //Set the Camera system to the player car
