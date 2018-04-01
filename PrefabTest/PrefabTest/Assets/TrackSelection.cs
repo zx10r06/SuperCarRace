@@ -6,10 +6,19 @@ using UnityEngine.UI;
 public class TrackSelection : MonoBehaviour {
 
     GameObject tracks;
+    Material[] Seasons;
+
 
     // Use this for initialization
     void Start()
     {
+
+        Seasons = new Material[4];
+        Seasons[0] = Resources.Load("Materials/Season0", typeof(Material)) as Material;
+        Seasons[1] = Resources.Load("Materials/Season1", typeof(Material)) as Material;
+        Seasons[2] = Resources.Load("Materials/Season2", typeof(Material)) as Material;
+        Seasons[3] = Resources.Load("Materials/Night", typeof(Material)) as Material;
+
         tracks = GameObject.Find("Tracks");
         SetupTrack();
     }
@@ -80,6 +89,9 @@ public class TrackSelection : MonoBehaviour {
         GameObject s = (GameObject)t.transform.Find("season" + dd.value.ToString()).gameObject;
         s.SetActive(true);
 
+        RenderSettings.skybox = Seasons[dd.value];
+        RenderSettings.skybox.SetFloat("_Exposure", 1.0f);
+
     }
     public void SetTimeOfDay()
     {
@@ -93,6 +105,11 @@ public class TrackSelection : MonoBehaviour {
 
         GameObject tod = s.transform.Find("tod" + dd.value).gameObject;
         tod.SetActive(true);
+
+        if (dd.value == 1) {
+            //RenderSettings.skybox = Seasons[3];
+            RenderSettings.skybox.SetFloat("_Exposure", 0.2f);
+        }
 
     }
 
