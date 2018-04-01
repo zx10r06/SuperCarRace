@@ -20,7 +20,7 @@ public class TrackSelection : MonoBehaviour {
         Seasons[3] = Resources.Load("Materials/Night", typeof(Material)) as Material;
 
         tracks = GameObject.Find("Tracks");
-        SetupTrack();
+
     }
 
     // Update is called once per frame
@@ -29,18 +29,55 @@ public class TrackSelection : MonoBehaviour {
 
     }
 
+    public int GetSelectedTrackNumber() {
+        if (GameObject.Find("TrackNumber") != null)
+        {
+            Dropdown ddTrack = (Dropdown)GameObject.Find("TrackNumber").GetComponent(typeof(Dropdown));
+            return ddTrack.value;
+        }
+        // default track
+        return 0;
+    }
+    public GameObject GetSelectedTrack() {
+        GameObject t = tracks.transform.Find("track" + GetSelectedTrackNumber().ToString()).gameObject;
+        return t;
+    }
+
+    public int GetSelectedSeasonNumber() {
+        if (GameObject.Find("TrackSeason") != null)
+        {
+            Dropdown dd = (Dropdown)GameObject.Find("TrackSeason").GetComponent(typeof(Dropdown));
+            return dd.value;
+        }
+        // default season
+        return 0;
+    }
+    public GameObject GetSelectedSeason() {
+        GameObject s = (GameObject)GetSelectedTrack().transform.Find("season" + GetSelectedSeasonNumber().ToString()).gameObject;
+        return s;
+    }
+
+    public int GetSelectedTODNumber()
+    {
+        if (GameObject.Find("TrackTimeOfDay") != null)
+        {
+            Dropdown dd = (Dropdown)GameObject.Find("TrackTimeOfDay").GetComponent(typeof(Dropdown));
+            return dd.value;
+        }
+        // default TOD
+        return 0;
+    }
+    public GameObject GetSelectedTOD()
+    {
+        GameObject tod = GetSelectedSeason().transform.Find("tod" + GetSelectedTODNumber().ToString()).gameObject;
+        return tod;
+    }
     // Handle Track, Season and TOD selection
     public void SetupTrack() {
         HideAllTracks();
         SetTrackNumber();
         SetSeason();
         SetTimeOfDay();
-
-        // Reset Cars
-
-        RaceManager RaceManager = (RaceManager)GameObject.Find("RaceManager").GetComponent(typeof(RaceManager));
-        RaceManager.ResetCars();
-
     }
     private void HideAllTracks() {
         for (int i = 0; i < 3; i++)
@@ -61,53 +98,20 @@ public class TrackSelection : MonoBehaviour {
     }
     public void SetTrackNumber()
     {
-
-        Dropdown ddTrack = (Dropdown)GameObject.Find("TrackNumber").GetComponent(typeof(Dropdown));
-        GameObject t = tracks.transform.Find("track" + ddTrack.value.ToString()).gameObject;
-        t.SetActive(true);
-
-
-        //cars.transform.position = new Vector3(startPos.transform.position.x, startPos.transform.position.y, startPos.transform.position.z);
-        //cars.transform.rotation = new Quaternion(startPos.transform.rotation.x, startPos.transform.rotation.y, startPos.transform.rotation.z, 0);
-        //cars.transform.Rotate(new Vector3(startPos.transform.rotation.x, startPos.transform.rotation.y, startPos.transform.rotation.z));
-
-
-
-
-        //RCC_Demo rd = (RCC_Demo)GameObject.Find("RCCCanvas").GetComponent(typeof(RCC_Demo));
-        //rd.Spawn();
-
-
+        GetSelectedTrack().SetActive(true);
     }
     public void SetSeason()
     {
-
-        Dropdown ddTrack = (Dropdown)GameObject.Find("TrackNumber").GetComponent(typeof(Dropdown));
-        Dropdown dd = (Dropdown)GameObject.Find("TrackSeason").GetComponent(typeof(Dropdown));
-
-        GameObject t = tracks.transform.Find("track" + ddTrack.value).gameObject;
-        GameObject s = (GameObject)t.transform.Find("season" + dd.value.ToString()).gameObject;
-        s.SetActive(true);
-
-        RenderSettings.skybox = Seasons[dd.value];
+        GetSelectedSeason().SetActive(true);
+        // Set Skybox
+        RenderSettings.skybox = Seasons[GetSelectedSeasonNumber()];
         RenderSettings.skybox.SetFloat("_Exposure", 1.0f);
-
     }
     public void SetTimeOfDay()
     {
-        Dropdown dd = (Dropdown)GameObject.Find("TrackTimeOfDay").GetComponent(typeof(Dropdown));
-
-        Dropdown ddTrack = (Dropdown)GameObject.Find("TrackNumber").GetComponent(typeof(Dropdown));
-        Dropdown ddSeason = (Dropdown)GameObject.Find("TrackSeason").GetComponent(typeof(Dropdown));
-
-        GameObject t = tracks.transform.Find("track" + ddTrack.value).gameObject;
-        GameObject s = (GameObject)t.transform.Find("season" + ddSeason.value.ToString()).gameObject;
-
-        GameObject tod = s.transform.Find("tod" + dd.value).gameObject;
-        tod.SetActive(true);
-
-        if (dd.value == 1) {
-            //RenderSettings.skybox = Seasons[3];
+        GetSelectedTOD().SetActive(true);
+        // Set Night time exposure
+        if (GetSelectedTODNumber() == 1) {
             RenderSettings.skybox.SetFloat("_Exposure", 0.2f);
         }
 

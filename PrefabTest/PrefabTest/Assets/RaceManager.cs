@@ -6,18 +6,48 @@ using UnityEngine.UI;
 public class RaceManager : MonoBehaviour {
 
     ArrayList currentCars = new ArrayList();
+    Camera cinematicCamera;
+    TrackSelection trackSelection;
 
-	// Use this for initialization
-	void Start () {
-		
-	}
+    Canvas StartCanvas;
+    Canvas RaceOptions;
+    Canvas RCCCanvas;
+
+    // Use this for initialization
+    void Start () {
+
+        StartCanvas = (Canvas)GameObject.Find("StartCanvas").GetComponent(typeof(Canvas));
+        RaceOptions = (Canvas)GameObject.Find("RaceOptions").GetComponent(typeof(Canvas));
+        RCCCanvas = (Canvas)GameObject.Find("RCCCanvas").GetComponent(typeof(Canvas));
+        StartCanvas.enabled = true;
+        RaceOptions.enabled = false;
+        RCCCanvas.enabled = false;
+
+        cinematicCamera = (Camera)GameObject.Find("Animation").GetComponent(typeof(Camera));
+
+        trackSelection = (TrackSelection)GetComponent(typeof(TrackSelection));
+        trackSelection.SetupTrack();
+
+        ResetCars(true);
+
+    }
 	
 	// Update is called once per frame
 	void Update () {
 		
 	}
 
-    public void ResetCars() {
+    public void SelectTrack() {
+        StartCanvas.enabled = false;
+        RaceOptions.enabled = true;
+    }
+
+    public void StartRace() {
+        RCCCanvas.enabled = true;
+        ResetCars();
+    }
+
+    public void ResetCars(bool DemoMode = false) {
 
         // remove old cars
         foreach (GameObject cc in currentCars)
@@ -26,9 +56,7 @@ public class RaceManager : MonoBehaviour {
         }
         currentCars = new ArrayList();
 
-        GameObject tracks = GameObject.Find("Tracks"); ;
-        Dropdown ddTrack = (Dropdown)GameObject.Find("TrackNumber").GetComponent(typeof(Dropdown));
-        GameObject t = tracks.transform.Find("track" + ddTrack.value.ToString()).gameObject;
+        GameObject t = trackSelection.GetSelectedTrack();
 
         GameObject startPos = t.transform.Find("StartPos").gameObject;
         GameObject cars = GameObject.Find("Cars");
@@ -41,15 +69,25 @@ public class RaceManager : MonoBehaviour {
         Vector3 newRotation = startPos.transform.rotation.eulerAngles;
         cars.transform.eulerAngles = newRotation;
 
+        // Target AI waypoints for this track
+        GameObject targetWaypoints = t.transform.Find("WaypointContainers").Find("trafficDown").gameObject;
+
         // Player Car
-        GameObject playerCar = CreateCar("Dan", "GallardoGT", new Vector3(0, 0, 0), new Quaternion(0, 0, 0, 0));
+        GameObject playerCar;
+        if (DemoMode)
+        {
+            playerCar = CreateCar("Dan", "GallardoGT", new Vector3(0, 0, 0), new Quaternion(0, 0, 0, 0), targetWaypoints);
+        }
+        else
+        {
+            playerCar = CreateCar("Dan", "GallardoGT", new Vector3(0, 0, 0), new Quaternion(0, 0, 0, 0));
+        }
 
         //Set the Camera system to the player car
         RCC_Camera camera = (RCC_Camera)GameObject.Find("RCCCamera").GetComponent(typeof(RCC_Camera));
         camera.SetPlayerCar(playerCar);
-
-        // Target AI waypoints for this track
-        GameObject targetWaypoints = t.transform.Find("WaypointContainers").Find("trafficDown").gameObject;
+        // enable cinematic?
+        cinematicCamera.enabled = DemoMode;
 
         // Create AI Cars
         CreateCar("Paul", "E36", new Vector3(-3, 0, 0), new Quaternion(0, 0, 0, 0), targetWaypoints);
@@ -59,7 +97,7 @@ public class RaceManager : MonoBehaviour {
 
     }
 
-    public GameObject CreateCar(string aiCarName, string PrefabName, Vector3 position, Quaternion rotation, GameObject targetWaypoints = null, string color = null)
+    private GameObject CreateCar(string aiCarName, string PrefabName, Vector3 position, Quaternion rotation, GameObject targetWaypoints = null, string color = null)
     {
 
         GameObject carsGO = GameObject.Find("Cars");
