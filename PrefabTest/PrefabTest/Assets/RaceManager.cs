@@ -5,6 +5,8 @@ using UnityEngine.UI;
 
 public class RaceManager : MonoBehaviour {
 
+    ArrayList currentCars = new ArrayList();
+
 	// Use this for initialization
 	void Start () {
 		
@@ -16,6 +18,13 @@ public class RaceManager : MonoBehaviour {
 	}
 
     public void ResetCars() {
+
+        // remove old cars
+        foreach (GameObject cc in currentCars)
+        {
+            Destroy(cc);
+        }
+        currentCars = new ArrayList();
 
         GameObject tracks = GameObject.Find("Tracks"); ;
         Dropdown ddTrack = (Dropdown)GameObject.Find("TrackNumber").GetComponent(typeof(Dropdown));
@@ -33,28 +42,32 @@ public class RaceManager : MonoBehaviour {
         cars.transform.eulerAngles = newRotation;
 
         // Player Car
+        /*
         GameObject playerCar = GameObject.Find("E36");
         playerCar.transform.localPosition = new Vector3(0, 0, 0);
         playerCar.transform.localRotation = new Quaternion(0, 0, 0, 0);
+        */
+        GameObject playerCar = CreateCar("Dan", "GallardoGT", new Vector3(0, 0, 0), new Quaternion(0, 0, 0, 0));
 
-        // Target waypoints for this track
+        //Set the Camera system to the player car
+        RCC_Camera camera = (RCC_Camera)GameObject.Find("RCCCamera").GetComponent(typeof(RCC_Camera));
+        camera.SetPlayerCar(playerCar);
+
+        // Target AI waypoints for this track
         GameObject targetWaypoints = t.transform.Find("WaypointContainers").Find("trafficDown").gameObject;
 
         // Create AI Cars
-        CreateAICar("Paul", "GallardoGT", new Vector3(-3, 0, 0), new Quaternion(0, 0, 0, 0), targetWaypoints);
-        CreateAICar("Paul", "Model_Sofie@Driving by BUMSTRUM", new Vector3(3, 0, 0), new Quaternion(0, 0, 0, 0), targetWaypoints);
-        CreateAICar("Wade", "Model_Sedan", new Vector3(0, 0, 6), new Quaternion(0, 0, 0, 0), targetWaypoints);
-        CreateAICar("Wade", "Model_Misc_Buggy", new Vector3(3, 0, 6), new Quaternion(0, 0, 0, 0), targetWaypoints);
+        CreateCar("Paul", "E36", new Vector3(-3, 0, 0), new Quaternion(0, 0, 0, 0), targetWaypoints);
+        CreateCar("Chris", "Model_Sofie@Driving by BUMSTRUM", new Vector3(3, 0, 0), new Quaternion(0, 0, 0, 0), targetWaypoints);
+        CreateCar("James", "Model_Sedan", new Vector3(0, 0, 6), new Quaternion(0, 0, 0, 0), targetWaypoints);
+        CreateCar("Saeedeh", "Model_Misc_Buggy", new Vector3(3, 0, 6), new Quaternion(0, 0, 0, 0), targetWaypoints);
 
     }
 
-    // AI MANAGER?
-    public void CreateAICar(string aiCarName, string PrefabName, Vector3 position, Quaternion rotation, GameObject targetWaypoints = null, string color = null)
+    public GameObject CreateCar(string aiCarName, string PrefabName, Vector3 position, Quaternion rotation, GameObject targetWaypoints = null, string color = null)
     {
 
         GameObject carsGO = GameObject.Find("Cars");
-
-        Vector3 startPos = new Vector3(carsGO.transform.position.x, carsGO.transform.position.y, carsGO.transform.position.z);
 
         GameObject newCar = (GameObject)Instantiate(
             Resources.Load(PrefabName),
@@ -62,30 +75,18 @@ public class RaceManager : MonoBehaviour {
             new Quaternion(0,0,0,0)
         );
 
+        // set rotation
+        newCar.transform.parent = carsGO.transform;
+        newCar.transform.localPosition = position;
+        newCar.transform.localRotation = rotation;
+
         // add the AI Controller
-        /*
-        WaypointProgressTracker wpt = (WaypointProgressTracker)newCar.GetComponent(typeof(WaypointProgressTracker));
-        wpt.circuit = (WaypointCircuit)GameObject.Find("Waypoints").GetComponent(typeof(WaypointCircuit));
-        newCar.name = aiCarName;
-        */
         if (targetWaypoints != null)
         {
             newCar.AddComponent<RCC_AICarController>();
             RCC_AICarController rccAI = (RCC_AICarController)newCar.GetComponent(typeof(RCC_AICarController));
             rccAI.waypointsContainer = (RCC_AIWaypointsContainer)targetWaypoints.GetComponent(typeof(RCC_AIWaypointsContainer));
         }
-
-
-        newCar.transform.parent = carsGO.transform;
-        newCar.transform.localPosition = position;
-        newCar.transform.localRotation = rotation;
-
-        /*
-        newCar.transform.SetPositionAndRotation(
-            new Vector3(startPos.transform.position.x, startPos.transform.position.y, startPos.transform.position.z),
-            new Quaternion(startPos.transform.rotation.x, startPos.transform.rotation.y, startPos.transform.rotation.z, 0)
-        );
-        */
 
         // set color
         if (color != null)
@@ -98,15 +99,16 @@ public class RaceManager : MonoBehaviour {
             */
         }
 
-        // add to ai cars array
-        //aCars.Add(new aCar(newCar));
-
         /*
         // Audio Volume
         CarAudio ca = (CarAudio)newCar.GetComponent(typeof(CarAudio));
         ca.pitchMultiplier = defaultSoundVolume;//s.value;
         */
 
+        // add to current cars
+        currentCars.Add(newCar);
+
+        return newCar;
 
     }
 
