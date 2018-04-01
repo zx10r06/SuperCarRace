@@ -69,7 +69,13 @@ public class RaceManager : MonoBehaviour {
             Destroy(cc);
         }
         currentCars = new ArrayList();
-        GameObject demoCar = CreateCar("Dan", playerCarPrefabName, new Vector3(0, 0, 0), new Quaternion(0, 0, 0, 0));
+        GameObject demoCar = CreateCar("DemoCar", playerCarPrefabName, new Vector3(0, 0, 0), new Quaternion(0, 0, 0, 0));
+
+        //Set the Camera system to the player car
+        RCC_Camera camera = (RCC_Camera)GameObject.Find("RCCCamera").GetComponent(typeof(RCC_Camera));
+        camera.SetPlayerCar(demoCar);
+        // enable cinematic?
+        cinematicCamera.enabled = demoCar;
 
         StartCanvas.enabled = false;
         TrackOptions.enabled = false;
