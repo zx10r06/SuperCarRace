@@ -51,8 +51,8 @@ MonoBehaviour:
   useLightsAsVertexLights: 1
   useLightProjectorForLightingEffect: 0
   setTagsAndLayers: 1
-  RCCLayer: RCC
-  RCCTag: Player
+  RCCLayer: RCCVehicleLayer
+  RCCTag: PlayerCar
   tagAllChildrenGameobjects: 1
   chassisJoint: {fileID: 116354, guid: a7e7b1406cded0e4cb52224eb5dc2d80, type: 2}
   exhaustGas: {fileID: 104134, guid: b6fecef6c92b67147b638a07ef91195b, type: 2}
