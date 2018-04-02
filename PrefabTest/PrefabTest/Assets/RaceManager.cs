@@ -144,11 +144,11 @@ public class RaceManager : MonoBehaviour {
         GameObject playerCar;
         if (DemoMode)
         {
-            playerCar = CreateCar("Dan", playerCarPrefabName, new Vector3(0, 0, 0), new Quaternion(0, 0, 0, 0), targetWaypoints);
+            playerCar = CreateCar("DemoCar", playerCarPrefabName, new Vector3(0, 0, 0), new Quaternion(0, 0, 0, 0), targetWaypoints);
         }
         else
         {
-            playerCar = CreateCar("Dan", playerCarPrefabName, new Vector3(0, 0, 0), new Quaternion(0, 0, 0, 0));
+            playerCar = CreateCar("PlayerCar", playerCarPrefabName, new Vector3(0, 0, 0), new Quaternion(0, 0, 0, 0));
         }
 
         //Set the Camera system to the player car
@@ -175,6 +175,8 @@ public class RaceManager : MonoBehaviour {
             new Vector3(0,0,0),
             new Quaternion(0,0,0,0)
         );
+
+        newCar.name = aiCarName;
 
         // set rotation
         newCar.transform.parent = carsGO.transform;
