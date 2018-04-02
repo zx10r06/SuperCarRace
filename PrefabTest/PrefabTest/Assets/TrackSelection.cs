@@ -113,14 +113,29 @@ public class TrackSelection : MonoBehaviour {
         GetSelectedSeason().SetActive(true);
         // Set Skybox
         RenderSettings.skybox = Seasons[GetSelectedSeasonNumber()];
-        RenderSettings.skybox.SetFloat("_Exposure", 1.0f);
+        if (GetSelectedSeasonNumber() == 1)
+        {
+            RenderSettings.skybox.SetFloat("_Exposure", 0.65f);
+        }
+        else
+        {
+            RenderSettings.skybox.SetFloat("_Exposure", 1.0f);
+        }
+
     }
     public void SetTimeOfDay()
     {
         GetSelectedTOD().SetActive(true);
         // Set Night time exposure
         if (GetSelectedTODNumber() == 1) {
-            RenderSettings.skybox.SetFloat("_Exposure", 0.2f);
+            if (GetSelectedSeasonNumber() == 1)
+            {
+                RenderSettings.skybox.SetFloat("_Exposure", 0.1f);
+            }
+            else
+            {
+                RenderSettings.skybox.SetFloat("_Exposure", 0.2f);
+            }
         }
 
     }
