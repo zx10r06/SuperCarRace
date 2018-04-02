@@ -13,6 +13,7 @@ public class RaceManager : MonoBehaviour {
     Canvas TrackOptions;
     Canvas CarOptions;
     Canvas RCCCanvas;
+    Canvas OptionsCanvas;
 
     string playerCarPrefabName { get;  set; }
 
@@ -25,10 +26,12 @@ public class RaceManager : MonoBehaviour {
         TrackOptions = (Canvas)GameObject.Find("TrackOptions").GetComponent(typeof(Canvas));
         CarOptions = (Canvas)GameObject.Find("CarOptions").GetComponent(typeof(Canvas));
         RCCCanvas = (Canvas)GameObject.Find("RCCCanvas").GetComponent(typeof(Canvas));
+        OptionsCanvas = (Canvas)GameObject.Find("OptionsCanvas").GetComponent(typeof(Canvas));
         StartCanvas.gameObject.SetActive(true);
         TrackOptions.gameObject.SetActive(false);
         CarOptions.gameObject.SetActive(false);
         RCCCanvas.gameObject.SetActive(false);
+        OptionsCanvas.gameObject.SetActive(false);
 
         cinematicCamera = (Camera)GameObject.Find("Animation").GetComponent(typeof(Camera));
 
@@ -45,6 +48,20 @@ public class RaceManager : MonoBehaviour {
 	void Update () {
 		
 	}
+
+    public void SetMusicVolume() {
+        Slider dd = (Slider)OptionsCanvas.transform.Find("MusicVolumeSlider").GetComponent(typeof(Slider));
+        AudioSource musicSource = GameObject.Find("Music").GetComponent<AudioSource>();
+        musicSource.volume = dd.value;
+    }
+
+    public void ShowOptions() {
+        OptionsCanvas.gameObject.SetActive(true);
+    }
+
+    public void HideOptions() {
+        OptionsCanvas.gameObject.SetActive(false);
+    }
 
     public void TitleScreen() {
         StartCanvas.gameObject.SetActive(true);
