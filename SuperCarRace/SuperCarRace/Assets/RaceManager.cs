@@ -165,7 +165,7 @@ public class RaceManager : MonoBehaviour {
         cinematicCamera.enabled = DemoMode;
 
         // Create AI Cars
-        CreateCar("Paul", "E36", new Vector3(-3.5f, 0, 0), new Quaternion(0, 0, 0, 0), targetWaypoints);
+        CreateCar("Paul", playerCarPrefabName == "E36" ? "GallardoGT" : "E36", new Vector3(-3.5f, 0, 0), new Quaternion(0, 0, 0, 0), targetWaypoints);
         CreateCar("Chris", "Model_Sofie@Driving by BUMSTRUM", new Vector3(3.5f, 0, 0), new Quaternion(0, 0, 0, 0), targetWaypoints);
         CreateCar("James", "Model_Sedan", new Vector3(0, 0, 12), new Quaternion(0, 0, 0, 0), targetWaypoints);
         CreateCar("Saeedeh", "Model_Misc_Buggy", new Vector3(4, 0, 12), new Quaternion(0, 0, 0, 0), targetWaypoints);
