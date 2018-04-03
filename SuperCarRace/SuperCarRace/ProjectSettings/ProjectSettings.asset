@@ -12,7 +12,7 @@ PlayerSettings:
   useOnDemandResources: 0
   accelerometerFrequency: 60
   companyName: DefaultCompany
-  productName: PrefabTest
+  productName: SuperCarRace
   defaultCursor: {fileID: 0}
   cursorHotspot: {x: 0, y: 0}
   m_SplashScreenBackgroundColor: {r: 0.13725491, g: 0.12156863, b: 0.1254902, a: 1}
@@ -242,7 +242,7 @@ PlayerSettings:
   clonedFromGUID: 00000000000000000000000000000000
   AndroidTargetDevice: 0
   AndroidSplashScreenScale: 0
-  androidSplashScreen: {fileID: 2800000, guid: 5cc0a9ad99b68ae4d96c59527f8ab9f3, type: 3}
+  androidSplashScreen: {fileID: 0}
   AndroidKeystoreName: C:/Projects/Unity/SuperCarRace/SuperCarRace/SuperCarRace.keystore
   AndroidKeyaliasName: supercarrace
   AndroidTVCompatibility: 1
@@ -596,14 +596,14 @@ PlayerSettings:
   apiCompatibilityLevelPerPlatform: {}
   m_RenderingPath: 1
   m_MobileRenderingPath: 1
-  metroPackageName: PrefabTest
+  metroPackageName: SuperCarRace
   metroPackageVersion: 
-  metroCertificatePath: 
+  metroCertificatePath: C:\Projects\Unity\SuperCarRace\SuperCarRace\SuperCarRace\Assets\WSATestCertificate.pfx
   metroCertificatePassword: 
-  metroCertificateSubject: 
-  metroCertificateIssuer: 
-  metroCertificateNotAfter: 0000000000000000
-  metroApplicationDescription: PrefabTest
+  metroCertificateSubject: DefaultCompany
+  metroCertificateIssuer: DefaultCompany
+  metroCertificateNotAfter: 8070540b30ead401
+  metroApplicationDescription: SuperCarRace
   wsaImages: {}
   metroTileShortName: 
   metroCommandLineArgsFile: 
@@ -668,12 +668,13 @@ PlayerSettings:
     daydream:
       daydreamIconForeground: {fileID: 0}
       daydreamIconBackground: {fileID: 0}
-  cloudServicesEnabled: {}
+  cloudServicesEnabled:
+    UNet: 1
   facebookSdkVersion: 7.9.4
   apiCompatibilityLevel: 2
-  cloudProjectId: 
-  projectName: 
-  organizationId: 
+  cloudProjectId: 9a26ef52-dcb8-449a-b61c-52685f6e9080
+  projectName: Super Car Race
+  organizationId: zx10r06
   cloudEnabled: 0
   enableNativePlatformBackendsForNewInputSystem: 0
   disableOldInputManagerSupport: 0
