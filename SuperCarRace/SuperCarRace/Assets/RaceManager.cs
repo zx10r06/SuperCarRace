@@ -203,6 +203,13 @@ public class RaceManager : MonoBehaviour {
         }
 
         /*
+        RCC_CarControllerV3 rccControllerV3 = (RCC_CarControllerV3)newCar.GetComponent(typeof(RCC_CarControllerV3));
+        rccControllerV3.lowBeamHeadLightsOn = true;
+        rccControllerV3.highBeamHeadLightsOn = true;
+        */
+
+
+        /*
         // Audio Volume
         CarAudio ca = (CarAudio)newCar.GetComponent(typeof(CarAudio));
         ca.pitchMultiplier = defaultSoundVolume;//s.value;

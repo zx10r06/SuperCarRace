@@ -10,7 +10,7 @@ GameObject:
   - component: {fileID: 447172}
   m_Layer: 8
   m_Name: COM
-  m_TagString: Player
+  m_TagString: PlayerCar
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -25,7 +25,7 @@ GameObject:
   - component: {fileID: 489364}
   m_Layer: 8
   m_Name: Wheel Models
-  m_TagString: Player
+  m_TagString: PlayerCar
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -41,7 +41,7 @@ GameObject:
   - component: {fileID: 11496116}
   m_Layer: 8
   m_Name: Chassis
-  m_TagString: Player
+  m_TagString: PlayerCar
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -58,7 +58,7 @@ GameObject:
   - component: {fileID: 11409964}
   m_Layer: 8
   m_Name: HeadLight (1)
-  m_TagString: Player
+  m_TagString: PlayerCar
   m_Icon: {fileID: 864586104465068316, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -75,7 +75,7 @@ GameObject:
   - component: {fileID: 2382260}
   m_Layer: 8
   m_Name: RB_Wheel
-  m_TagString: Player
+  m_TagString: PlayerCar
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -92,7 +92,7 @@ GameObject:
   - component: {fileID: 2353064}
   m_Layer: 8
   m_Name: RearLeftHolder
-  m_TagString: Player
+  m_TagString: PlayerCar
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -109,7 +109,7 @@ GameObject:
   - component: {fileID: 2361164}
   m_Layer: 8
   m_Name: LF_Wheel
-  m_TagString: Player
+  m_TagString: PlayerCar
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -126,7 +126,7 @@ GameObject:
   - component: {fileID: 2312550}
   m_Layer: 8
   m_Name: LB_Wheel
-  m_TagString: Player
+  m_TagString: PlayerCar
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -144,7 +144,7 @@ GameObject:
   - component: {fileID: 11467862}
   m_Layer: 8
   m_Name: RCCExhaust
-  m_TagString: Player
+  m_TagString: PlayerCar
   m_Icon: {fileID: -7310811918437815874, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -161,7 +161,7 @@ GameObject:
   - component: {fileID: 11483466}
   m_Layer: 8
   m_Name: HeadLight
-  m_TagString: Player
+  m_TagString: PlayerCar
   m_Icon: {fileID: 864586104465068316, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -176,7 +176,7 @@ GameObject:
   - component: {fileID: 475220}
   m_Layer: 8
   m_Name: Buggy
-  m_TagString: Player
+  m_TagString: PlayerCar
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -193,7 +193,7 @@ GameObject:
   - component: {fileID: 11456406}
   m_Layer: 8
   m_Name: BrakeLight
-  m_TagString: Player
+  m_TagString: PlayerCar
   m_Icon: {fileID: -3545028842045912814, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -210,7 +210,7 @@ GameObject:
   - component: {fileID: 11428924}
   m_Layer: 8
   m_Name: LB_Wheel
-  m_TagString: Player
+  m_TagString: PlayerCar
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -228,7 +228,7 @@ GameObject:
   - component: {fileID: 10825338}
   m_Layer: 8
   m_Name: RCCExhaustFlame
-  m_TagString: Player
+  m_TagString: PlayerCar
   m_Icon: {fileID: -7310811918437815874, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -246,7 +246,7 @@ GameObject:
   - component: {fileID: 11450046}
   m_Layer: 8
   m_Name: RearLeftRot
-  m_TagString: Player
+  m_TagString: PlayerCar
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -264,7 +264,7 @@ GameObject:
   - component: {fileID: 11426958}
   m_Layer: 8
   m_Name: Model_Misc_Buggy
-  m_TagString: Player
+  m_TagString: PlayerCar
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -282,7 +282,7 @@ GameObject:
   - component: {fileID: 6577192}
   m_Layer: 8
   m_Name: Car_Body
-  m_TagString: Player
+  m_TagString: PlayerCar
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -299,7 +299,7 @@ GameObject:
   - component: {fileID: 11441080}
   m_Layer: 8
   m_Name: LF_Wheel
-  m_TagString: Player
+  m_TagString: PlayerCar
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -317,7 +317,7 @@ GameObject:
   - component: {fileID: 11426000}
   m_Layer: 8
   m_Name: RearRightRot
-  m_TagString: Player
+  m_TagString: PlayerCar
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -334,7 +334,7 @@ GameObject:
   - component: {fileID: 2304392}
   m_Layer: 8
   m_Name: RF_Wheel1
-  m_TagString: Player
+  m_TagString: PlayerCar
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -349,7 +349,7 @@ GameObject:
   - component: {fileID: 445764}
   m_Layer: 8
   m_Name: Lights
-  m_TagString: Player
+  m_TagString: PlayerCar
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -364,7 +364,7 @@ GameObject:
   - component: {fileID: 454914}
   m_Layer: 8
   m_Name: Exhausts
-  m_TagString: Player
+  m_TagString: PlayerCar
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -381,7 +381,7 @@ GameObject:
   - component: {fileID: 11403856}
   m_Layer: 8
   m_Name: RF_Wheel
-  m_TagString: Player
+  m_TagString: PlayerCar
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -396,7 +396,7 @@ GameObject:
   - component: {fileID: 472394}
   m_Layer: 8
   m_Name: Wheel Colliders
-  m_TagString: Player
+  m_TagString: PlayerCar
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -414,7 +414,7 @@ GameObject:
   - component: {fileID: 15314870}
   m_Layer: 8
   m_Name: HoodCamera
-  m_TagString: Player
+  m_TagString: PlayerCar
   m_Icon: {fileID: -1412012063857583412, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -429,7 +429,7 @@ GameObject:
   - component: {fileID: 486692}
   m_Layer: 8
   m_Name: Model_Misc_Buggy
-  m_TagString: Player
+  m_TagString: PlayerCar
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -445,7 +445,7 @@ GameObject:
   - component: {fileID: 11453180}
   m_Layer: 8
   m_Name: Wheel Camera
-  m_TagString: Player
+  m_TagString: PlayerCar
   m_Icon: {fileID: -1412012063857583412, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -462,7 +462,7 @@ GameObject:
   - component: {fileID: 2314162}
   m_Layer: 8
   m_Name: RearRightHolder
-  m_TagString: Player
+  m_TagString: PlayerCar
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -479,7 +479,7 @@ GameObject:
   - component: {fileID: 11404946}
   m_Layer: 8
   m_Name: RB_Wheel
-  m_TagString: Player
+  m_TagString: PlayerCar
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -496,7 +496,7 @@ GameObject:
   - component: {fileID: 11444036}
   m_Layer: 8
   m_Name: BrakeLight (1)
-  m_TagString: Player
+  m_TagString: PlayerCar
   m_Icon: {fileID: -3545028842045912814, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1852,7 +1852,7 @@ MonoBehaviour:
   chassis: {fileID: 107724}
   chassisVerticalLean: 1.5
   chassisHorizontalLean: 1.5
-  lowBeamHeadLightsOn: 0
+  lowBeamHeadLightsOn: 1
   highBeamHeadLightsOn: 0
   indicatorsOn: 0
   indicatorTimer: 0

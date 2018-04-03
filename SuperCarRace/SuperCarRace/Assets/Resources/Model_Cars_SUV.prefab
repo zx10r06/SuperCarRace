@@ -1722,7 +1722,7 @@ MonoBehaviour:
   chassis: {fileID: 144022}
   chassisVerticalLean: 1.5
   chassisHorizontalLean: 1.5
-  lowBeamHeadLightsOn: 0
+  lowBeamHeadLightsOn: 1
   highBeamHeadLightsOn: 0
   indicatorsOn: 0
   indicatorTimer: 0
