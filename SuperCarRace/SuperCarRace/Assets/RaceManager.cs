@@ -49,6 +49,13 @@ public class RaceManager : MonoBehaviour {
 		
 	}
 
+    public void SetMasterVolume()
+    {
+        Slider dd = (Slider)OptionsCanvas.transform.Find("MasterVolumeSlider").GetComponent(typeof(Slider));
+        AudioSource musicSource = GameObject.Find("Music").GetComponent<AudioSource>();
+        AudioListener.volume = dd.value;
+    }
+
     public void SetMusicVolume() {
         Slider dd = (Slider)OptionsCanvas.transform.Find("MusicVolumeSlider").GetComponent(typeof(Slider));
         AudioSource musicSource = GameObject.Find("Music").GetComponent<AudioSource>();
@@ -208,6 +215,8 @@ public class RaceManager : MonoBehaviour {
         rccControllerV3.highBeamHeadLightsOn = true;
         */
 
+        RCC_CarControllerV3 rcV3 = (RCC_CarControllerV3)newCar.GetComponent<RCC_CarControllerV3>();
+        //rcV3.vo
 
         /*
         // Audio Volume
