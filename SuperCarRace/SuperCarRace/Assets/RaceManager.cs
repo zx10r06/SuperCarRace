@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public class RaceManager : MonoBehaviour {
 
+    GameObject cars;
     ArrayList currentCars = new ArrayList();
     Camera cinematicCamera;
     TrackSelection trackSelection;
@@ -19,6 +20,8 @@ public class RaceManager : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
+
+        cars = GameObject.Find("Cars");
 
         playerCarPrefabName = "GallardoGT";
 
@@ -41,6 +44,7 @@ public class RaceManager : MonoBehaviour {
         ResetCars(true);
 
         TitleScreen();
+
 
     }
 	
@@ -86,6 +90,16 @@ public class RaceManager : MonoBehaviour {
         ResetCars(true);
     }
 
+    public void StartMultiplayer()
+    {
+        StartCanvas.gameObject.SetActive(false);
+        TrackOptions.gameObject.SetActive(false);
+        CarOptions.gameObject.SetActive(false);
+        RCCCanvas.gameObject.SetActive(false);
+        trackSelection.SetupTrack();
+        RemoveAllCars();
+    }
+
     public void SelectCar() {
 
         if (GameObject.Find("SelectedCar") != null)
@@ -122,19 +136,23 @@ public class RaceManager : MonoBehaviour {
         ResetCars();
     }
 
-    public void ResetCars(bool DemoMode = false) {
-
-        // remove old cars
+    public void RemoveAllCars()
+    {
         foreach (GameObject cc in currentCars)
         {
             Destroy(cc);
         }
         currentCars = new ArrayList();
+    }
+
+    public void ResetCars(bool DemoMode = false) {
+
+        // remove old cars
+        RemoveAllCars();
 
         GameObject t = trackSelection.GetSelectedTrack();
 
         GameObject startPos = t.transform.Find("StartPos").gameObject;
-        GameObject cars = GameObject.Find("Cars");
 
         cars.transform.SetPositionAndRotation(
             new Vector3(startPos.transform.position.x, startPos.transform.position.y, startPos.transform.position.z),
@@ -175,8 +193,6 @@ public class RaceManager : MonoBehaviour {
     private GameObject CreateCar(string aiCarName, string PrefabName, Vector3 position, Quaternion rotation, GameObject targetWaypoints = null, string color = null)
     {
 
-        GameObject carsGO = GameObject.Find("Cars");
-
         GameObject newCar = (GameObject)Instantiate(
             Resources.Load(PrefabName),
             new Vector3(0,0,0),
@@ -186,7 +202,7 @@ public class RaceManager : MonoBehaviour {
         newCar.name = aiCarName;
 
         // set rotation
-        newCar.transform.parent = carsGO.transform;
+        newCar.transform.parent = cars.transform;
         newCar.transform.localPosition = position;
         newCar.transform.localRotation = rotation;
 
