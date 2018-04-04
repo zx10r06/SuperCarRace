@@ -8,10 +8,22 @@ public class PlayerController : NetworkBehaviour
 
     void Start()
     {
+
+
         theCar = gameObject.transform.Find("Model_Sofie@Driving by BUMSTRUM").gameObject;
-    }
-    void Update()
-    {
+
+
+        //Set the Camera system to the player car
+        RCC_Camera camera = (RCC_Camera)GameObject.Find("RCCCamera").GetComponent(typeof(RCC_Camera));
+        camera.SetPlayerCar(theCar);
+
+        Camera cinematicCamera = (Camera)GameObject.Find("Animation").GetComponent(typeof(Camera));
+        cinematicCamera.enabled = false;
+
+
+        return;
+
+
         if (!isLocalPlayer)
         {
             RCC_CarControllerV3 rccV3 = theCar.GetComponent<RCC_CarControllerV3>();
@@ -21,13 +33,13 @@ public class PlayerController : NetworkBehaviour
         else
         {
             // is player!
-            //Set the Camera system to the player car
-            RCC_Camera camera = (RCC_Camera)GameObject.Find("RCCCamera").GetComponent(typeof(RCC_Camera));
-            camera.SetPlayerCar(theCar);
 
-            Camera cinematicCamera = (Camera)GameObject.Find("Animation").GetComponent(typeof(Camera));
-            cinematicCamera.enabled = false;
         }
+
+    }
+    void Update()
+    {
+
 
 
         /*
