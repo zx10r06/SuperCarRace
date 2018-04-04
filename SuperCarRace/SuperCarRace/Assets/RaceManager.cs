@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Networking;
 using UnityEngine.UI;
 
 public class RaceManager : MonoBehaviour {
@@ -95,9 +96,12 @@ public class RaceManager : MonoBehaviour {
         StartCanvas.gameObject.SetActive(false);
         TrackOptions.gameObject.SetActive(false);
         CarOptions.gameObject.SetActive(false);
-        RCCCanvas.gameObject.SetActive(false);
+        RCCCanvas.gameObject.SetActive(true);
         trackSelection.SetupTrack();
         RemoveAllCars();
+
+        NetworkManager nm = GameObject.Find("Network").GetComponent<NetworkManager>();
+
     }
 
     public void SelectCar() {
