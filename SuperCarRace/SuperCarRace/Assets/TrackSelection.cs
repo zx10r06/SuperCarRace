@@ -82,6 +82,7 @@ public class TrackSelection : MonoBehaviour {
     }
     // Handle Track, Season and TOD selection
     public void SetupTrack() {
+
         HideAllTracks();
         SetTrackNumber();
         SetSeason();
@@ -108,8 +109,19 @@ public class TrackSelection : MonoBehaviour {
     {
         GetSelectedTrack().SetActive(true);
     }
+
+
+    TreePrototype[] treeType;
+
     public void SetSeason()
     {
+
+        string treePrefabName = "Trees/Broadleaf_Mobile_" + GetSelectedSeasonNumber().ToString();
+        Debug.LogWarning("Loading Tree: " + treePrefabName);
+        treeType = Terrain.activeTerrain.terrainData.treePrototypes;
+        treeType[0].prefab = (GameObject)Resources.Load(treePrefabName);
+        Terrain.activeTerrain.terrainData.treePrototypes = treeType;
+
         GetSelectedSeason().SetActive(true);
         // Set Skybox
         RenderSettings.skybox = Seasons[GetSelectedSeasonNumber()];
