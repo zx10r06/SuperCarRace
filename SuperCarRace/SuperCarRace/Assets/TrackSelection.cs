@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class TrackSelection : MonoBehaviour {
 
-    GameObject tracks;
+    GameObject tracksGO;
     Material[] Seasons;
 
     public int defaultTrackNumber { get; set; }
@@ -27,13 +27,25 @@ public class TrackSelection : MonoBehaviour {
         Seasons[2] = Resources.Load("Materials/Season2", typeof(Material)) as Material;
         Seasons[3] = Resources.Load("Materials/Night", typeof(Material)) as Material;
 
-        tracks = GameObject.Find("Tracks");
+        tracksGO = GameObject.Find("Tracks");
     }
 
     // Update is called once per frame
     void Update()
     {
 
+    }
+
+    public GameObject[] allTracks
+    {
+        get {
+            GameObject[] allTracks = new GameObject[tracksGO.transform.childCount];
+            for (int i = 0; i< tracksGO.transform.childCount; i++)
+            {
+                allTracks[i] = tracksGO.transform.GetChild(i).gameObject;
+            }
+            return allTracks;
+        }
     }
 
     public int GetSelectedTrackNumber() {
@@ -47,7 +59,7 @@ public class TrackSelection : MonoBehaviour {
         return defaultTrackNumber;
     }
     public GameObject GetSelectedTrack() {
-        GameObject t = tracks.transform.Find("track" + GetSelectedTrackNumber().ToString()).gameObject;
+        GameObject t = tracksGO.transform.Find("track" + GetSelectedTrackNumber().ToString()).gameObject;
         return t;
     }
 
@@ -93,8 +105,9 @@ public class TrackSelection : MonoBehaviour {
     private void HideAllTracks() {
         for (int i = 0; i < 3; i++)
         {
-            GameObject t = tracks.transform.Find("track" + i.ToString()).gameObject;
+            GameObject t = tracksGO.transform.Find("track" + i.ToString()).gameObject;
             t.SetActive(false);
+
             for (int j = 0; j < 3; j++)
             {
                 GameObject s = (GameObject)t.transform.Find("season" + j.ToString()).gameObject;

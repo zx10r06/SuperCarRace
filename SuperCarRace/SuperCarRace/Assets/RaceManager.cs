@@ -122,7 +122,27 @@ public class RaceManager : MonoBehaviour {
         ResetCars();
     }
 
+
+
+
+    public void ResetRaces() {
+
+        foreach (GameObject t in trackSelection.allTracks)
+        {
+            GameObject races = t.transform.Find("Races").gameObject;
+            for (int i = 0; i < races.transform.transform.childCount; i++)
+            {
+                GameObject race = races.transform.GetChild(i).gameObject;
+                race.SetActive(false);
+            }
+        }
+
+    }
+
     public void ResetCars(bool DemoMode = false) {
+
+        // Reset Races
+        ResetRaces();
 
         // remove old cars
         foreach (GameObject cc in currentCars)
@@ -133,7 +153,11 @@ public class RaceManager : MonoBehaviour {
 
         GameObject t = trackSelection.GetSelectedTrack();
 
-        GameObject startPos = t.transform.Find("StartPos").gameObject;
+        int raceId = 1;
+        GameObject race = t.transform.Find("Races").GetChild(raceId).gameObject;
+        race.SetActive(true);
+
+        GameObject startPos = race.transform.Find("StartPos").gameObject;
         GameObject cars = GameObject.Find("Cars");
 
         cars.transform.SetPositionAndRotation(
@@ -145,7 +169,7 @@ public class RaceManager : MonoBehaviour {
         cars.transform.eulerAngles = newRotation;
 
         // Target AI waypoints for this track
-        GameObject targetWaypoints = t.transform.Find("WaypointContainers").Find("trafficDown").gameObject;
+        GameObject targetWaypoints = race.transform.Find("WaypointContainers").gameObject.transform.Find("RaceLine").gameObject;
 
         // Player Car
         GameObject playerCar;
