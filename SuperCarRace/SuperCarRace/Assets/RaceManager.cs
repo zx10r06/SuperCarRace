@@ -190,7 +190,7 @@ public class RaceManager : MonoBehaviour {
         if (amSelectingMultiplayerOptions)
         {
             RemoveAllCars();
-
+            mm.PlacePlayerCar();
         }
         else
         {

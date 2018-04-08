@@ -82,8 +82,10 @@ public class MultiplayerManager : Photon.PunBehaviour {
 
         string[] photonVehicles = new string[2] { "Photon_GallardoGT", "Photon_E36" };
 
-
-        newVehicle = PhotonNetwork.Instantiate("PhotonVehicles/" + photonVehicles[rm.selectedCarIndex], lastKnownPos + (Vector3.up), lastKnownRot, 0);
+        // THIS RESETS TO LAST KNOWN POS...
+        //newVehicle = PhotonNetwork.Instantiate("PhotonVehicles/" + photonVehicles[rm.selectedCarIndex], lastKnownPos + (Vector3.up), lastKnownRot, 0);
+        // THIS RESETS TO START POS...
+        newVehicle = PhotonNetwork.Instantiate("PhotonVehicles/" + photonVehicles[rm.selectedCarIndex], spawnPoint.transform.position, spawnPoint.transform.rotation, 0);
 
         newVehicle.GetComponent<RCC_CarControllerV3>().canControl = true;
 
