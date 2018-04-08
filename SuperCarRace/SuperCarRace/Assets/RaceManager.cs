@@ -6,18 +6,23 @@ using UnityEngine.UI;
 public class RaceManager : MonoBehaviour {
 
     ArrayList currentCars = new ArrayList();
-    Camera cinematicCamera;
-    TrackSelection trackSelection;
+    public Camera cinematicCamera;
+    public TrackSelection trackSelection;
 
     Canvas TitleCanvas;
     Canvas TrackOptions;
     Canvas CarOptions;
     Canvas RCCCanvas;
     Canvas OptionsCanvas;
+    Canvas MultiplayerCanvas;
 
     int raceId = 0;
+    public int selectedCarIndex = 0;
 
     string playerCarPrefabName { get;  set; }
+
+    MultiplayerManager mm;
+
 
     // Use this for initialization
     void Start () {
@@ -29,29 +34,41 @@ public class RaceManager : MonoBehaviour {
         CarOptions = (Canvas)GameObject.Find("CarOptions").GetComponent(typeof(Canvas));
         RCCCanvas = (Canvas)GameObject.Find("RCCCanvas").GetComponent(typeof(Canvas));
         OptionsCanvas = (Canvas)GameObject.Find("OptionsCanvas").GetComponent(typeof(Canvas));
+        MultiplayerCanvas = (Canvas)GameObject.Find("MultiplayerCanvas").GetComponent(typeof(Canvas));
 
-        TitleCanvas.gameObject.SetActive(true);
+        cinematicCamera = (Camera)GameObject.Find("Animation").GetComponent(typeof(Camera));
+        trackSelection = (TrackSelection)GetComponent(typeof(TrackSelection));
+
+        mm = GameObject.Find("MultiplayerManager").GetComponent<MultiplayerManager>();
+
+        trackSelection.SetupTrack();
+        ResetRaces();
+        ResetCars(true);
+
+        // Goto Title screen
+        TitleScreen();
+
+    }
+
+    void Awake() {
+
+
+
+    }
+	
+	// Update is called once per frame  
+	void Update () {
+		
+	}
+
+    public void HideAllCanvas() {
+        TitleCanvas.gameObject.SetActive(false);
         TrackOptions.gameObject.SetActive(false);
         CarOptions.gameObject.SetActive(false);
         RCCCanvas.gameObject.SetActive(false);
         OptionsCanvas.gameObject.SetActive(false);
-
-        cinematicCamera = (Camera)GameObject.Find("Animation").GetComponent(typeof(Camera));
-
-        trackSelection = (TrackSelection)GetComponent(typeof(TrackSelection));
-        trackSelection.SetupTrack();
-
-        ResetRaces();
-        ResetCars(true);
-
-        TitleScreen();
-
+        MultiplayerCanvas.gameObject.SetActive(false);
     }
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
 
     public void SetMasterVolume()
     {
@@ -66,6 +83,19 @@ public class RaceManager : MonoBehaviour {
         musicSource.volume = dd.value;
     }
 
+    public void SelectMultiplayer() {
+
+        if (PhotonNetwork.connected)
+        {
+            PhotonNetwork.Disconnect();
+        }
+
+        RemoveAllCars();
+
+        HideAllCanvas();
+        MultiplayerCanvas.gameObject.SetActive(true);
+    }
+
     public void ShowOptions() {
         OptionsCanvas.gameObject.SetActive(true);
     }
@@ -75,57 +105,97 @@ public class RaceManager : MonoBehaviour {
     }
 
     public void TitleScreen() {
+        amSelectingMultiplayerOptions = false;
+        HideAllCanvas();
         TitleCanvas.gameObject.SetActive(true);
-        TrackOptions.gameObject.SetActive(false);
-        CarOptions.gameObject.SetActive(false);
-        RCCCanvas.gameObject.SetActive(false);
     }
 
     public void SelectTrack() {
-        TitleCanvas.gameObject.SetActive(false);
+        HideAllCanvas();
         TrackOptions.gameObject.SetActive(true);
-        CarOptions.gameObject.SetActive(false);
-        RCCCanvas.gameObject.SetActive(false);
         trackSelection.SetupTrack();
-
         ResetRaces();
+
         ResetCars(true);
+
+        if (amSelectingMultiplayerOptions)
+        {
+            RemoveAllCars();
+        }
+
     }
 
+
     public void SelectCar() {
+
+
+        if (PhotonNetwork.connected && !PhotonNetwork.inRoom)
+        {
+            mm.CreateRoomWithTrackOptions();
+            //mm.PlacePlayerCar();
+            return;
+        }
+
+
+        HideAllCanvas();
+        CarOptions.gameObject.SetActive(true);
+
+        // remove old cars
+        RemoveAllCars();
 
         if (GameObject.Find("SelectedCar") != null)
         {
             Dropdown ddCar = (Dropdown)GameObject.Find("SelectedCar").GetComponent(typeof(Dropdown));
-            playerCarPrefabName = ddCar.options[ddCar.value].text;
+            selectedCarIndex = ddCar.value;
+            playerCarPrefabName = ddCar.options[selectedCarIndex].text;
         }
 
-        // remove old cars
-        foreach (GameObject cc in currentCars)
+
+        if (PhotonNetwork.inRoom)
         {
-            Destroy(cc);
+            mm.PlacePlayerCar();
+            return;
         }
-        currentCars = new ArrayList();
+
+
         GameObject demoCar = CreateCar("DemoCar", playerCarPrefabName, new Vector3(0, 0, 0), new Quaternion(0, 0, 0, 0));
+        //demoCar.GetComponent<RCC_CarControllerV3>().handbrakeInput = 1;
 
         //Set the Camera system to the player car
         RCC_Camera camera = (RCC_Camera)GameObject.Find("RCCCamera").GetComponent(typeof(RCC_Camera));
         camera.SetPlayerCar(demoCar);
         // enable cinematic?
+
         cinematicCamera.enabled = demoCar;
 
-        TitleCanvas.gameObject.SetActive(false);
-        TrackOptions.gameObject.SetActive(false);
-        RCCCanvas.gameObject.SetActive(false);
-        CarOptions.gameObject.SetActive(true);
+
+
+        RCC_CarControllerV3 rcv3 = demoCar.GetComponent<RCC_CarControllerV3>();
+        rcv3.handbrakeInput = 1.0f;
+        //rcv3.engineRunning = false;
+
     }
 
-    public void StartRace() {
+    public void ShowVehicleControls() {
+        HideAllCanvas();
         RCCCanvas.gameObject.SetActive(true);
-        CarOptions.gameObject.SetActive(false);
-        TrackOptions.gameObject.SetActive(false);
-        //StartCanvas.gameObject.SetActive(titleScreen);
-        ResetCars();
+    }
+
+    public bool amSelectingMultiplayerOptions = false;
+
+    public void StartRace() {
+
+        ShowVehicleControls();
+
+        if (amSelectingMultiplayerOptions)
+        {
+            RemoveAllCars();
+            mm.PlacePlayerCar();
+        }
+        else
+        {
+            ResetCars();
+        }
     }
 
     public void ResetRaces() {
@@ -142,17 +212,21 @@ public class RaceManager : MonoBehaviour {
 
     }
 
-    public void ResetCars(bool DemoMode = false) {
-
-        // Reset Races
-        ResetRaces();
-
+    public void RemoveAllCars() {
         // remove old cars
         foreach (GameObject cc in currentCars)
         {
             Destroy(cc);
         }
         currentCars = new ArrayList();
+    }
+
+    public void ResetCars(bool DemoMode = false) {
+
+        // Reset Races
+        ResetRaces();
+
+        RemoveAllCars();
 
         GameObject t = trackSelection.GetSelectedTrack();
 
@@ -245,7 +319,7 @@ public class RaceManager : MonoBehaviour {
         */
 
         RCC_CarControllerV3 rcV3 = (RCC_CarControllerV3)newCar.GetComponent<RCC_CarControllerV3>();
-        //rcV3.vo
+        //rcV3.handbrakeInput = 1;
 
         /*
         // Audio Volume

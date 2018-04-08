@@ -9,12 +9,18 @@ public class TrackSelection : MonoBehaviour {
     Material[] Seasons;
     GameObject[] treePrefabs = new GameObject[3];
 
-    public int defaultTrackNumber { get; set; }
+    public int selectedTrackNumber { get; set; }
+    public int selectedSeasonNumber { get; set; }
+    public int selectedRaceNumber { get; set; }
+    public int selectedTODNumber { get; set; }
 
     // Use this for initialization
     void Start()
     {
-
+        selectedTrackNumber = 0;
+        selectedSeasonNumber = 0;
+        selectedRaceNumber = 0;
+        selectedTODNumber = 0;
     }
 
     void Awake() {
@@ -23,7 +29,7 @@ public class TrackSelection : MonoBehaviour {
         treePrefabs[1] = (GameObject)Resources.Load("Trees/Broadleaf_Mobile_1");
         treePrefabs[2] = (GameObject)Resources.Load("Trees/Broadleaf_Mobile_2");
 
-        defaultTrackNumber = 0;
+        selectedTrackNumber = 0;
 
         Seasons = new Material[4];
         Seasons[0] = Resources.Load("Materials/Season0", typeof(Material)) as Material;
@@ -55,14 +61,20 @@ public class TrackSelection : MonoBehaviour {
     }
 
     public int GetSelectedTrackNumber() {
+
+        if (PhotonNetwork.inRoom && PhotonNetwork.player.ID > 1)
+        {
+            return selectedTrackNumber;
+        }
+
         if (GameObject.Find("TrackNumber") != null)
         {
             Dropdown ddTrack = (Dropdown)GameObject.Find("TrackNumber").GetComponent(typeof(Dropdown));
-            defaultTrackNumber = ddTrack.value;
+            selectedTrackNumber = ddTrack.value;
             return ddTrack.value;
         }
         // default track
-        return defaultTrackNumber;
+        return selectedTrackNumber;
     }
     public GameObject GetSelectedTrack() {
         GameObject t = tracksGO.transform.Find("track" + GetSelectedTrackNumber().ToString()).gameObject;
@@ -73,12 +85,14 @@ public class TrackSelection : MonoBehaviour {
         if (GameObject.Find("TrackSeason") != null)
         {
             Dropdown dd = (Dropdown)GameObject.Find("TrackSeason").GetComponent(typeof(Dropdown));
-            return dd.value;
+            selectedSeasonNumber = dd.value;
+            return selectedSeasonNumber;
         }
         // default season
         //return 0;
-        System.Random rnd = new System.Random();
-        return rnd.Next(0, 3);
+        //System.Random rnd = new System.Random();
+        //return rnd.Next(0, 3);
+        return selectedSeasonNumber;
     }
     public GameObject GetSelectedSeason() {
         GameObject s = (GameObject)GetSelectedTrack().transform.Find("season" + GetSelectedSeasonNumber().ToString()).gameObject;
@@ -90,16 +104,36 @@ public class TrackSelection : MonoBehaviour {
         if (GameObject.Find("TrackTimeOfDay") != null)
         {
             Dropdown dd = (Dropdown)GameObject.Find("TrackTimeOfDay").GetComponent(typeof(Dropdown));
-            return dd.value;
+            selectedTODNumber = dd.value;
+            return selectedTODNumber;
         }
         // default TOD
-        return 0;
+        return selectedTODNumber;
     }
     public GameObject GetSelectedTOD()
     {
         GameObject tod = GetSelectedSeason().transform.Find("tod" + GetSelectedTODNumber().ToString()).gameObject;
         return tod;
     }
+
+    public int GetSelectedRaceNumber()
+    {
+        if (GameObject.Find("RaceNumber") != null)
+        {
+            Dropdown dd = (Dropdown)GameObject.Find("RaceNumber").GetComponent(typeof(Dropdown));
+            selectedRaceNumber = dd.value;
+            return selectedRaceNumber;
+        }
+        // default Race Number
+        return selectedRaceNumber;
+    }
+    public GameObject GetSelectedRace()
+    {
+        GameObject tod = GetSelectedTrack().transform.Find("Races").transform.GetChild(GetSelectedRaceNumber()).gameObject;
+        return tod;
+    }
+
+
     // Handle Track, Season and TOD selection
     public void SetupTrack() {
         HideAllTracks();
