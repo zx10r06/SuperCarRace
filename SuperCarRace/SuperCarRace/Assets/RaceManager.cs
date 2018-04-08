@@ -14,6 +14,7 @@ public class RaceManager : MonoBehaviour {
     Canvas CarOptions;
     Canvas RCCCanvas;
     Canvas OptionsCanvas;
+    Canvas MultiplayerCanvas;
 
     int raceId = 0;
 
@@ -22,6 +23,8 @@ public class RaceManager : MonoBehaviour {
     // Use this for initialization
     void Start () {
 
+
+
         playerCarPrefabName = "GallardoGT";
 
         TitleCanvas = (Canvas)GameObject.Find("TitleCanvas").GetComponent(typeof(Canvas));
@@ -29,22 +32,23 @@ public class RaceManager : MonoBehaviour {
         CarOptions = (Canvas)GameObject.Find("CarOptions").GetComponent(typeof(Canvas));
         RCCCanvas = (Canvas)GameObject.Find("RCCCanvas").GetComponent(typeof(Canvas));
         OptionsCanvas = (Canvas)GameObject.Find("OptionsCanvas").GetComponent(typeof(Canvas));
-
-        TitleCanvas.gameObject.SetActive(true);
-        TrackOptions.gameObject.SetActive(false);
-        CarOptions.gameObject.SetActive(false);
-        RCCCanvas.gameObject.SetActive(false);
-        OptionsCanvas.gameObject.SetActive(false);
+        MultiplayerCanvas = (Canvas)GameObject.Find("MultiplayerCanvas").GetComponent(typeof(Canvas));
 
         cinematicCamera = (Camera)GameObject.Find("Animation").GetComponent(typeof(Camera));
-
         trackSelection = (TrackSelection)GetComponent(typeof(TrackSelection));
-        trackSelection.SetupTrack();
 
+        trackSelection.SetupTrack();
         ResetRaces();
         ResetCars(true);
 
+        // Goto Title screen
         TitleScreen();
+
+    }
+
+    void Awake() {
+
+
 
     }
 	
@@ -52,6 +56,15 @@ public class RaceManager : MonoBehaviour {
 	void Update () {
 		
 	}
+
+    private void HideAllCanvas() {
+        TitleCanvas.gameObject.SetActive(false);
+        TrackOptions.gameObject.SetActive(false);
+        CarOptions.gameObject.SetActive(false);
+        RCCCanvas.gameObject.SetActive(false);
+        OptionsCanvas.gameObject.SetActive(false);
+        MultiplayerCanvas.gameObject.SetActive(false);
+    }
 
     public void SetMasterVolume()
     {
@@ -66,6 +79,11 @@ public class RaceManager : MonoBehaviour {
         musicSource.volume = dd.value;
     }
 
+    public void SelectMultiplayer() {
+        HideAllCanvas();
+        MultiplayerCanvas.gameObject.SetActive(true);
+    }
+
     public void ShowOptions() {
         OptionsCanvas.gameObject.SetActive(true);
     }
@@ -75,19 +93,14 @@ public class RaceManager : MonoBehaviour {
     }
 
     public void TitleScreen() {
+        HideAllCanvas();
         TitleCanvas.gameObject.SetActive(true);
-        TrackOptions.gameObject.SetActive(false);
-        CarOptions.gameObject.SetActive(false);
-        RCCCanvas.gameObject.SetActive(false);
     }
 
     public void SelectTrack() {
-        TitleCanvas.gameObject.SetActive(false);
+        HideAllCanvas();
         TrackOptions.gameObject.SetActive(true);
-        CarOptions.gameObject.SetActive(false);
-        RCCCanvas.gameObject.SetActive(false);
         trackSelection.SetupTrack();
-
         ResetRaces();
         ResetCars(true);
     }
@@ -112,19 +125,16 @@ public class RaceManager : MonoBehaviour {
         RCC_Camera camera = (RCC_Camera)GameObject.Find("RCCCamera").GetComponent(typeof(RCC_Camera));
         camera.SetPlayerCar(demoCar);
         // enable cinematic?
+
         cinematicCamera.enabled = demoCar;
 
-        TitleCanvas.gameObject.SetActive(false);
-        TrackOptions.gameObject.SetActive(false);
-        RCCCanvas.gameObject.SetActive(false);
+        HideAllCanvas();
         CarOptions.gameObject.SetActive(true);
     }
 
     public void StartRace() {
+        HideAllCanvas();
         RCCCanvas.gameObject.SetActive(true);
-        CarOptions.gameObject.SetActive(false);
-        TrackOptions.gameObject.SetActive(false);
-        //StartCanvas.gameObject.SetActive(titleScreen);
         ResetCars();
     }
 
