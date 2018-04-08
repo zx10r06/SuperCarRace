@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class RaceManager : MonoBehaviour {
 
     ArrayList currentCars = new ArrayList();
-    Camera cinematicCamera;
+    public Camera cinematicCamera;
     TrackSelection trackSelection;
 
     Canvas TitleCanvas;
@@ -80,6 +80,12 @@ public class RaceManager : MonoBehaviour {
     }
 
     public void SelectMultiplayer() {
+
+        if (PhotonNetwork.connected)
+        {
+            PhotonNetwork.Disconnect();
+        }
+
         HideAllCanvas();
         MultiplayerCanvas.gameObject.SetActive(true);
     }

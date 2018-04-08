@@ -86,6 +86,9 @@ public class MultiplayerManager : Photon.PunBehaviour {
         }
 
 
+        rm.cinematicCamera.enabled = false;
+
+
     }
 
 
@@ -300,8 +303,7 @@ public class MultiplayerManager : Photon.PunBehaviour {
             // #Critical
             // Load the Room Level. 
             //PhotonNetwork.LoadLevel("PunBasics-Room for 1");
-
-            PhotonNetwork.LoadLevel("Main");
+            //PhotonNetwork.LoadLevel("Main");
 
         }
     }
