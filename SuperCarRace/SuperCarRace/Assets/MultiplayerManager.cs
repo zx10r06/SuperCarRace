@@ -14,10 +14,15 @@ public class MultiplayerManager : Photon.PunBehaviour {
     public int selectedCarIndex = 0;
     public Transform spawnPoint;
 
+    RaceManager rm;
+
     // Use this for initialization
     void Start () {
+
         // ensure that all players play on the same map
-        PhotonNetwork.automaticallySyncScene = true;
+        //PhotonNetwork.automaticallySyncScene = true;
+
+        rm = GameObject.Find("RaceManager").GetComponent<RaceManager>();
     }
 	
 	// Update is called once per frame
@@ -27,15 +32,10 @@ public class MultiplayerManager : Photon.PunBehaviour {
 
 
     public void PlacePlayerCar() {
-
-
-        // remove the demo cars
-        RaceManager rm = GameObject.Find("RaceManager").GetComponent<RaceManager>();
-        rm.RemoveAllCars();
-
+        
+        // show the race controls
         rm.HideAllCanvas();
         rm.ShowVehicleControls();
-
 
         RCC_CarControllerV3[] activeVehicles = GameObject.FindObjectsOfType<RCC_CarControllerV3>();
         Vector3 lastKnownPos = new Vector3();
@@ -156,6 +156,12 @@ public class MultiplayerManager : Photon.PunBehaviour {
     /// </summary>
     public void Connect()
     {
+
+
+        // remove the demo cars
+        rm.RemoveAllCars();
+
+
         // we want to make sure the log is clear everytime we connect, we might have several failed attempted if connection failed.
         feedbackText.text = "";
 
