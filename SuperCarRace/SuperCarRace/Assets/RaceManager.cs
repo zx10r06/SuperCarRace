@@ -17,7 +17,7 @@ public class RaceManager : MonoBehaviour {
     Canvas MultiplayerCanvas;
 
     int raceId = 0;
-    public int selectedCarIndex = 0;
+    public int selectedCarIndex = 1;
 
     string playerCarPrefabName { get;  set; }
 
