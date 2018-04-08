@@ -33,6 +33,9 @@ public class MultiplayerManager : Photon.PunBehaviour {
         RaceManager rm = GameObject.Find("RaceManager").GetComponent<RaceManager>();
         rm.RemoveAllCars();
 
+        rm.HideAllCanvas();
+        rm.ShowVehicleControls();
+
 
         RCC_CarControllerV3[] activeVehicles = GameObject.FindObjectsOfType<RCC_CarControllerV3>();
         Vector3 lastKnownPos = new Vector3();

@@ -57,7 +57,7 @@ public class RaceManager : MonoBehaviour {
 		
 	}
 
-    private void HideAllCanvas() {
+    public void HideAllCanvas() {
         TitleCanvas.gameObject.SetActive(false);
         TrackOptions.gameObject.SetActive(false);
         CarOptions.gameObject.SetActive(false);
@@ -132,9 +132,13 @@ public class RaceManager : MonoBehaviour {
         CarOptions.gameObject.SetActive(true);
     }
 
-    public void StartRace() {
+    public void ShowVehicleControls() {
         HideAllCanvas();
         RCCCanvas.gameObject.SetActive(true);
+    }
+
+    public void StartRace() {
+        ShowVehicleControls();
         ResetCars();
     }
 
