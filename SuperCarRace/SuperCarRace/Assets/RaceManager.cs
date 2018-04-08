@@ -21,6 +21,9 @@ public class RaceManager : MonoBehaviour {
 
     string playerCarPrefabName { get;  set; }
 
+    MultiplayerManager mm;
+
+
     // Use this for initialization
     void Start () {
 
@@ -35,6 +38,8 @@ public class RaceManager : MonoBehaviour {
 
         cinematicCamera = (Camera)GameObject.Find("Animation").GetComponent(typeof(Camera));
         trackSelection = (TrackSelection)GetComponent(typeof(TrackSelection));
+
+        mm = GameObject.Find("MultiplayerManager").GetComponent<MultiplayerManager>();
 
         trackSelection.SetupTrack();
         ResetRaces();
@@ -111,14 +116,18 @@ public class RaceManager : MonoBehaviour {
         trackSelection.SetupTrack();
         ResetRaces();
 
-        if (!amSelectingMultiplayerOptions)
-            ResetCars(true);
+        ResetCars(true);
+
+        if (amSelectingMultiplayerOptions)
+        {
+            RemoveAllCars();
+        }
+
     }
 
 
     public void SelectCar() {
 
-        MultiplayerManager mm = GameObject.Find("MultiplayerManager").GetComponent<MultiplayerManager>();
 
         if (PhotonNetwork.connected && !PhotonNetwork.inRoom)
         {
