@@ -7,6 +7,7 @@ public class TrackSelection : MonoBehaviour {
 
     GameObject tracksGO;
     Material[] Seasons;
+    GameObject[] treePrefabs = new GameObject[3];
 
     public int defaultTrackNumber { get; set; }
 
@@ -14,11 +15,14 @@ public class TrackSelection : MonoBehaviour {
     void Start()
     {
 
-
-
     }
 
     void Awake() {
+
+        treePrefabs[0] = (GameObject)Resources.Load("Trees/Broadleaf_Mobile_0");
+        treePrefabs[1] = (GameObject)Resources.Load("Trees/Broadleaf_Mobile_1");
+        treePrefabs[2] = (GameObject)Resources.Load("Trees/Broadleaf_Mobile_2");
+
         defaultTrackNumber = 0;
 
         Seasons = new Material[4];
@@ -28,6 +32,8 @@ public class TrackSelection : MonoBehaviour {
         Seasons[3] = Resources.Load("Materials/Night", typeof(Material)) as Material;
 
         tracksGO = GameObject.Find("Tracks");
+
+
     }
 
     // Update is called once per frame
@@ -130,12 +136,13 @@ public class TrackSelection : MonoBehaviour {
     public void SetSeason()
     {
 
-        string treePrefabName = "Trees/Broadleaf_Mobile_" + GetSelectedSeasonNumber().ToString();
-        GameObject tpf = (GameObject)Resources.Load(treePrefabName);
+        //string treePrefabName = "Trees/Broadleaf_Mobile_" + GetSelectedSeasonNumber().ToString();
+        //GameObject treePrefab = (GameObject)Resources.Load(treePrefabName);
         foreach (Terrain t in Terrain.activeTerrains)
         {
             treeType = t.terrainData.treePrototypes;
-            treeType[0].prefab = tpf;
+            //treeType[0].prefab = treePrefab;
+            treeType[0].prefab = treePrefabs[GetSelectedSeasonNumber()];
             t.terrainData.treePrototypes = treeType;
         }
 
