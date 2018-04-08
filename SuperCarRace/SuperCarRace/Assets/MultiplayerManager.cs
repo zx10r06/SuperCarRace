@@ -36,8 +36,8 @@ public class MultiplayerManager : Photon.PunBehaviour {
         spawnPoint = rm.trackSelection.GetSelectedRace().transform.Find("StartPos");
 
         // show the race controls
-        rm.HideAllCanvas();
-        rm.ShowVehicleControls();
+        //rm.HideAllCanvas();
+        //rm.ShowVehicleControls();
 
         RCC_CarControllerV3[] activeVehicles = GameObject.FindObjectsOfType<RCC_CarControllerV3>();
         Vector3 lastKnownPos = new Vector3();
@@ -343,25 +343,22 @@ public class MultiplayerManager : Photon.PunBehaviour {
 
         Debug.LogWarning("Time to load custom properties");
 
-        rm.trackSelection.selectedTrackNumber = (int)PhotonNetwork.room.CustomProperties["Track"];
-        rm.trackSelection.selectedRaceNumber = (int)PhotonNetwork.room.CustomProperties["Race"];
-        rm.trackSelection.selectedSeasonNumber = (int)PhotonNetwork.room.CustomProperties["Season"];
-        rm.trackSelection.selectedTODNumber = (int)PhotonNetwork.room.CustomProperties["TOD"];
-        rm.trackSelection.SetupTrack();
-
-        PlacePlayerCar();
-
-        // #Critical: We only load if we are the first player, else we rely on  PhotonNetwork.automaticallySyncScene to sync our instance scene.
-        if (PhotonNetwork.room.PlayerCount == 2)
+        if (PhotonNetwork.player.ID > 1)
         {
-            Debug.Log("We load the 'Room for 1' ");
-
-            // #Critical
-            // Load the Room Level. 
-            //PhotonNetwork.LoadLevel("PunBasics-Room for 1");
-            //PhotonNetwork.LoadLevel("Main");
-
+            rm.trackSelection.selectedTrackNumber = (int)PhotonNetwork.room.CustomProperties["Track"];
+            rm.trackSelection.selectedRaceNumber = (int)PhotonNetwork.room.CustomProperties["Race"];
+            rm.trackSelection.selectedSeasonNumber = (int)PhotonNetwork.room.CustomProperties["Season"];
+            rm.trackSelection.selectedTODNumber = (int)PhotonNetwork.room.CustomProperties["TOD"];
+            rm.trackSelection.SetupTrack();
         }
+        else
+        {
+            //PlacePlayerCar();
+        }
+
+        rm.amSelectingMultiplayerOptions = true;
+        rm.SelectCar();
+
     }
 
     #endregion

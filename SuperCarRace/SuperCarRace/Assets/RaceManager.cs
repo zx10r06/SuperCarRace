@@ -51,7 +51,7 @@ public class RaceManager : MonoBehaviour {
 
     }
 	
-	// Update is called once per frame
+	// Update is called once per frame  
 	void Update () {
 		
 	}
@@ -85,6 +85,8 @@ public class RaceManager : MonoBehaviour {
             PhotonNetwork.Disconnect();
         }
 
+        RemoveAllCars();
+
         HideAllCanvas();
         MultiplayerCanvas.gameObject.SetActive(true);
     }
@@ -108,11 +110,29 @@ public class RaceManager : MonoBehaviour {
         TrackOptions.gameObject.SetActive(true);
         trackSelection.SetupTrack();
         ResetRaces();
-        ResetCars(true);
+
+        if (!amSelectingMultiplayerOptions)
+            ResetCars(true);
     }
 
 
     public void SelectCar() {
+
+        MultiplayerManager mm = GameObject.Find("MultiplayerManager").GetComponent<MultiplayerManager>();
+
+        if (PhotonNetwork.connected && !PhotonNetwork.inRoom)
+        {
+            mm.CreateRoomWithTrackOptions();
+            //mm.PlacePlayerCar();
+            return;
+        }
+
+
+        HideAllCanvas();
+        CarOptions.gameObject.SetActive(true);
+
+        // remove old cars
+        RemoveAllCars();
 
         if (GameObject.Find("SelectedCar") != null)
         {
@@ -121,8 +141,14 @@ public class RaceManager : MonoBehaviour {
             playerCarPrefabName = ddCar.options[selectedCarIndex].text;
         }
 
-        // remove old cars
-        RemoveAllCars();
+
+        if (PhotonNetwork.inRoom)
+        {
+            mm.PlacePlayerCar();
+            return;
+        }
+
+
         GameObject demoCar = CreateCar("DemoCar", playerCarPrefabName, new Vector3(0, 0, 0), new Quaternion(0, 0, 0, 0));
         //demoCar.GetComponent<RCC_CarControllerV3>().handbrakeInput = 1;
 
@@ -133,8 +159,7 @@ public class RaceManager : MonoBehaviour {
 
         cinematicCamera.enabled = demoCar;
 
-        HideAllCanvas();
-        CarOptions.gameObject.SetActive(true);
+
 
         RCC_CarControllerV3 rcv3 = demoCar.GetComponent<RCC_CarControllerV3>();
         rcv3.handbrakeInput = 1.0f;
@@ -156,8 +181,7 @@ public class RaceManager : MonoBehaviour {
         if (amSelectingMultiplayerOptions)
         {
             RemoveAllCars();
-            MultiplayerManager mm = GameObject.Find("MultiplayerManager").GetComponent<MultiplayerManager>();
-            mm.CreateRoomWithTrackOptions();
+
         }
         else
         {
