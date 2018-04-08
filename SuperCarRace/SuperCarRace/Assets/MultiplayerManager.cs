@@ -12,8 +12,9 @@ public class MultiplayerManager : Photon.PunBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		
-	}
+        // ensure that all players play on the same map
+        PhotonNetwork.automaticallySyncScene = true;
+    }
 	
 	// Update is called once per frame
 	void Update () {
