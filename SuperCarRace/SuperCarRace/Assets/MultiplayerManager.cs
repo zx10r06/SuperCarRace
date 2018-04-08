@@ -32,7 +32,9 @@ public class MultiplayerManager : Photon.PunBehaviour {
 
 
     public void PlacePlayerCar() {
-        
+
+        spawnPoint = rm.trackSelection.GetSelectedRace().transform.Find("StartPos");
+
         // show the race controls
         rm.HideAllCanvas();
         rm.ShowVehicleControls();
@@ -255,7 +257,27 @@ public class MultiplayerManager : Photon.PunBehaviour {
         Debug.Log("DemoAnimator/Launcher:OnPhotonRandomJoinFailed() was called by PUN. No random room available, so we create one.\nCalling: PhotonNetwork.CreateRoom(null, new RoomOptions() {maxPlayers = 4}, null);");
 
         // #Critical: we failed to join a random room, maybe none exists or they are all full. No worries, we create a new room.
-        PhotonNetwork.CreateRoom(null, new RoomOptions() { MaxPlayers = this.maxPlayersPerRoom }, null);
+        rm.amSelectingMultiplayerOptions = true;
+        rm.SelectTrack();
+
+    }
+
+    public void CreateRoomWithTrackOptions() {
+
+        ExitGames.Client.Photon.Hashtable customRoomProps = new ExitGames.Client.Photon.Hashtable();
+        /*
+        customRoomProps.Add("Track", 2);
+        customRoomProps.Add("Race", 1);
+        customRoomProps.Add("Season", 2);
+        customRoomProps.Add("TOD", 0);
+        */
+        customRoomProps.Add("Track", rm.trackSelection.GetSelectedTrackNumber());
+        customRoomProps.Add("Race", rm.trackSelection.GetSelectedRaceNumber());
+        customRoomProps.Add("Season", rm.trackSelection.GetSelectedSeasonNumber());
+        customRoomProps.Add("TOD", rm.trackSelection.GetSelectedTODNumber());
+
+        PhotonNetwork.CreateRoom(null, new RoomOptions() { MaxPlayers = this.maxPlayersPerRoom, CustomRoomProperties = customRoomProps }, null);
+
     }
 
 
@@ -294,6 +316,17 @@ public class MultiplayerManager : Photon.PunBehaviour {
     {
         LogFeedback("<Color=Green>OnJoinedRoom</Color> with " + PhotonNetwork.room.PlayerCount + " Player(s)");
         Debug.Log("DemoAnimator/Launcher: OnJoinedRoom() called by PUN. Now this client is in a room.\nFrom here on, your game would be running. For reference, all callbacks are listed in enum: PhotonNetworkingMessage");
+
+
+        Debug.LogWarning("Time to load custom properties");
+
+        rm.trackSelection.selectedTrackNumber = (int)PhotonNetwork.room.CustomProperties["Track"];
+        rm.trackSelection.selectedRaceNumber = (int)PhotonNetwork.room.CustomProperties["Race"];
+        rm.trackSelection.selectedSeasonNumber = (int)PhotonNetwork.room.CustomProperties["Season"];
+        rm.trackSelection.selectedTODNumber = (int)PhotonNetwork.room.CustomProperties["TOD"];
+        rm.trackSelection.SetupTrack();
+
+        PlacePlayerCar();
 
         // #Critical: We only load if we are the first player, else we rely on  PhotonNetwork.automaticallySyncScene to sync our instance scene.
         if (PhotonNetwork.room.PlayerCount == 2)

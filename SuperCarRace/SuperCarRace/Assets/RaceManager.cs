@@ -7,7 +7,7 @@ public class RaceManager : MonoBehaviour {
 
     ArrayList currentCars = new ArrayList();
     public Camera cinematicCamera;
-    TrackSelection trackSelection;
+    public TrackSelection trackSelection;
 
     Canvas TitleCanvas;
     Canvas TrackOptions;
@@ -22,8 +22,6 @@ public class RaceManager : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
-
-
 
         playerCarPrefabName = "GallardoGT";
 
@@ -99,6 +97,7 @@ public class RaceManager : MonoBehaviour {
     }
 
     public void TitleScreen() {
+        amSelectingMultiplayerOptions = false;
         HideAllCanvas();
         TitleCanvas.gameObject.SetActive(true);
     }
@@ -143,9 +142,22 @@ public class RaceManager : MonoBehaviour {
         RCCCanvas.gameObject.SetActive(true);
     }
 
+    public bool amSelectingMultiplayerOptions = false;
+
     public void StartRace() {
+
         ShowVehicleControls();
-        ResetCars();
+
+        if (amSelectingMultiplayerOptions)
+        {
+            RemoveAllCars();
+            MultiplayerManager mm = GameObject.Find("MultiplayerManager").GetComponent<MultiplayerManager>();
+            mm.CreateRoomWithTrackOptions();
+        }
+        else
+        {
+            ResetCars();
+        }
     }
 
     public void ResetRaces() {
