@@ -9,11 +9,13 @@ public class RaceManager : MonoBehaviour {
     Camera cinematicCamera;
     TrackSelection trackSelection;
 
-    Canvas StartCanvas;
+    Canvas TitleCanvas;
     Canvas TrackOptions;
     Canvas CarOptions;
     Canvas RCCCanvas;
     Canvas OptionsCanvas;
+
+    int raceId = 0;
 
     string playerCarPrefabName { get;  set; }
 
@@ -22,12 +24,13 @@ public class RaceManager : MonoBehaviour {
 
         playerCarPrefabName = "GallardoGT";
 
-        StartCanvas = (Canvas)GameObject.Find("StartCanvas").GetComponent(typeof(Canvas));
+        TitleCanvas = (Canvas)GameObject.Find("TitleCanvas").GetComponent(typeof(Canvas));
         TrackOptions = (Canvas)GameObject.Find("TrackOptions").GetComponent(typeof(Canvas));
         CarOptions = (Canvas)GameObject.Find("CarOptions").GetComponent(typeof(Canvas));
         RCCCanvas = (Canvas)GameObject.Find("RCCCanvas").GetComponent(typeof(Canvas));
         OptionsCanvas = (Canvas)GameObject.Find("OptionsCanvas").GetComponent(typeof(Canvas));
-        StartCanvas.gameObject.SetActive(true);
+
+        TitleCanvas.gameObject.SetActive(true);
         TrackOptions.gameObject.SetActive(false);
         CarOptions.gameObject.SetActive(false);
         RCCCanvas.gameObject.SetActive(false);
@@ -38,6 +41,7 @@ public class RaceManager : MonoBehaviour {
         trackSelection = (TrackSelection)GetComponent(typeof(TrackSelection));
         trackSelection.SetupTrack();
 
+        ResetRaces();
         ResetCars(true);
 
         TitleScreen();
@@ -71,18 +75,20 @@ public class RaceManager : MonoBehaviour {
     }
 
     public void TitleScreen() {
-        StartCanvas.gameObject.SetActive(true);
+        TitleCanvas.gameObject.SetActive(true);
         TrackOptions.gameObject.SetActive(false);
         CarOptions.gameObject.SetActive(false);
         RCCCanvas.gameObject.SetActive(false);
     }
 
     public void SelectTrack() {
-        StartCanvas.gameObject.SetActive(false);
+        TitleCanvas.gameObject.SetActive(false);
         TrackOptions.gameObject.SetActive(true);
         CarOptions.gameObject.SetActive(false);
         RCCCanvas.gameObject.SetActive(false);
         trackSelection.SetupTrack();
+
+        ResetRaces();
         ResetCars(true);
     }
 
@@ -108,7 +114,7 @@ public class RaceManager : MonoBehaviour {
         // enable cinematic?
         cinematicCamera.enabled = demoCar;
 
-        StartCanvas.gameObject.SetActive(false);
+        TitleCanvas.gameObject.SetActive(false);
         TrackOptions.gameObject.SetActive(false);
         RCCCanvas.gameObject.SetActive(false);
         CarOptions.gameObject.SetActive(true);
@@ -122,7 +128,24 @@ public class RaceManager : MonoBehaviour {
         ResetCars();
     }
 
+    public void ResetRaces() {
+
+        foreach (GameObject t in trackSelection.allTracks)
+        {
+            GameObject races = t.transform.Find("Races").gameObject;
+            for (int i = 0; i < races.transform.transform.childCount; i++)
+            {
+                GameObject race = races.transform.GetChild(i).gameObject;
+                race.SetActive(false);
+            }
+        }
+
+    }
+
     public void ResetCars(bool DemoMode = false) {
+
+        // Reset Races
+        ResetRaces();
 
         // remove old cars
         foreach (GameObject cc in currentCars)
@@ -133,7 +156,13 @@ public class RaceManager : MonoBehaviour {
 
         GameObject t = trackSelection.GetSelectedTrack();
 
-        GameObject startPos = t.transform.Find("StartPos").gameObject;
+
+        Dropdown ddRace = (Dropdown)TrackOptions.transform.Find("RaceNumber").GetComponent(typeof(Dropdown));
+        raceId = ddRace.value;
+        GameObject race = t.transform.Find("Races").GetChild(raceId).gameObject;
+        race.SetActive(true);
+
+        GameObject startPos = race.transform.Find("StartPos").gameObject;
         GameObject cars = GameObject.Find("Cars");
 
         cars.transform.SetPositionAndRotation(
@@ -145,7 +174,7 @@ public class RaceManager : MonoBehaviour {
         cars.transform.eulerAngles = newRotation;
 
         // Target AI waypoints for this track
-        GameObject targetWaypoints = t.transform.Find("WaypointContainers").Find("trafficDown").gameObject;
+        GameObject targetWaypoints = race.transform.Find("WaypointContainers").gameObject.transform.Find("RaceLine").gameObject;
 
         // Player Car
         GameObject playerCar;

@@ -5,8 +5,9 @@ using UnityEngine.UI;
 
 public class TrackSelection : MonoBehaviour {
 
-    GameObject tracks;
+    GameObject tracksGO;
     Material[] Seasons;
+    GameObject[] treePrefabs = new GameObject[3];
 
     public int defaultTrackNumber { get; set; }
 
@@ -14,11 +15,14 @@ public class TrackSelection : MonoBehaviour {
     void Start()
     {
 
-
-
     }
 
     void Awake() {
+
+        treePrefabs[0] = (GameObject)Resources.Load("Trees/Broadleaf_Mobile_0");
+        treePrefabs[1] = (GameObject)Resources.Load("Trees/Broadleaf_Mobile_1");
+        treePrefabs[2] = (GameObject)Resources.Load("Trees/Broadleaf_Mobile_2");
+
         defaultTrackNumber = 0;
 
         Seasons = new Material[4];
@@ -27,13 +31,27 @@ public class TrackSelection : MonoBehaviour {
         Seasons[2] = Resources.Load("Materials/Season2", typeof(Material)) as Material;
         Seasons[3] = Resources.Load("Materials/Night", typeof(Material)) as Material;
 
-        tracks = GameObject.Find("Tracks");
+        tracksGO = GameObject.Find("Tracks");
+
+
     }
 
     // Update is called once per frame
     void Update()
     {
 
+    }
+
+    public GameObject[] allTracks
+    {
+        get {
+            GameObject[] allTracks = new GameObject[tracksGO.transform.childCount];
+            for (int i = 0; i< tracksGO.transform.childCount; i++)
+            {
+                allTracks[i] = tracksGO.transform.GetChild(i).gameObject;
+            }
+            return allTracks;
+        }
     }
 
     public int GetSelectedTrackNumber() {
@@ -47,7 +65,7 @@ public class TrackSelection : MonoBehaviour {
         return defaultTrackNumber;
     }
     public GameObject GetSelectedTrack() {
-        GameObject t = tracks.transform.Find("track" + GetSelectedTrackNumber().ToString()).gameObject;
+        GameObject t = tracksGO.transform.Find("track" + GetSelectedTrackNumber().ToString()).gameObject;
         return t;
     }
 
@@ -58,7 +76,9 @@ public class TrackSelection : MonoBehaviour {
             return dd.value;
         }
         // default season
-        return 0;
+        //return 0;
+        System.Random rnd = new System.Random();
+        return rnd.Next(0, 3);
     }
     public GameObject GetSelectedSeason() {
         GameObject s = (GameObject)GetSelectedTrack().transform.Find("season" + GetSelectedSeasonNumber().ToString()).gameObject;
@@ -90,8 +110,9 @@ public class TrackSelection : MonoBehaviour {
     private void HideAllTracks() {
         for (int i = 0; i < 3; i++)
         {
-            GameObject t = tracks.transform.Find("track" + i.ToString()).gameObject;
+            GameObject t = tracksGO.transform.Find("track" + i.ToString()).gameObject;
             t.SetActive(false);
+
             for (int j = 0; j < 3; j++)
             {
                 GameObject s = (GameObject)t.transform.Find("season" + j.ToString()).gameObject;
@@ -108,8 +129,23 @@ public class TrackSelection : MonoBehaviour {
     {
         GetSelectedTrack().SetActive(true);
     }
+
+
+    TreePrototype[] treeType;
+
     public void SetSeason()
     {
+
+        //string treePrefabName = "Trees/Broadleaf_Mobile_" + GetSelectedSeasonNumber().ToString();
+        //GameObject treePrefab = (GameObject)Resources.Load(treePrefabName);
+        foreach (Terrain t in Terrain.activeTerrains)
+        {
+            treeType = t.terrainData.treePrototypes;
+            //treeType[0].prefab = treePrefab;
+            treeType[0].prefab = treePrefabs[GetSelectedSeasonNumber()];
+            t.terrainData.treePrototypes = treeType;
+        }
+
         GetSelectedSeason().SetActive(true);
         // Set Skybox
         RenderSettings.skybox = Seasons[GetSelectedSeasonNumber()];
