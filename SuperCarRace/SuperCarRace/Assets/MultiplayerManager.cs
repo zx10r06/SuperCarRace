@@ -10,8 +10,12 @@ using ExitGames.Demos.DemoAnimator;
 
 public class MultiplayerManager : Photon.PunBehaviour {
 
-	// Use this for initialization
-	void Start () {
+    public RCC_CarControllerV3[] selectableVehicles;
+    public int selectedCarIndex = 0;
+    public Transform spawnPoint;
+
+    // Use this for initialization
+    void Start () {
         // ensure that all players play on the same map
         PhotonNetwork.automaticallySyncScene = true;
     }
@@ -20,6 +24,66 @@ public class MultiplayerManager : Photon.PunBehaviour {
 	void Update () {
 		
 	}
+
+
+    public void PlacePlayerCar() {
+
+
+        // remove the demo cars
+        RaceManager rm = GameObject.Find("RaceManager").GetComponent<RaceManager>();
+        rm.RemoveAllCars();
+
+
+        RCC_CarControllerV3[] activeVehicles = GameObject.FindObjectsOfType<RCC_CarControllerV3>();
+        Vector3 lastKnownPos = new Vector3();
+        Quaternion lastKnownRot = new Quaternion();
+        GameObject newVehicle;
+
+        if (activeVehicles != null && activeVehicles.Length > 0)
+        {
+            foreach (RCC_CarControllerV3 rcc in activeVehicles)
+            {
+                if (rcc.canControl)
+                {
+                    lastKnownPos = rcc.transform.position;
+                    lastKnownRot = rcc.transform.rotation;
+                    break;
+                }
+            }
+        }
+
+        if (lastKnownPos == Vector3.zero)
+        {
+            lastKnownPos = spawnPoint.position;
+            lastKnownRot = spawnPoint.rotation;
+        }
+
+        lastKnownRot.x = 0f;
+        lastKnownRot.z = 0f;
+
+        for (int i = 0; i < activeVehicles.Length; i++)
+        {
+
+            if (activeVehicles[i].canControl)
+            {
+                //Destroy(activeVehicles[i].gameObject);
+                PhotonNetwork.Destroy(activeVehicles[i].gameObject);
+            }
+
+        }
+
+        //newVehicle = (GameObject)GameObject.Instantiate(selectableVehicles[selectedCarIndex].gameObject, lastKnownPos + (Vector3.up), lastKnownRot);
+        newVehicle = PhotonNetwork.Instantiate("PhotonVehicles/" + selectableVehicles[selectedCarIndex].gameObject.name, lastKnownPos + (Vector3.up), lastKnownRot, 0);
+
+        newVehicle.GetComponent<RCC_CarControllerV3>().canControl = true;
+
+        if (GameObject.FindObjectOfType<RCC_Camera>())
+        {
+            GameObject.FindObjectOfType<RCC_Camera>().SetPlayerCar(newVehicle);
+        }
+
+
+    }
 
 
 

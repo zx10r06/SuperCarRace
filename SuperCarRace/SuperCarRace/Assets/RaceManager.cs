@@ -152,17 +152,21 @@ public class RaceManager : MonoBehaviour {
 
     }
 
-    public void ResetCars(bool DemoMode = false) {
-
-        // Reset Races
-        ResetRaces();
-
+    public void RemoveAllCars() {
         // remove old cars
         foreach (GameObject cc in currentCars)
         {
             Destroy(cc);
         }
         currentCars = new ArrayList();
+    }
+
+    public void ResetCars(bool DemoMode = false) {
+
+        // Reset Races
+        ResetRaces();
+
+        RemoveAllCars();
 
         GameObject t = trackSelection.GetSelectedTrack();
 
