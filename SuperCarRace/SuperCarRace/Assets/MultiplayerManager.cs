@@ -90,6 +90,24 @@ public class MultiplayerManager : Photon.PunBehaviour {
 
         rm.cinematicCamera.enabled = false;
 
+        RCC_CarControllerV3 rcv3 = newVehicle.GetComponent<RCC_CarControllerV3>();
+        rcv3.handbrakeInput = 1.0f;
+        rcv3.brakeInput = 1.0f;
+
+        Rigidbody rb = newVehicle.GetComponent<Rigidbody>();
+        //rb.isKinematic = true;
+
+        newVehicle.transform.parent = GameObject.Find("Cars").transform;
+
+        if (PhotonNetwork.player.ID == 1)
+        {
+            newVehicle.transform.localPosition = new Vector3(3, 0, 0);
+        }
+        else
+        {
+            newVehicle.transform.localPosition = new Vector3(-3, 0, 0);
+        }
+
 
     }
 

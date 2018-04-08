@@ -119,12 +119,9 @@ public class RaceManager : MonoBehaviour {
         }
 
         // remove old cars
-        foreach (GameObject cc in currentCars)
-        {
-            Destroy(cc);
-        }
-        currentCars = new ArrayList();
+        RemoveAllCars();
         GameObject demoCar = CreateCar("DemoCar", playerCarPrefabName, new Vector3(0, 0, 0), new Quaternion(0, 0, 0, 0));
+        //demoCar.GetComponent<RCC_CarControllerV3>().handbrakeInput = 1;
 
         //Set the Camera system to the player car
         RCC_Camera camera = (RCC_Camera)GameObject.Find("RCCCamera").GetComponent(typeof(RCC_Camera));
@@ -135,6 +132,11 @@ public class RaceManager : MonoBehaviour {
 
         HideAllCanvas();
         CarOptions.gameObject.SetActive(true);
+
+        RCC_CarControllerV3 rcv3 = demoCar.GetComponent<RCC_CarControllerV3>();
+        rcv3.handbrakeInput = 1.0f;
+        //rcv3.engineRunning = false;
+
     }
 
     public void ShowVehicleControls() {
@@ -281,7 +283,7 @@ public class RaceManager : MonoBehaviour {
         */
 
         RCC_CarControllerV3 rcV3 = (RCC_CarControllerV3)newCar.GetComponent<RCC_CarControllerV3>();
-        //rcV3.vo
+        //rcV3.handbrakeInput = 1;
 
         /*
         // Audio Volume
