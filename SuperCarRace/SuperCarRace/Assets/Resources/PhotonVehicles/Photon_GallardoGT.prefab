@@ -608,8 +608,8 @@ GameObject:
   - component: {fileID: 54480084434285884}
   - component: {fileID: 114465534873892340}
   - component: {fileID: 114010063054593178}
-  - component: {fileID: 114442422610162852}
-  - component: {fileID: 114253124287231646}
+  - component: {fileID: 114850857137576224}
+  - component: {fileID: 114837389694623422}
   m_Layer: 8
   m_Name: Photon_GallardoGT
   m_TagString: PlayerCar
@@ -4545,17 +4545,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b40e0afcd5cdd3a428bda44732e995ed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &114253124287231646
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1462185488841390}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7846213011314c245a4c27c82d4e7752, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &114261575971373564
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4646,32 +4635,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c72887219efa8994d938b47f07b6625e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &114442422610162852
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1462185488841390}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ownerId: 0
-  group: 0
-  OwnerShipWasTransfered: 0
-  prefixBackup: -1
-  synchronization: 2
-  onSerializeTransformOption: 3
-  onSerializeRigidBodyOption: 2
-  ownershipTransfer: 0
-  ObservedComponents:
-  - {fileID: 4967785918202228}
-  ObservedComponentsFoldoutOpen: 1
-  viewIdField: 0
-  instantiationId: -1
-  currentMasterID: -1
-  isRuntimeInstantiated: 0
 --- !u!114 &114465534873892340
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -5037,6 +5000,43 @@ MonoBehaviour:
   lightRenderer: {fileID: 23722434490936942}
   materialIndex: 0
   noTexture: 0
+--- !u!114 &114837389694623422
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1462185488841390}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7846213011314c245a4c27c82d4e7752, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &114850857137576224
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1462185488841390}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ownerId: 0
+  group: 0
+  OwnerShipWasTransfered: 0
+  prefixBackup: -1
+  synchronization: 2
+  onSerializeTransformOption: 3
+  onSerializeRigidBodyOption: 2
+  ownershipTransfer: 0
+  ObservedComponents:
+  - {fileID: 114837389694623422}
+  ObservedComponentsFoldoutOpen: 1
+  viewIdField: 0
+  instantiationId: -1
+  currentMasterID: -1
+  isRuntimeInstantiated: 0
 --- !u!114 &114871142153103346
 MonoBehaviour:
   m_ObjectHideFlags: 1
