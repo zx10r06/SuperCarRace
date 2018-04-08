@@ -72,7 +72,7 @@ public class TrackSelection : MonoBehaviour {
         // default season
         //return 0;
         System.Random rnd = new System.Random();
-        return rnd.Next(0, 2);
+        return rnd.Next(0, 3);
     }
     public GameObject GetSelectedSeason() {
         GameObject s = (GameObject)GetSelectedTrack().transform.Find("season" + GetSelectedSeasonNumber().ToString()).gameObject;
@@ -96,7 +96,6 @@ public class TrackSelection : MonoBehaviour {
     }
     // Handle Track, Season and TOD selection
     public void SetupTrack() {
-
         HideAllTracks();
         SetTrackNumber();
         SetSeason();

@@ -9,7 +9,7 @@ public class RaceManager : MonoBehaviour {
     Camera cinematicCamera;
     TrackSelection trackSelection;
 
-    Canvas StartCanvas;
+    Canvas TitleCanvas;
     Canvas TrackOptions;
     Canvas CarOptions;
     Canvas RCCCanvas;
@@ -24,12 +24,13 @@ public class RaceManager : MonoBehaviour {
 
         playerCarPrefabName = "GallardoGT";
 
-        StartCanvas = (Canvas)GameObject.Find("StartCanvas").GetComponent(typeof(Canvas));
+        TitleCanvas = (Canvas)GameObject.Find("TitleCanvas").GetComponent(typeof(Canvas));
         TrackOptions = (Canvas)GameObject.Find("TrackOptions").GetComponent(typeof(Canvas));
         CarOptions = (Canvas)GameObject.Find("CarOptions").GetComponent(typeof(Canvas));
         RCCCanvas = (Canvas)GameObject.Find("RCCCanvas").GetComponent(typeof(Canvas));
         OptionsCanvas = (Canvas)GameObject.Find("OptionsCanvas").GetComponent(typeof(Canvas));
-        StartCanvas.gameObject.SetActive(true);
+
+        TitleCanvas.gameObject.SetActive(true);
         TrackOptions.gameObject.SetActive(false);
         CarOptions.gameObject.SetActive(false);
         RCCCanvas.gameObject.SetActive(false);
@@ -40,6 +41,7 @@ public class RaceManager : MonoBehaviour {
         trackSelection = (TrackSelection)GetComponent(typeof(TrackSelection));
         trackSelection.SetupTrack();
 
+        ResetRaces();
         ResetCars(true);
 
         TitleScreen();
@@ -73,14 +75,14 @@ public class RaceManager : MonoBehaviour {
     }
 
     public void TitleScreen() {
-        StartCanvas.gameObject.SetActive(true);
+        TitleCanvas.gameObject.SetActive(true);
         TrackOptions.gameObject.SetActive(false);
         CarOptions.gameObject.SetActive(false);
         RCCCanvas.gameObject.SetActive(false);
     }
 
     public void SelectTrack() {
-        StartCanvas.gameObject.SetActive(false);
+        TitleCanvas.gameObject.SetActive(false);
         TrackOptions.gameObject.SetActive(true);
         CarOptions.gameObject.SetActive(false);
         RCCCanvas.gameObject.SetActive(false);
@@ -112,7 +114,7 @@ public class RaceManager : MonoBehaviour {
         // enable cinematic?
         cinematicCamera.enabled = demoCar;
 
-        StartCanvas.gameObject.SetActive(false);
+        TitleCanvas.gameObject.SetActive(false);
         TrackOptions.gameObject.SetActive(false);
         RCCCanvas.gameObject.SetActive(false);
         CarOptions.gameObject.SetActive(true);
@@ -125,9 +127,6 @@ public class RaceManager : MonoBehaviour {
         //StartCanvas.gameObject.SetActive(titleScreen);
         ResetCars();
     }
-
-
-
 
     public void ResetRaces() {
 
