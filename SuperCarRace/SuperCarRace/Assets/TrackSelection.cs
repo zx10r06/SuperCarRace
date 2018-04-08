@@ -61,6 +61,12 @@ public class TrackSelection : MonoBehaviour {
     }
 
     public int GetSelectedTrackNumber() {
+
+        if (PhotonNetwork.inRoom && PhotonNetwork.player.ID > 1)
+        {
+            return selectedTrackNumber;
+        }
+
         if (GameObject.Find("TrackNumber") != null)
         {
             Dropdown ddTrack = (Dropdown)GameObject.Find("TrackNumber").GetComponent(typeof(Dropdown));

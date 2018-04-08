@@ -33,8 +33,8 @@ public class MultiplayerManager : Photon.PunBehaviour {
 
     public void PlacePlayerCar() {
 
+        Debug.LogWarning("The selected track id is: " + rm.trackSelection.GetSelectedRaceNumber());
         spawnPoint = rm.trackSelection.GetSelectedRace().transform.Find("StartPos");
-
         // show the race controls
         //rm.HideAllCanvas();
         //rm.ShowVehicleControls();
@@ -106,11 +106,19 @@ public class MultiplayerManager : Photon.PunBehaviour {
 
         if (PhotonNetwork.player.ID == 1)
         {
-            newVehicle.transform.localPosition = new Vector3(2, 0, 0);
+            newVehicle.transform.localPosition = new Vector3(
+                newVehicle.transform.localPosition.x + 2,
+                newVehicle.transform.localPosition.y,
+                newVehicle.transform.localPosition.z
+            );
         }
         else
         {
-            newVehicle.transform.localPosition = new Vector3(-2, 0, 0);
+            newVehicle.transform.localPosition = new Vector3(
+                newVehicle.transform.localPosition.x - 2,
+                newVehicle.transform.localPosition.y,
+                newVehicle.transform.localPosition.z
+            );
         }
 
 
