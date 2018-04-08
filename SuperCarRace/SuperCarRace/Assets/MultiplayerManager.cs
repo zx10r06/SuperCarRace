@@ -78,7 +78,12 @@ public class MultiplayerManager : Photon.PunBehaviour {
         }
 
         //newVehicle = (GameObject)GameObject.Instantiate(selectableVehicles[selectedCarIndex].gameObject, lastKnownPos + (Vector3.up), lastKnownRot);
-        newVehicle = PhotonNetwork.Instantiate("PhotonVehicles/" + selectableVehicles[selectedCarIndex].gameObject.name, lastKnownPos + (Vector3.up), lastKnownRot, 0);
+
+
+        string[] photonVehicles = new string[2] { "Photon_GallardoGT", "Photon_E36" };
+
+
+        newVehicle = PhotonNetwork.Instantiate("PhotonVehicles/" + photonVehicles[rm.selectedCarIndex], lastKnownPos + (Vector3.up), lastKnownRot, 0);
 
         newVehicle.GetComponent<RCC_CarControllerV3>().canControl = true;
 
@@ -101,11 +106,11 @@ public class MultiplayerManager : Photon.PunBehaviour {
 
         if (PhotonNetwork.player.ID == 1)
         {
-            newVehicle.transform.localPosition = new Vector3(3, 0, 0);
+            newVehicle.transform.localPosition = new Vector3(2, 0, 0);
         }
         else
         {
-            newVehicle.transform.localPosition = new Vector3(-3, 0, 0);
+            newVehicle.transform.localPosition = new Vector3(-2, 0, 0);
         }
 
 

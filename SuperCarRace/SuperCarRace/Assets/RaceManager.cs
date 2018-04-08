@@ -17,6 +17,7 @@ public class RaceManager : MonoBehaviour {
     Canvas MultiplayerCanvas;
 
     int raceId = 0;
+    public int selectedCarIndex = 0;
 
     string playerCarPrefabName { get;  set; }
 
@@ -110,12 +111,14 @@ public class RaceManager : MonoBehaviour {
         ResetCars(true);
     }
 
+
     public void SelectCar() {
 
         if (GameObject.Find("SelectedCar") != null)
         {
             Dropdown ddCar = (Dropdown)GameObject.Find("SelectedCar").GetComponent(typeof(Dropdown));
-            playerCarPrefabName = ddCar.options[ddCar.value].text;
+            selectedCarIndex = ddCar.value;
+            playerCarPrefabName = ddCar.options[selectedCarIndex].text;
         }
 
         // remove old cars
