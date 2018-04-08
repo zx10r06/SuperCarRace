@@ -15,6 +15,8 @@ public class RaceManager : MonoBehaviour {
     Canvas RCCCanvas;
     Canvas OptionsCanvas;
 
+    int raceId = 0;
+
     string playerCarPrefabName { get;  set; }
 
     // Use this for initialization
@@ -83,6 +85,8 @@ public class RaceManager : MonoBehaviour {
         CarOptions.gameObject.SetActive(false);
         RCCCanvas.gameObject.SetActive(false);
         trackSelection.SetupTrack();
+
+        ResetRaces();
         ResetCars(true);
     }
 
@@ -153,7 +157,9 @@ public class RaceManager : MonoBehaviour {
 
         GameObject t = trackSelection.GetSelectedTrack();
 
-        int raceId = 1;
+
+        Dropdown ddRace = (Dropdown)TrackOptions.transform.Find("RaceNumber").GetComponent(typeof(Dropdown));
+        raceId = ddRace.value;
         GameObject race = t.transform.Find("Races").GetChild(raceId).gameObject;
         race.SetActive(true);
 
