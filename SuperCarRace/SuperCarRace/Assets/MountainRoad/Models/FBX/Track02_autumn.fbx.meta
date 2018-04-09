@@ -3,7 +3,7 @@ guid: a1a69b5a7acabe644ad77adc7fc7bd63
 timeCreated: 1465678150
 licenseType: Store
 ModelImporter:
-  serializedVersion: 19
+  serializedVersion: 22
   fileIDToRecycleName:
     100000: Cliff
     100002: Cliff.003
@@ -449,40 +449,136 @@ ModelImporter:
     4300162: Ground
     4300164: Cliff
     4300166: StopRoadSign_lp.000
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Block_summer
+    second: {fileID: 2100000, guid: a82de733ad8d1ec43abe36a0a1aa58f1, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Bridge
+    second: {fileID: 2100000, guid: 1808c91a71f37e64eb556762feee346b, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Cliff_summer
+    second: {fileID: 2100000, guid: 1d866ffe64ba26e4ea4b420d8c161813, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Ground_autumn
+    second: {fileID: 2100000, guid: 35574ee598f1c44419c1055602cf656c, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: RepentanceSign
+    second: {fileID: 2100000, guid: 1bcabe1ee2df8cc439084d9d26524400, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: RoadClosedSign
+    second: {fileID: 2100000, guid: e1214b57c9a2a4648865814065460b96, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: RoadLight
+    second: {fileID: 2100000, guid: d21941bf9c226e94bb271a7116e67945, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: RoadLight_emit
+    second: {fileID: 2100000, guid: 80e5b48c483c3ef42bed20dfc738c730, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Road_autumn
+    second: {fileID: 2100000, guid: 4ced4d86fe485ae4393064f8aad0951f, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Tree_01_autumn
+    second: {fileID: 2100000, guid: e99c2b5b6f1320640af19dbf6f9d2ec1, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Tree_02_autumn
+    second: {fileID: 2100000, guid: a3f88406fc8f9404ca3e2c6e502749a3, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Tree_03_autumn
+    second: {fileID: 2100000, guid: 7d627b2421360fe4fb4b1b3b179e46b6, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Tree_04_autumn
+    second: {fileID: 2100000, guid: 15e35b94a78080348b02ca826a80aff4, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Tunnel
+    second: {fileID: 2100000, guid: e230fee857499bf4fa0325179f7f7c63, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: TunnelLamps
+    second: {fileID: 2100000, guid: 8d3566c713fbc0949bb6b645c275fd88, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: TurnSign
+    second: {fileID: 2100000, guid: 023d2b4bbf203924bbc3ff023add7629, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Wall
+    second: {fileID: 2100000, guid: 5096402cb35281e4da1c4259ee5fdb98, type: 2}
   materials:
     importMaterials: 1
     materialName: 0
     materialSearch: 1
+    materialLocation: 0
   animations:
     legacyGenerateAnimations: 4
     bakeSimulation: 0
-    resampleRotations: 1
+    resampleCurves: 1
     optimizeGameObjects: 0
     motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
     animationImportErrors: 
     animationImportWarnings: 
     animationRetargetingWarnings: 
     animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
     animationCompression: 1
     animationRotationError: 0.5
     animationPositionError: 0.5
     animationScaleError: 0.5
     animationWrapMode: 0
     extraExposedTransformPaths: []
+    extraUserProperties: []
     clipAnimations: []
     isReadable: 1
   meshes:
     lODScreenPercentages: []
     globalScale: 100
-    meshCompression: 0
+    meshCompression: 1
     addColliders: 0
+    importVisibility: 0
     importBlendShapes: 1
+    importCameras: 0
+    importLights: 0
     swapUVChannels: 0
     generateSecondaryUV: 1
     useFileUnits: 1
     optimizeMeshForGPU: 1
     keepQuads: 0
     weldVertices: 1
+    preserveHierarchy: 0
+    indexFormat: 1
     secondaryUVAngleDistortion: 8
     secondaryUVAreaDistortion: 15.000001
     secondaryUVHardAngle: 88
@@ -492,9 +588,11 @@ ModelImporter:
     normalSmoothAngle: 60
     normalImportMode: 0
     tangentImportMode: 3
+    normalCalculationMode: 0
   importAnimation: 1
   copyAvatar: 0
   humanDescription:
+    serializedVersion: 2
     human: []
     skeleton: []
     armTwist: 0.5
@@ -505,7 +603,10 @@ ModelImporter:
     legStretch: 0.05
     feetSpacing: 0
     rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
     hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 0
   lastHumanDescriptionAvatarSource: {instanceID: 0}
   animationType: 0
   humanoidOversampling: 1
